@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  web:
+    image: "hapiproject/hapi:latest"
+    ports:
+      - "8888:8080"
+    configs:
+      - source: hapi
+        target: /data/hapi/application.yaml
+    volumes:
+      - hapi-data:/data/hapi
+    # environment:
+      # SPRING_CONFIG_LOCATION: 'file:///data/hapi/application.yaml'
+configs:
+  hapi:
+     external: true
+volumes:
+    hapi-data:
+        external: true
