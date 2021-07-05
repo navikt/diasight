@@ -1,4 +1,4 @@
-import { IComposition } from './composition';
+import { IComposition } from './';
 
 export interface IBundle {
     type: BundleType;

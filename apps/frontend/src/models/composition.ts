@@ -1,7 +1,4 @@
-import { IAdverseEvent } from './adverse-event';
-import { IAppointment } from './appointment';
-import { ICondition } from './condition';
-import { IProcedure } from './procedure';
+import { IAdverseEvent, IAppointment, ICondition, IProcedure } from './';
 
 export interface IComposition {
     status: CompositionStatus;
