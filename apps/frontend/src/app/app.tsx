@@ -4,11 +4,11 @@ import Navbar from '../components/navbar';
 
 export const App = () => {
   const [m, setMessage] = useState<Message>({ message: '' });
+  const [patient, setPatient] = useState(null);
 
   useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
+    fetch('/api/app')
+      .then((r) => console.log(r));
   }, []);
 
   return (
@@ -22,7 +22,7 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      <div>{m.message}</div>
+      <div>{JSON.stringify(patient)}</div>
     </>
   );
 };
