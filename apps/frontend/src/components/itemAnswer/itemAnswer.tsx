@@ -4,9 +4,8 @@ import React from 'react'
 import { FC } from 'react'
 
 interface IProps {
-    setAnswer: React.Dispatch<React.SetStateAction<string>>;
+    setAnswer: (answer: string) => void;
     answer: string;
-    index: number;
 }
 
 

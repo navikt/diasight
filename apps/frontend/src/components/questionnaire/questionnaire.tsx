@@ -41,19 +41,20 @@ export const Questionnaire: FC<IProps> = ({ questionnaire }) => {
 
     if (questionnaire) {
         return (
-            <>
+            <div>
                 {
                     questionnaire.item?.map((value) => {
-                        return (<div key={value.linkId}>
-                            <p>{value.text}</p>
-                            <Answer answer={findAnswer(value.linkId)} setAnswer={setAnswer(value.linkId)} />
-
-                        </div>
+                        return (
+                            value.linkId ?
+                                <div key={value.linkId}>
+                                    <p>{value.text}</p>
+                                    <Answer answer={findAnswer(value.linkId)} setAnswer={setAnswer(value.linkId)} />
+                                </div> : null
                         )
                     })
                 }
 
-            </>
+            </div>
         )
     }
     return (
