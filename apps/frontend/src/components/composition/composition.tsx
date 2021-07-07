@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { FC } from "react";
-import { Expand } from "@navikt/ds-icons";
 
 import style from "./composition.module.less";
-import { formatDate } from "../../utils/date-formatter";
 import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
 interface IProps {
@@ -33,17 +31,12 @@ export const Composition: FC<IProps> = ({ composition }) => {
                     <div
                         className={style.dropdown}
                         onClick={() => setActive(!active)}>
-                        <Expand
-                            aria-label="Expand"
-                            role="img"
-                            focusable="false"
-                        />
+                        DROP
                     </div>
                 </div>
                 <table
-                    className={`${style.tableWrapper} ${
-                        active ? style.visible : ""
-                    } `}>
+                    className={`${style.tableWrapper} ${active ? style.visible : ""
+                        } `}>
                     <tr>
                         <th>Dato</th>
                         <td></td>
