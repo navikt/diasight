@@ -10,12 +10,12 @@ describe("App", () => {
 
     it("should render successfully", async () => {
         global["fetch"] = jest.fn().mockResolvedValueOnce({
-            json: () => ({
-                patient: mockPatient
-            }),
+            json: () => (mockPatient
+            ),
         });
 
-        const baseElement = render(<App />).container;
-        await waitFor(() => getByText(baseElement, "my message"));
+        const { baseElement } = render(<App />);
+
+        await waitFor(() => getByText(baseElement, "[{\"family\":\"Aase\",\"given\":[\"Jenny\"]}]"));
     });
 });

@@ -1,18 +1,24 @@
-import { IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
+import { IBundle_Entry, IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
+import { IBundle, IComposition } from '../models';
 
 export const App = () => {
-  const [patientResult, setPatientResult] = useState<IPatient[]>([]);
+  const [patientResult, setPatientResult] = useState<IPatient[]>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/Patient')
-      .then((r) => r.json().then(patient => {
-        console.log(patient);
-        setPatientResult(patient);
+      .then((r) => r.json())
+      .then((bundle: IBundle) => {
+        const patients: IPatient[] = [];
+        bundle.entry.forEach((entry: any) => {
+          patients.push(entry.resource as IPatient);
+        })
+        console.log(bundle);
+        setPatientResult(patients);
         setLoading(false);
-      }));
+      });
   }, []);
 
   return (
@@ -28,8 +34,8 @@ export const App = () => {
       </div>
       <p>Found {patientResult?.total} patients:</p>
       <ol start="0">
-        {!loading ? patientResult.entry.map((entry) => {
-          return <li key={patientResult.entry.indexOf(entry)}>{entry.resource.name[0].given[0]} {entry.resource.name[0].family}</li>
+        {patientResult ? patientResult.map((entry) => {
+          return <li key={patientResult.indexOf(entry)}>{JSON.stringify(entry.name)}</li>
         }) : null}
       </ol>
     </>
