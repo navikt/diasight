@@ -29,7 +29,7 @@ export const App = () => {
       <p>Found {patientResult?.total} patients:</p>
       <ol start="0">
         {!loading ? patientResult.entry.map((entry) => {
-          return <li>{entry.resource.name[0].given[0]} {entry.resource.name[0].family}</li>
+          return <li key={patientResult.entry.indexOf(entry)}>{entry.resource.name[0].given[0]} {entry.resource.name[0].family}</li>
         }) : null}
       </ol>
     </>
