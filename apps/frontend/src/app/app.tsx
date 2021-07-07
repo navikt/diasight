@@ -1,14 +1,17 @@
+import { IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 
 export const App = () => {
-  const [patientResult, setPatientResult] = useState<IPatient>(null);
+  const [patientResult, setPatientResult] = useState<IPatient[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/Patient')
       .then((r) => r.json().then(patient => {
         console.log(patient);
         setPatientResult(patient);
+        setLoading(false);
       }));
   }, []);
 
@@ -23,12 +26,12 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      <h4>Found {patientResult?.total} patients</h4>
-      <ul>
-        {patientResult.entry.map((entry) => {
-          return <li>{entry.resource.name[0].given[0]}</li>
-        })}
-      </ul>
+      <p>Found {patientResult?.total} patients:</p>
+      <ol start="0">
+        {!loading ? patientResult.entry.map((entry) => {
+          return <li>{entry.resource.name[0].given[0]} {entry.resource.name[0].family}</li>
+        }) : null}
+      </ol>
     </>
   );
 };

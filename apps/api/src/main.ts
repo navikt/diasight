@@ -1,5 +1,5 @@
-import * as express from 'express';
-import * as session from 'express-session';
+import * as express from "express";
+import * as session from "express-session";
 import { patientRouter } from "./routes/patient";
 
 const app = express();
@@ -10,13 +10,13 @@ const server = app.listen(port, () => {
 });
 
 app.use(
-  session({
-    secret: 'my secret',
-    resave: false,
-    saveUninitialized: false,
-  })
+    session({
+        secret: "my secret",
+        resave: false,
+        saveUninitialized: false,
+    })
 );
 
 app.use("/api/Patient", patientRouter);
 
-server.on('error', console.error);
+server.on("error", console.error);
