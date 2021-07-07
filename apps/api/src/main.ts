@@ -1,16 +1,22 @@
 import * as express from "express";
-import { Message } from "@pasientjournal.no/api-interfaces";
+import * as session from "express-session";
+import { patientRouter } from "./routes/patient";
 
 const app = express();
-
-const greeting: Message = { message: "Welcome to api!" };
-
-app.get("/api", (req, res) => {
-    res.send(greeting);
-});
-
 const port = process.env.port || 3333;
+
 const server = app.listen(port, () => {
     console.log("Listening at http://localhost:" + port + "/api");
 });
+
+app.use(
+    session({
+        secret: "my secret",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+
+app.use("/api/Patient", patientRouter);
+
 server.on("error", console.error);
