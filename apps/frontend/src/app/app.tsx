@@ -49,13 +49,6 @@ export const App = () => {
                 <Route path="/inbox"><h1>inbox</h1></Route>
                 <Route path="/instillinger"><h1>instillinger</h1></Route>
             </div>
-
-            <p>Found {patientResult?.length} patients:</p>
-            <ol start="0">
-                {patientResult ? patientResult.map((entry) => {
-                    return <li key={patientResult.indexOf(entry)}>{JSON.stringify(entry.name)}</li>
-                }) : null}
-            </ol>
         </>
     );
 };

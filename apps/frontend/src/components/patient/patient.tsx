@@ -1,9 +1,9 @@
-import { IPatient } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Normaltekst, Sidetittel, Undertittel } from "nav-frontend-typografi";
 import React from "react";
 import { FC } from "react";
-import { usePatient } from "./hooks/use-patient";
 import style from "./patient.module.less";
+import { usePatient, usePatientName, usePatientSID } from "./hooks";
+import { genderToNorwegian, maritalStatusToNorwegian, patientHomeAdressToString, patientEmailToString, patientPhoneToString } from "./utils";
 
 interface IProps {
     id: number;
@@ -11,7 +11,14 @@ interface IProps {
 
 export const Patient: FC<IProps> = ({ id }) => {
 
+    // Current use of custom hooks might be redundant and bad for performance. 
+    // Consider altering usePatientName() and usePatientSID() to util functions to prevent unnecessary re-renders.
+    // Alternatively/additionally make a simplified patient state to add all data before render.  
     const { patient, isLoading, isError } = usePatient(id);
+    const patientName = usePatientName(patient);
+    const patientSID = usePatientSID(patient);
+
+    console.log(patient);
 
     if (isLoading) return <h1>Loading</h1>
     if (isError) return <h1>Error</h1>
@@ -19,15 +26,15 @@ export const Patient: FC<IProps> = ({ id }) => {
     return (
 
         <div className={style.patientCard}>
-            <Sidetittel>Kari Hansen</Sidetittel>
-            <Undertittel>123456 78901</Undertittel>
-            <Normaltekst>Kvinne</Normaltekst>
-            <Normaltekst>Ugift</Normaltekst>
+            <Sidetittel>{patientName}</Sidetittel>
+            <Undertittel>{patientSID}</Undertittel>
+            <Normaltekst>{genderToNorwegian(patient.gender)}</Normaltekst>
+            <Normaltekst>{maritalStatusToNorwegian(patient.maritalStatus)}</Normaltekst>
             <Normaltekst>Fulltidsansatt</Normaltekst>
-            <Normaltekst>Adresse 1, 1234 Sted</Normaltekst>
+            <Normaltekst>{patientHomeAdressToString(patient.address)}</Normaltekst>
             <div className={style.contact}>
-                <Normaltekst>245 67 584</Normaltekst>
-                <Normaltekst>epost@taket.no</Normaltekst>
+                <Normaltekst>{patientPhoneToString(patient.telecom)}</Normaltekst>
+                <Normaltekst>{patientEmailToString(patient.telecom)}</Normaltekst>
             </div>
         </div>
 
