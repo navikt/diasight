@@ -9,12 +9,12 @@ export const mockPatient = {
     "link": [
         {
             "relation": "self",
-            "url": "http://localhost:8080/fhir/Patient"
+            "url": "http://localhost:8888/fhir/Patient"
         }
     ],
     "entry": [
         {
-            "fullUrl": "http://localhost:8080/fhir/Patient/1",
+            "fullUrl": "http://localhost:8888/fhir/Patient/1",
             "resource": {
                 "resourceType": "Patient",
                 "id": "1",
@@ -86,7 +86,7 @@ export const mockPatient = {
             }
         },
         {
-            "fullUrl": "http://localhost:8080/fhir/Patient/2",
+            "fullUrl": "http://localhost:8888/fhir/Patient/2",
             "resource": {
                 "resourceType": "Patient",
                 "id": "2",
@@ -158,7 +158,7 @@ export const mockPatient = {
             }
         },
         {
-            "fullUrl": "http://localhost:8080/fhir/Patient/3",
+            "fullUrl": "http://localhost:8888/fhir/Patient/3",
             "resource": {
                 "resourceType": "Patient",
                 "id": "3",

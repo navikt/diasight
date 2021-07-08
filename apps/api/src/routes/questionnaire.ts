@@ -14,7 +14,6 @@ questionnaireRouter
                     ? client.patient.read()
                     : client.request("Questionnaire"));
                 res.type("json").send(JSON.stringify(data, null, 4));
-                console.log(data);
             });
     })
     .post((req, res) => {

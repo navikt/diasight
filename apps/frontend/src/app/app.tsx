@@ -1,21 +1,21 @@
-import { IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
+import { IQuestionnaire } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import { IBundle } from '../models';
 
 export const App = () => {
-  const [patientResult, setPatientResult] = useState<IPatient[]>();
+  const [questionnaireResult, setQuestionnaireResult] = useState<IQuestionnaire[]>();
 
   useEffect(() => {
-    fetch('/api/Patient')
+    fetch('/api/Questionnaire')
       .then((r) => r.json())
       .then((bundle: IBundle) => {
-        const patients: IPatient[] = [];
+        const questionnaires: IQuestionnaire[] = [];
         bundle.entry.forEach((entry: any) => {
-          patients.push(entry.resource as IPatient);
+          questionnaires.push(entry.resource as IQuestionnaire);
         })
         console.log(bundle);
-        setPatientResult(patients);
+        setQuestionnaireResult(questionnaires);
       });
   }, []);
 
@@ -30,10 +30,10 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      <p>Found the following patients:</p>
+      <p>Found the following questionnaires:</p>
       <ol>
-        {patientResult ? patientResult.map((entry) => {
-          return <li key={patientResult.indexOf(entry)}>{JSON.stringify(entry.name)}</li>
+        {questionnaireResult ? questionnaireResult.map((entry) => {
+          return <li key={questionnaireResult.indexOf(entry)}>{JSON.stringify(entry.title)}</li>
         }) : null}
       </ol>
     </>
