@@ -1,6 +1,6 @@
 import { cleanup, getByText, render, waitFor } from "@testing-library/react";
 import App from "./app";
-import { mockPatient } from "./mock-data";
+import { mockQuestionnaire } from "./mock-data";
 
 describe("App", () => {
     afterEach(() => {
@@ -10,12 +10,11 @@ describe("App", () => {
 
     it("should render successfully", async () => {
         global["fetch"] = jest.fn().mockResolvedValueOnce({
-            json: () => (mockPatient
-            ),
+            json: () => (mockQuestionnaire),
         });
 
         const { baseElement } = render(<App />);
 
-        await waitFor(() => getByText(baseElement, "[{\"family\":\"Aase\",\"given\":[\"Jenny\"]}]"));
+        await waitFor(() => getByText(baseElement, "\"Hello World!\""));
     });
 });

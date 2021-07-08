@@ -231,3 +231,143 @@ export const mockPatient = {
         }
     ]
 };
+
+export const mockQuestionnaire = {
+    "resourceType": "Bundle",
+    "id": "1d0cb977-aaaa-423e-8828-781659d64de8",
+    "meta": {
+        "lastUpdated": "2021-07-08T09:15:43.476+00:00"
+    },
+    "type": "searchset",
+    "total": 2,
+    "link": [
+        {
+            "relation": "self",
+            "url": "http://localhost:8888/fhir/Questionnaire"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "http://localhost:8888/fhir/Questionnaire/1",
+            "resource": {
+                "resourceType": "Questionnaire",
+                "id": "1",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2021-07-08T09:07:23.424+00:00",
+                    "source": "#tJe4zkHmBTWW1xOq"
+                },
+                "language": "no",
+                "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+                "version": "1.0.0",
+                "name": "computerFriendlyName",
+                "title": "Human friendly name",
+                "status": "active",
+                "subjectType": [
+                    "Patient"
+                ],
+                "item": [
+                    {
+                        "linkId": "1",
+                        "text": "Statsborgerskap",
+                        "type": "choice",
+                        "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+                    },
+                    {
+                        "linkId": "2",
+                        "text": "Kan pasienten jobbe?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "3",
+                        "text": "Kan pasienten løfte over 5 kg over hodet?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "4",
+                        "text": "Hvor mye kan pasienten løfte over hodet?",
+                        "type": "integer",
+                        "enableWhen": [
+                            {
+                                "question": "3",
+                                "operator": "=",
+                                "answerBoolean": true
+                            }
+                        ],
+                        "required": true
+                    },
+                    {
+                        "linkId": "5",
+                        "text": "Sikkerhetsklassifisering",
+                        "type": "choice",
+                        "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "http://localhost:8888/fhir/Questionnaire/5",
+            "resource": {
+                "resourceType": "Questionnaire",
+                "id": "5",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2021-07-08T09:15:39.491+00:00",
+                    "source": "#1cLZMEYBCuS7cQfP"
+                },
+                "language": "no",
+                "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+                "version": "1.0.0",
+                "name": "helloWorld",
+                "title": "Hello World!",
+                "status": "active",
+                "subjectType": [
+                    "Patient"
+                ],
+                "item": [
+                    {
+                        "linkId": "1",
+                        "text": "Statsborgerskap",
+                        "type": "choice",
+                        "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+                    },
+                    {
+                        "linkId": "2",
+                        "text": "Kan pasienten jobbe?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "3",
+                        "text": "Kan pasienten løfte over 5 kg over hodet?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "4",
+                        "text": "Hvor mye kan pasienten løfte over hodet?",
+                        "type": "integer",
+                        "enableWhen": [
+                            {
+                                "question": "3",
+                                "operator": "=",
+                                "answerBoolean": true
+                            }
+                        ],
+                        "required": true
+                    },
+                    {
+                        "linkId": "5",
+                        "text": "Sikkerhetsklassifisering",
+                        "type": "choice",
+                        "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+};
