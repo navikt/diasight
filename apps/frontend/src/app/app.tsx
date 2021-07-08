@@ -1,7 +1,6 @@
-import { IQuestionnaire } from '@ahryman40k/ts-fhir-types/lib/R4';
+import { IBundle, IQuestionnaire } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
-import { IBundle } from '../models';
 
 export const App = () => {
   const [questionnaireResult, setQuestionnaireResult] = useState<IQuestionnaire[]>();
@@ -11,11 +10,13 @@ export const App = () => {
       .then((r) => r.json())
       .then((bundle: IBundle) => {
         const questionnaires: IQuestionnaire[] = [];
-        bundle.entry.forEach((entry: any) => {
-          questionnaires.push(entry.resource as IQuestionnaire);
-        })
-        console.log(bundle);
-        setQuestionnaireResult(questionnaires);
+        if (bundle.entry) {
+          bundle.entry.forEach((entry: any) => {
+            questionnaires.push(entry.resource as IQuestionnaire);
+          })
+          console.log(bundle);
+          setQuestionnaireResult(questionnaires);
+        }
       });
   }, []);
 
@@ -30,12 +31,18 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      <p>Found the following questionnaires:</p>
-      <ol>
-        {questionnaireResult ? questionnaireResult.map((entry) => {
-          return <li key={questionnaireResult.indexOf(entry)}>{JSON.stringify(entry.title)}</li>
-        }) : null}
-      </ol>
+      {questionnaireResult ?
+        <>
+          <p>Found the following questionnaires:</p>
+          <ol>
+            {questionnaireResult.map((entry) => {
+              return <li key={questionnaireResult.indexOf(entry)}>
+                {JSON.stringify(entry.title)}
+              </li>
+            })}
+          </ol>
+        </> :
+        <p>No questionnaires found</p>}
     </>
   );
 };
