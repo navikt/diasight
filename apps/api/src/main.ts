@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as session from "express-session";
 import { patientRouter } from "./routes/patient";
+import { questionnaireRouter } from "./routes/questionnaire";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -18,5 +19,6 @@ app.use(
 );
 
 app.use("/api/Patient", patientRouter);
+app.use("/api/Questionnaire", questionnaireRouter);
 
 server.on("error", console.error);

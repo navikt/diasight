@@ -1,4 +1,3 @@
-import { IBundle, IBundle_Entry } from "@ahryman40k/ts-fhir-types/lib/R4";
 import express = require("express");
 import smart = require("fhirclient");
 import { smartSettings } from "./constants";

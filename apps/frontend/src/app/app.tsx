@@ -1,11 +1,10 @@
-import { IBundle_Entry, IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
+import { IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
-import { IBundle, IComposition } from '../models';
+import { IBundle } from '../models';
 
 export const App = () => {
   const [patientResult, setPatientResult] = useState<IPatient[]>();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/Patient')
@@ -17,7 +16,6 @@ export const App = () => {
         })
         console.log(bundle);
         setPatientResult(patients);
-        setLoading(false);
       });
   }, []);
 
@@ -32,8 +30,8 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      <p>Found {patientResult?.total} patients:</p>
-      <ol start="0">
+      <p>Found the following patients:</p>
+      <ol>
         {patientResult ? patientResult.map((entry) => {
           return <li key={patientResult.indexOf(entry)}>{JSON.stringify(entry.name)}</li>
         }) : null}
