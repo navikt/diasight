@@ -1,21 +1,21 @@
-import { IBundle, IQuestionnaire } from '@ahryman40k/ts-fhir-types/lib/R4';
+import { IBundle, IQuestionnaireResponse } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 
 export const App = () => {
-  const [questionnaireResult, setQuestionnaireResult] = useState<IQuestionnaire[]>();
+  const [questionnaireResponseResult, setQuestionnaireResponseResult] = useState<IQuestionnaireResponse[]>();
 
   useEffect(() => {
-    fetch('/api/Questionnaire')
+    fetch('/api/QuestionnaireResponse')
       .then((r) => r.json())
       .then((bundle: IBundle) => {
-        const questionnaires: IQuestionnaire[] = [];
+        const questionnaireResponses: IQuestionnaireResponse[] = [];
         if (bundle.entry) {
           bundle.entry.forEach((entry: any) => {
-            questionnaires.push(entry.resource as IQuestionnaire);
+            questionnaireResponses.push(entry.resource as IQuestionnaireResponse);
           })
           console.log(bundle);
-          setQuestionnaireResult(questionnaires);
+          setQuestionnaireResponseResult(questionnaireResponses);
         }
       });
   }, []);
@@ -31,18 +31,18 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      {questionnaireResult ?
+      {questionnaireResponseResult ?
         <>
-          <p>Found the following questionnaires:</p>
+          <p>Found the following questionnaire responses:</p>
           <ol>
-            {questionnaireResult.map((entry) => {
-              return <li key={questionnaireResult.indexOf(entry)}>
-                {JSON.stringify(entry.title)}
+            {questionnaireResponseResult.map((entry) => {
+              return <li key={questionnaireResponseResult.indexOf(entry)}>
+                {JSON.stringify(entry.questionnaire)}
               </li>
             })}
           </ol>
         </> :
-        <p>No questionnaires found</p>}
+        <p>No questionnaire responses found</p>}
     </>
   );
 };

@@ -371,3 +371,95 @@ export const mockQuestionnaire = {
         }
     ]
 };
+
+export const mockQuestionnaireResponse = {
+    "resourceType": "Bundle",
+    "id": "a1aab9d0-92bd-4589-a363-5cf53e4c5dcf",
+    "meta": {
+        "lastUpdated": "2021-07-08T12:49:37.507+00:00"
+    },
+    "type": "searchset",
+    "total": 1,
+    "link": [
+        {
+            "relation": "self",
+            "url": "http://localhost:8888/fhir/QuestionnaireResponse"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "http://localhost:8888/fhir/QuestionnaireResponse/8",
+            "resource": {
+                "resourceType": "QuestionnaireResponse",
+                "id": "8",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2021-07-08T12:15:59.596+00:00",
+                    "source": "#AyROzTFvbXgmNZm8"
+                },
+                "text": {
+                    "status": "empty",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">No human-readable text provided in this case</div>"
+                },
+                "questionnaire": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+                "status": "completed",
+                "subject": {
+                    "reference": "Patient/2"
+                },
+                "authored": "2021-02-26T14:15:00-00:00",
+                "item": [
+                    {
+                        "linkId": "1",
+                        "answer": [
+                            {
+                                "valueCoding": {
+                                    "system": "urn:iso:std:iso:3166",
+                                    "code": "NO",
+                                    "display": "Norge"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "2",
+                        "answer": [
+                            {
+                                "valueBoolean": false
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "3",
+                        "answer": [
+                            {
+                                "valueBoolean": true
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "4",
+                        "answer": [
+                            {
+                                "valueInteger": 20
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "5",
+                        "answer": [
+                            {
+                                "valueCoding": {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+                                    "code": "V"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+};

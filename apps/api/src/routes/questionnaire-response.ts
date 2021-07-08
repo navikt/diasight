@@ -2,9 +2,9 @@ import express = require("express");
 import smart = require("fhirclient");
 import { smartSettings } from "./constants";
 
-export const questionnaireRouter = express.Router();
+export const questionnaireResponseRouter = express.Router();
 
-questionnaireRouter
+questionnaireResponseRouter
     .route("/")
     .get((req, res) => {
         smart(req, res)
@@ -12,30 +12,30 @@ questionnaireRouter
             .then(async (client) => {
                 const data = await (client.patient.id
                     ? client.patient.read()
-                    : client.request("Questionnaire"));
+                    : client.request("QuestionnaireResponse"));
                 res.type("json").send(JSON.stringify(data, null, 4));
             });
     })
     .post((req, res) => {
-        res.send("hi post /Questionnaire");
+        res.send("hi post /QuestionnaireResponse");
     });
 
-questionnaireRouter.get("/:id", (req, res) => {
+questionnaireResponseRouter.get("/:id", (req, res) => {
     const id = req.params.id;
 
     smart(req, res)
         .init({ ...smartSettings, redirectUri: "/" })
         .then(async (client) => {
-            const data = await client.request(`Questionnaire/${id}`);
+            const data = await client.request(`QuestionnaireResponse/${id}`);
             res.send(JSON.stringify(data));
         });
 });
 
-questionnaireRouter
+questionnaireResponseRouter
     .route("&_id=1")
     .put((req, res) => {
-        res.send("hi put /Questionnaire");
+        res.send("hi put /QuestionnaireResponse");
     })
     .delete((req, res) => {
-        res.send("hi delete /Questionnaire");
+        res.send("hi delete /QuestionnaireResponse");
     });
