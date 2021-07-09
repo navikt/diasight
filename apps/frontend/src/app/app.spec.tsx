@@ -14,8 +14,8 @@ describe("App", () => {
             ),
         });
 
-        const { baseElement } = render(<App />);
+        const { container } = render(<App />);
 
-        await waitFor(() => getByText(baseElement, "[{\"family\":\"Aase\",\"given\":[\"Jenny\"]}]"));
+        await waitFor(() => getByText(container, "Root"));
     });
 });

@@ -18,7 +18,6 @@ export const App = () => {
                 bundle.entry.forEach((entry: any) => {
                     patients.push(entry.resource as IPatient);
                 })
-                console.log(bundle);
                 setPatientResult(patients);
                 setLoading(false);
             });
