@@ -1,4 +1,4 @@
-import { IBundle, IBundle_Entry } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IBundle, IBundle_Entry, RTTI_Questionnaire } from "@ahryman40k/ts-fhir-types/lib/R4";
 import express = require("express");
 import smart = require("fhirclient");
 import { smartSettings } from "./constants";
@@ -20,6 +20,16 @@ patientRouter
     .post((req, res) => {
         res.send("hi post /Patient");
     });
+
+
+patientRouter.get("/:id", (req, res) => {
+    const id = req.params.id;
+
+    smart(req, res).init({ ...smartSettings, redirectUri: "/" }).then(async (client) => {
+        const data = await client.request(`Patient/${id}`);
+        res.send(JSON.stringify(data));
+    })
+});
 
 patientRouter
     .route("&_id=1")
