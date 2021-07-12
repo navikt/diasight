@@ -18,9 +18,11 @@ interface IProps {
 export const Composition: FC<IProps> = ({ composition }) => {
     const [active, setActive] = useState(false);
 
+
     const primaryCondition = composition.section
         ? composition.section[0]
         : null;
+
 
     if (composition) {
         return (

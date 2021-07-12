@@ -13,8 +13,8 @@ describe("App", () => {
             json: () => (mockQuestionnaireResponses),
         });
 
-        const { baseElement } = render(<App />);
+        const { container } = render(<App />);
 
-        await waitFor(() => getByText(baseElement, "\"http://mitt-domene.no/fhir/Questionnaire/workshop-skjema\""));
+        await waitFor(() => getByText(container, "Root"));
     });
 });

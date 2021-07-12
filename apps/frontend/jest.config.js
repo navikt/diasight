@@ -7,4 +7,5 @@ module.exports = {
     },
     moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
     coverageDirectory: "../../coverage/apps/frontend",
+    transformIgnorePatterns: ['../../node_modules/(?!${nav-frontend-typografi})']
 };

@@ -18,3 +18,14 @@ patientRouter.post("/", async (req, res) => {
         })
         .catch((error) => res.send(error));
 });
+
+patientRouter.get("/:id", (req, res) => {
+    const id = req.params.id;
+
+    await axios
+        .get("http://localhost:8888/fhir/Patient/" + id)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => res.send(error));
+});
