@@ -1,30 +1,20 @@
 import express = require("express");
-import smart = require("fhirclient");
-import { smartSettings } from "./constants";
+import axios from "axios";
 
 export const patientRouter = express.Router();
 
-patientRouter
-    .route("/")
-    .get((req, res) => {
-        smart(req, res)
-            .init({ ...smartSettings, redirectUri: "/" })
-            .then(async (client) => {
-                const data = await (client.patient.id
-                    ? client.patient.read()
-                    : client.request("Patient"));
-                res.type("json").send(JSON.stringify(data, null, 4));
-            });
-    })
-    .post((req, res) => {
-        res.send("hi post /Patient");
-    });
+patientRouter.get("/", async (req, res) => {
+    await axios
+        .get("http://localhost:8888/fhir/Patient")
+        .then((response) => res.send(JSON.stringify(response.data)))
+        .catch((error) => console.log(error));
+});
 
-patientRouter
-    .route("&_id=1")
-    .put((req, res) => {
-        res.send("hi put /Patient");
-    })
-    .delete((req, res) => {
-        res.send("hi delete /Patient");
-    });
+patientRouter.post("/", async (req, res) => {
+    await axios
+        .post("http://localhost:8888/fhir/Patient", req.body)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => res.send(error));
+});

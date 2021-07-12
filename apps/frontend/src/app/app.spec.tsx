@@ -1,6 +1,6 @@
 import { cleanup, getByText, render, waitFor } from "@testing-library/react";
 import App from "./app";
-import { mockQuestionnaireResponse } from "./mock-data";
+import { mockQuestionnaireResponses } from "./mock-data";
 
 describe("App", () => {
     afterEach(() => {
@@ -10,7 +10,7 @@ describe("App", () => {
 
     it("should render successfully", async () => {
         global["fetch"] = jest.fn().mockResolvedValueOnce({
-            json: () => (mockQuestionnaireResponse),
+            json: () => (mockQuestionnaireResponses),
         });
 
         const { baseElement } = render(<App />);

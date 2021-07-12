@@ -29,6 +29,7 @@
     "dependencies": {
         "@ahryman40k/ts-fhir-types": "^4.0.36",
         "@navikt/ds-icons": "^0.3.3",
+        "axios": "^0.21.1",
         "core-js": "^3.6.5",
         "document-register-element": "1.13.1",
         "express": "4.17.1",

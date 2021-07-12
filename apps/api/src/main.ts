@@ -7,6 +7,9 @@ import { questionnaireResponseRouter } from "./routes/questionnaire-response";
 const app = express();
 const port = process.env.port || 3333;
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const server = app.listen(port, () => {
     console.log("Listening at http://localhost:" + port + "/api");
 });

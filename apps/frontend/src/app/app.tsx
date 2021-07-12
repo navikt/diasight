@@ -1,21 +1,27 @@
-import { IBundle, IQuestionnaireResponse } from '@ahryman40k/ts-fhir-types/lib/R4';
+import { IBundle, IPatient } from '@ahryman40k/ts-fhir-types/lib/R4';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
+import { mockPatient } from './mock-data';
 
 export const App = () => {
-  const [questionnaireResponseResult, setQuestionnaireResponseResult] = useState<IQuestionnaireResponse[]>();
+  const [patientResult, setPatientResult] = useState<IPatient[]>();
 
   useEffect(() => {
-    fetch('/api/QuestionnaireResponse')
+    fetch('/api/Patient', {
+      method: 'POST',
+      // body: JSON.stringify({
+      //   query: mockPatient
+      // })
+    })
       .then((r) => r.json())
       .then((bundle: IBundle) => {
-        const questionnaireResponses: IQuestionnaireResponse[] = [];
+        const patients: IPatient[] = [];
         if (bundle.entry) {
           bundle.entry.forEach((entry: any) => {
-            questionnaireResponses.push(entry.resource as IQuestionnaireResponse);
+            patients.push(entry.resource as IPatient);
           })
           console.log(bundle);
-          setQuestionnaireResponseResult(questionnaireResponses);
+          setPatientResult(patients);
         }
       });
   }, []);
@@ -31,18 +37,19 @@ export const App = () => {
           alt="Nx - Smart, Extensible Build Framework"
         />
       </div>
-      {questionnaireResponseResult ?
-        <>
+      {patientResult
+        ? <>
           <p>Found the following questionnaire responses:</p>
           <ol>
-            {questionnaireResponseResult.map((entry) => {
-              return <li key={questionnaireResponseResult.indexOf(entry)}>
-                {JSON.stringify(entry.questionnaire)}
+            {patientResult.map((entry) => {
+              return <li key={patientResult.indexOf(entry)}>
+                {JSON.stringify(entry.name)}
               </li>
             })}
           </ol>
-        </> :
-        <p>No questionnaire responses found</p>}
+        </>
+        : <p>No questionnaire responses found</p>}
+      <p></p>
     </>
   );
 };
