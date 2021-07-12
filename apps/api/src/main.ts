@@ -6,6 +6,7 @@ import { questionnaireResponseRouter } from "./routes/questionnaire-response";
 import { conditionRouter } from "./routes/condition";
 import { observationRouter } from "./routes/observation";
 import { practitionerRouter } from "./routes/practitioner";
+import { diagnosticReportRouter } from "./routes/diagnostic-report";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -31,5 +32,6 @@ app.use("/api/QuestionnaireResponse", questionnaireResponseRouter);
 app.use("/api/Condition", conditionRouter);
 app.use("/api/Observation", observationRouter);
 app.use("/api/Practitioner", practitionerRouter);
+app.use("/api/DiagnosticReport", diagnosticReportRouter);
 
 server.on("error", console.error);
