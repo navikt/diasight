@@ -3,6 +3,7 @@ import * as session from "express-session";
 import { patientRouter } from "./routes/patient";
 import { questionnaireRouter } from "./routes/questionnaire";
 import { questionnaireResponseRouter } from "./routes/questionnaire-response";
+import { conditionRouter } from "./routes/condition";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -25,5 +26,6 @@ app.use(
 app.use("/api/Patient", patientRouter);
 app.use("/api/Questionnaire", questionnaireRouter);
 app.use("/api/QuestionnaireResponse", questionnaireResponseRouter);
+app.use("/api/Condition", conditionRouter);
 
 server.on("error", console.error);
