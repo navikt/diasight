@@ -14,7 +14,7 @@ export const App = () => {
       .then((r) => r.json())
       .then((bundle: IBundle) => {
         const patients: IPatient[] = [];
-        bundle.entry.forEach((entry: any) => {
+        bundle.entry?.forEach((entry: any) => {
           patients.push(entry.resource as IPatient);
         })
         setPatientResult(patients);

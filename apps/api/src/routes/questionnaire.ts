@@ -1,41 +1,62 @@
 import express = require("express");
-import smart = require("fhirclient");
-import { smartSettings } from "./constants";
+import axios from "axios";
 
 export const questionnaireRouter = express.Router();
 
-questionnaireRouter
-    .route("/")
-    .get((req, res) => {
-        smart(req, res)
-            .init({ ...smartSettings, redirectUri: "/" })
-            .then(async (client) => {
-                const data = await (client.patient.id
-                    ? client.patient.read()
-                    : client.request("Questionnaire"));
-                res.type("json").send(JSON.stringify(data, null, 4));
-            });
-    })
-    .post((req, res) => {
-        res.send("hi post /Questionnaire");
-    });
-
-questionnaireRouter.get("/:id", (req, res) => {
-    const id = req.params.id;
-
-    smart(req, res)
-        .init({ ...smartSettings, redirectUri: "/" })
-        .then(async (client) => {
-            const data = await client.request(`Questionnaire/${id}`);
-            res.send(JSON.stringify(data));
+questionnaireRouter.get("/", async (req, res) => {
+    await axios
+        .get("http://localhost:8888/fhir/Questionnaire")
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
         });
 });
 
-questionnaireRouter
-    .route("&_id=1")
-    .put((req, res) => {
-        res.send("hi put /Questionnaire");
-    })
-    .delete((req, res) => {
-        res.send("hi delete /Questionnaire");
-    });
+questionnaireRouter.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    await axios
+        .get("http://localhost:8888/fhir/Questionnaire/" + id)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+});
+
+questionnaireRouter.post("/", async (req, res) => {
+    await axios
+        .post("http://localhost:8888/fhir/Questionnaire", req.body)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+});
+
+questionnaireRouter.put("/:id", async (req, res) => {
+    const id = req.params.id;
+    await axios
+        .put("http://localhost:8888/fhir/Questionnaire/" + id, req.body)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+});
+
+questionnaireRouter.delete("/:id", async (req, res) => {
+    const id = req.params.id;
+    await axios
+        .delete("http://localhost:8888/fhir/Questionnaire/" + id)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            res.send(error);
+        });
+});

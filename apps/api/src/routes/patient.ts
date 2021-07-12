@@ -6,8 +6,24 @@ export const patientRouter = express.Router();
 patientRouter.get("/", async (req, res) => {
     await axios
         .get("http://localhost:8888/fhir/Patient")
-        .then((response) => res.send(JSON.stringify(response.data)))
-        .catch((error) => console.log(error));
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+patientRouter.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    await axios
+        .get("http://localhost:8888/fhir/Patient/" + id)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            res.send(error);
+        });
 });
 
 patientRouter.post("/", async (req, res) => {
@@ -16,16 +32,31 @@ patientRouter.post("/", async (req, res) => {
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
-        .catch((error) => res.send(error));
+        .catch((error) => {
+            res.send(error);
+        });
 });
 
-patientRouter.get("/:id", (req, res) => {
+patientRouter.put("/:id", async (req, res) => {
     const id = req.params.id;
-
     await axios
-        .get("http://localhost:8888/fhir/Patient/" + id)
+        .put("http://localhost:8888/fhir/Patient/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
-        .catch((error) => res.send(error));
+        .catch((error) => {
+            res.send(error);
+        });
+});
+
+patientRouter.delete("/:id", async (req, res) => {
+    const id = req.params.id;
+    await axios
+        .delete("http://localhost:8888/fhir/Patient/" + id)
+        .then((response) => {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            res.send(error);
+        });
 });
