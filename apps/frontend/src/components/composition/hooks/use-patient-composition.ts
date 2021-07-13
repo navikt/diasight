@@ -1,6 +1,6 @@
 import fetcher from "../../../utils/fetcher";
 import useSWR from "swr"
-import { IComposition, IPatient } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
 export const usePatientComposition = (id: number) => {
     // Possibly add type IPatient

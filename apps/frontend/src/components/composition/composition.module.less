@@ -11,40 +11,39 @@
     border: black 2px solid;
     border-radius: 3px 3px 0 0;
     padding: 1%;
+    background-color: #C9C9C9;
+
 }
 
 .expand {
     grid-column: 4;
     justify-self: end;
+    cursor: pointer;
 }
 
 .biCondition  {
     width: 100%;
-    margin: 1% auto;
+    margin: 0.5% auto;
     border: black 2px solid;
     padding: 1%;
     display: grid;
     grid-template-columns: 8% auto auto;
-}
-
-.biCondition > p:first-child {
-    
+    background-color: #C9C9C9;
 }
 
 .biCondition:last-child {
     border-radius: 0 0 3px 3px;
 }
 
-.wrapper {
-    display: grid;
+.timelineWrapper {
+    display: none;
     grid-template-rows: auto auto;
-
-}
-
-.conditionHeader {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    border-bottom: black 2px solid;
+    border: black 2px solid;
+    width: 100%;
+    padding: 1%;
+    margin: 0.5% auto;
+    background-color: #C9C9C9;
+    z-index: -2;
 }
 
 .dropdown {
@@ -56,7 +55,7 @@
 .tableWrapper {
     column-span: 1 / 4;
     width: 100%;
-    display: none;
+    display: grid;
 }
 
 .tableWrapper > tr {
@@ -70,7 +69,8 @@
 }
 
 .timestamp {
-    background-color: black;
+    background-color: #fefefefe;
+    border: #0067C5 2px solid;
     border-radius: 30px;
     width: var(--timeline-width);
     height: 12px;
@@ -78,24 +78,28 @@
     z-index: 3;
 }
 
+/*
 tr:not(:nth-child(2)) .timestamp {
     background-color: red;
 }
+*/
 
 tr:not(:nth-child(1)) .timestamp::after {
     content: " ";
     position: absolute;
-    height: 22px;
+    height: 25px;
     width: 10px;
     padding-left: 1px;
-    clip-path: inset(0 20% 0 20%);
-    background-color: green;
-    z-index: -1;
+    clip-path: inset(0 40% 0 40%);
+    background-color: #fefefe;
+
+    z-index: 0;
 }
 
+/*
 tr:last-child .timestamp {
     background-color: black;
-}
+}*/
 
 tr:last-child .timestamp::after {
     display: none;

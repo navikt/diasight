@@ -37,6 +37,7 @@
         "express-session": "^1.17.2",
         "fhirclient": "^2.4.0",
         "install": "^0.13.0",
+        "jest-transform-stub": "^2.0.0",
         "lodash.throttle": "^4.1.1",
         "nav-frontend-core": "^6.0.1",
         "nav-frontend-js-utils": "^1.0.19",
