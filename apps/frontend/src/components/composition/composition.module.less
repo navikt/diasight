@@ -2,12 +2,43 @@
     --timeline-width: 12px;
 }
 
+.mainCondition {
+    grid-template-columns: 80% auto auto auto;
+    justify-content: space-between;
+    display: grid;
+    width: 100%;
+    margin: auto;
+    border: black 2px solid;
+    border-radius: 3px 3px 0 0;
+    padding: 1%;
+}
+
+.expand {
+    grid-column: 4;
+    justify-self: end;
+}
+
+.biCondition  {
+    width: 100%;
+    margin: 1% auto;
+    border: black 2px solid;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: 8% auto auto;
+}
+
+.biCondition > p:first-child {
+    
+}
+
+.biCondition:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
 .wrapper {
     display: grid;
     grid-template-rows: auto auto;
-    width: 60%;
-    margin: auto;
-    border: black 2px solid;
+
 }
 
 .conditionHeader {

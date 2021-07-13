@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as session from "express-session";
-import { patientRouter } from "./routes/patient";
+import { patientRouter, compositionRouter, conditionRouter } from "./routes";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -18,5 +18,7 @@ app.use(
 );
 
 app.use("/api/Patient", patientRouter);
+app.use("/api/Composition", compositionRouter);
+app.use("/api/Condition", conditionRouter);
 
 server.on("error", console.error);

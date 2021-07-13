@@ -1,9 +1,26 @@
-.contact {
+.patientCard {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    justify-content: space-between;
+}
+
+.patientCard > h1, h2{
+    grid-column: span 4;
+}
+
+.general {
+    grid-column: span 4;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.patientCard > p {
+.general > p{
     text-transform: capitalize;
+
+}
+
+.contact {
+    margin: 2% 0;
 }
