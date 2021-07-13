@@ -1,11 +1,11 @@
 import express = require("express");
 import axios from "axios";
 
-export const patientRouter = express.Router();
+export const questionnaireRouter = express.Router();
 
-patientRouter.get("/", async (req, res) => {
+questionnaireRouter.get("/", async (req, res) => {
     await axios
-        .get("http://localhost:8888/fhir/Patient")
+        .get("http://localhost:8888/fhir/Questionnaire")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -14,10 +14,10 @@ patientRouter.get("/", async (req, res) => {
         });
 });
 
-patientRouter.get("/:id", async (req, res) => {
+questionnaireRouter.get("/:id", async (req, res) => {
     const id = req.params.id;
     await axios
-        .get("http://localhost:8888/fhir/Patient/" + id)
+        .get("http://localhost:8888/fhir/Questionnaire/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -26,9 +26,9 @@ patientRouter.get("/:id", async (req, res) => {
         });
 });
 
-patientRouter.post("/", async (req, res) => {
+questionnaireRouter.post("/", async (req, res) => {
     await axios
-        .post("http://localhost:8888/fhir/Patient", req.body)
+        .post("http://localhost:8888/fhir/Questionnaire", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -37,10 +37,10 @@ patientRouter.post("/", async (req, res) => {
         });
 });
 
-patientRouter.put("/:id", async (req, res) => {
+questionnaireRouter.put("/:id", async (req, res) => {
     const id = req.params.id;
     await axios
-        .put("http://localhost:8888/fhir/Patient/" + id, req.body)
+        .put("http://localhost:8888/fhir/Questionnaire/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -49,10 +49,10 @@ patientRouter.put("/:id", async (req, res) => {
         });
 });
 
-patientRouter.delete("/:id", async (req, res) => {
+questionnaireRouter.delete("/:id", async (req, res) => {
     const id = req.params.id;
     await axios
-        .delete("http://localhost:8888/fhir/Patient/" + id)
+        .delete("http://localhost:8888/fhir/Questionnaire/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

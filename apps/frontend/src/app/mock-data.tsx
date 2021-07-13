@@ -1,4 +1,4 @@
-export const mockPatient = {
+export const mockPatients = {
     "resourceType": "Bundle",
     "id": "a034a662-b80b-42df-be5f-ac2a3c615886",
     "meta": {
@@ -9,12 +9,12 @@ export const mockPatient = {
     "link": [
         {
             "relation": "self",
-            "url": "http://localhost:8080/fhir/Patient"
+            "url": "http://localhost:8888/fhir/Patient"
         }
     ],
     "entry": [
         {
-            "fullUrl": "http://localhost:8080/fhir/Patient/1",
+            "fullUrl": "http://localhost:8888/fhir/Patient/1",
             "resource": {
                 "resourceType": "Patient",
                 "id": "1",
@@ -86,7 +86,7 @@ export const mockPatient = {
             }
         },
         {
-            "fullUrl": "http://localhost:8080/fhir/Patient/2",
+            "fullUrl": "http://localhost:8888/fhir/Patient/2",
             "resource": {
                 "resourceType": "Patient",
                 "id": "2",
@@ -158,7 +158,7 @@ export const mockPatient = {
             }
         },
         {
-            "fullUrl": "http://localhost:8080/fhir/Patient/3",
+            "fullUrl": "http://localhost:8888/fhir/Patient/3",
             "resource": {
                 "resourceType": "Patient",
                 "id": "3",
@@ -224,6 +224,238 @@ export const mockPatient = {
                         }
                     ]
                 }
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+};
+
+export const mockQuestionnaires = {
+    "resourceType": "Bundle",
+    "id": "1d0cb977-aaaa-423e-8828-781659d64de8",
+    "meta": {
+        "lastUpdated": "2021-07-08T09:15:43.476+00:00"
+    },
+    "type": "searchset",
+    "total": 2,
+    "link": [
+        {
+            "relation": "self",
+            "url": "http://localhost:8888/fhir/Questionnaire"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "http://localhost:8888/fhir/Questionnaire/1",
+            "resource": {
+                "resourceType": "Questionnaire",
+                "id": "1",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2021-07-08T09:07:23.424+00:00",
+                    "source": "#tJe4zkHmBTWW1xOq"
+                },
+                "language": "no",
+                "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+                "version": "1.0.0",
+                "name": "computerFriendlyName",
+                "title": "Human friendly name",
+                "status": "active",
+                "subjectType": [
+                    "Patient"
+                ],
+                "item": [
+                    {
+                        "linkId": "1",
+                        "text": "Statsborgerskap",
+                        "type": "choice",
+                        "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+                    },
+                    {
+                        "linkId": "2",
+                        "text": "Kan pasienten jobbe?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "3",
+                        "text": "Kan pasienten løfte over 5 kg over hodet?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "4",
+                        "text": "Hvor mye kan pasienten løfte over hodet?",
+                        "type": "integer",
+                        "enableWhen": [
+                            {
+                                "question": "3",
+                                "operator": "=",
+                                "answerBoolean": true
+                            }
+                        ],
+                        "required": true
+                    },
+                    {
+                        "linkId": "5",
+                        "text": "Sikkerhetsklassifisering",
+                        "type": "choice",
+                        "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        },
+        {
+            "fullUrl": "http://localhost:8888/fhir/Questionnaire/5",
+            "resource": {
+                "resourceType": "Questionnaire",
+                "id": "5",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2021-07-08T09:15:39.491+00:00",
+                    "source": "#1cLZMEYBCuS7cQfP"
+                },
+                "language": "no",
+                "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+                "version": "1.0.0",
+                "name": "helloWorld",
+                "title": "Hello World!",
+                "status": "active",
+                "subjectType": [
+                    "Patient"
+                ],
+                "item": [
+                    {
+                        "linkId": "1",
+                        "text": "Statsborgerskap",
+                        "type": "choice",
+                        "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+                    },
+                    {
+                        "linkId": "2",
+                        "text": "Kan pasienten jobbe?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "3",
+                        "text": "Kan pasienten løfte over 5 kg over hodet?",
+                        "type": "boolean"
+                    },
+                    {
+                        "linkId": "4",
+                        "text": "Hvor mye kan pasienten løfte over hodet?",
+                        "type": "integer",
+                        "enableWhen": [
+                            {
+                                "question": "3",
+                                "operator": "=",
+                                "answerBoolean": true
+                            }
+                        ],
+                        "required": true
+                    },
+                    {
+                        "linkId": "5",
+                        "text": "Sikkerhetsklassifisering",
+                        "type": "choice",
+                        "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
+                    }
+                ]
+            },
+            "search": {
+                "mode": "match"
+            }
+        }
+    ]
+};
+
+export const mockQuestionnaireResponses = {
+    "resourceType": "Bundle",
+    "id": "a1aab9d0-92bd-4589-a363-5cf53e4c5dcf",
+    "meta": {
+        "lastUpdated": "2021-07-08T12:49:37.507+00:00"
+    },
+    "type": "searchset",
+    "total": 1,
+    "link": [
+        {
+            "relation": "self",
+            "url": "http://localhost:8888/fhir/QuestionnaireResponse"
+        }
+    ],
+    "entry": [
+        {
+            "fullUrl": "http://localhost:8888/fhir/QuestionnaireResponse/8",
+            "resource": {
+                "resourceType": "QuestionnaireResponse",
+                "id": "8",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2021-07-08T12:15:59.596+00:00",
+                    "source": "#AyROzTFvbXgmNZm8"
+                },
+                "text": {
+                    "status": "empty",
+                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">No human-readable text provided in this case</div>"
+                },
+                "questionnaire": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+                "status": "completed",
+                "subject": {
+                    "reference": "Patient/2"
+                },
+                "authored": "2021-02-26T14:15:00-00:00",
+                "item": [
+                    {
+                        "linkId": "1",
+                        "answer": [
+                            {
+                                "valueCoding": {
+                                    "system": "urn:iso:std:iso:3166",
+                                    "code": "NO",
+                                    "display": "Norge"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "2",
+                        "answer": [
+                            {
+                                "valueBoolean": false
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "3",
+                        "answer": [
+                            {
+                                "valueBoolean": true
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "4",
+                        "answer": [
+                            {
+                                "valueInteger": 20
+                            }
+                        ]
+                    },
+                    {
+                        "linkId": "5",
+                        "answer": [
+                            {
+                                "valueCoding": {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+                                    "code": "V"
+                                }
+                            }
+                        ]
+                    }
+                ]
             },
             "search": {
                 "mode": "match"
