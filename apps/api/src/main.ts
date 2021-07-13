@@ -8,6 +8,8 @@ import { observationRouter } from "./routes/observation";
 import { practitionerRouter } from "./routes/practitioner";
 import { diagnosticReportRouter } from "./routes/diagnostic-report";
 import { serviceRequestRouter } from "./routes/service-request";
+import { medicationRequestRouter } from "./routes/medication-request";
+import { medicationRouter } from "./routes/medication";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -35,5 +37,7 @@ app.use("/api/Observation", observationRouter);
 app.use("/api/Practitioner", practitionerRouter);
 app.use("/api/DiagnosticReport", diagnosticReportRouter);
 app.use("/api/ServiceRequest", serviceRequestRouter);
+app.use("/api/MedicationRequest", medicationRequestRouter);
+app.use("/api/Medicatino", medicationRouter);
 
 server.on("error", console.error);
