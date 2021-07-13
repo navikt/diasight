@@ -38,6 +38,6 @@ app.use("/api/Practitioner", practitionerRouter);
 app.use("/api/DiagnosticReport", diagnosticReportRouter);
 app.use("/api/ServiceRequest", serviceRequestRouter);
 app.use("/api/MedicationRequest", medicationRequestRouter);
-app.use("/api/Medicatino", medicationRouter);
+app.use("/api/Medication", medicationRouter);
 
 server.on("error", console.error);
