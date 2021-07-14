@@ -17,7 +17,7 @@ observationRouter.get("/", async (req, res) => {
 observationRouter.get("/:id", async (req, res) => {
     const id = req.params.id;
     await axios
-        .get("http://localhost:8888/fhir/Observation/" + id)
+        .get("http://localhost:8888/fhir/Observation?_include=Observation:performer&_id=" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

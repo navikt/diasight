@@ -74,8 +74,14 @@
 
 .tableWrapper > tr {
     display: grid;
-    grid-template-columns: 10ch 5% 35% 10% auto;
+    grid-template-columns: 10ch 5% 54% 15% auto;
     text-align: left;
+}
+
+.tableWrapper td > p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .visible {
@@ -103,7 +109,7 @@ tr:not(:nth-child(1)) .timestamp::after {
     position: absolute;
     height: 25px;
     width: 10px;
-    padding-left: 1px;
+    padding-left: 3px;
     clip-path: inset(0 40% 0 40%);
     background-color: #fefefe;
 
