@@ -6,19 +6,27 @@
     width: 100%;
 }
 
+.compositionWrapper > h2 {
+    margin: 1% auto;
+}
+
 .mainCondition {
     grid-template-columns: 80% auto auto auto;
     justify-content: space-between;
     display: grid;
     margin: auto;
-    padding: 1%;
-    border: black 2px solid;
+    padding: 8px;
     border-radius: 3px 3px 0 0;
-    background-color: #C9C9C9;
+    background-color: #EFEFEF;
 }
 
 .mainCondition > h2 {
     grid-column: span 4;
+}
+
+.active {
+    background-color: #0067C5;
+    color: #FEFEFE;
 }
 
 .expand {
@@ -32,12 +40,11 @@
 }
 
 .biCondition  {
-    padding: 1%;
+    padding: 8px;
     margin: 0.5% auto;
-    border: black 2px solid;
     display: grid;
     grid-template-columns: 8% auto auto;
-    background-color: #C9C9C9;
+    background-color: #EFEFEF;
 }
 
 .biCondition:last-child {
@@ -47,10 +54,9 @@
 .timelineWrapper {
     display: none;
     grid-template-rows: auto auto;
-    border: black 2px solid;
-    padding: 1%;
+    padding: 8px;
     margin: 0.5% auto;
-    background-color: #C9C9C9;
+    background-color: #EFEFEF;
     z-index: -2;
 }
 

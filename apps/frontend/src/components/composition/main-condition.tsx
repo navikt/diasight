@@ -22,7 +22,7 @@ export const MainCondition: FC<IProps> = ({ conditionID, entries }) => {
     if (condition?.code?.coding) {
         return (
             <>
-                <div className={style.mainCondition}>
+                <div className={`${style.mainCondition} ${expanded ? style.active : ""}`}>
                     <Normaltekst>{condition.code.coding[0].code}</Normaltekst>
                     <EyeFilled />
                     <CoApplicantFilled />

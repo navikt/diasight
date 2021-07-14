@@ -2,9 +2,8 @@ import React, { FC } from "react";
 import { usePatientComposition } from "./hooks/use-patient-composition";
 import { BiCondition } from "./bi-condition";
 import { MainCondition } from "./main-condition";
-import { Timeline } from "./timeline";
 import { idToNumber } from "./utils/idToNumber";
-import { Normaltekst } from "nav-frontend-typografi";
+import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import style from "./composition.module.less";
 
 interface IProps {
@@ -12,11 +11,9 @@ interface IProps {
 }
 
 /*
- * One composition consists of a condition (primary section of the composition) and several other resources (nested sections of the condition) such as appointments,
+ * One composition consists of a condition (focus of the composition) and several other resources (entries) such as appointments,
  * adverse-events, and procedures.
  */
-
-// TODO: Create bundle component. Figure out what data is shared between resources for better readability.
 
 export const Composition: FC<IProps> = ({ patientID }) => {
     const { composition, isLoading, isError } = usePatientComposition(patientID);
@@ -27,6 +24,7 @@ export const Composition: FC<IProps> = ({ patientID }) => {
     if (composition) {
         return (
             <div className={style.compositionWrapper}>
+                <Undertittel>Diagnostikk</Undertittel>
                 {
                     composition.section?.map((condition, mIndex) => {
                         if (!condition.focus?.reference || !condition.section?.length || !condition.entry) return null;
