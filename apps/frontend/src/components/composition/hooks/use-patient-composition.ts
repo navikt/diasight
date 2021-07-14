@@ -1,4 +1,4 @@
-import fetcher from "../../../utils/fetcher";
+import { fetcher } from "../../../utils";
 import useSWR from "swr"
 import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
