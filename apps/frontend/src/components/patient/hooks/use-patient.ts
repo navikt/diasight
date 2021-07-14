@@ -1,5 +1,5 @@
 import fetcher from "../../../utils/fetcher";
-import useSWR from "swr"
+import useSWR from "swr";
 
 export const usePatient = (id: number) => {
     // Possibly add type IPatient
@@ -9,5 +9,5 @@ export const usePatient = (id: number) => {
         patient: data,
         isLoading: !error && !data,
         isError: error,
-    }
-}
+    };
+};

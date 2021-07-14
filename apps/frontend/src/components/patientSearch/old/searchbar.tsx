@@ -43,23 +43,27 @@ const Searchbar = () => {
     const [loading, setLoading] = useState(true);
 
     return (
-        <form onSubmit={handleSubmit((data) => {
-            //console.log(data);
-            fetch("/api/Patient?birthdate=" + formatBirthdate(data.searchKeyword))
-                .then((response) => response.json())
-                .then((bundle: IBundle) => {
-                    //console.log(bundle);
-                    const patients: IPatient[] = [];
-                    bundle.entry?.forEach((entry: any) => {
-                        patients.push(entry.resource as IPatient);
+        <>
+            <h1>Pasient liste</h1>
+            <form onSubmit={handleSubmit((data) => {
+                //console.log(data);
+                fetch("/api/Patient?birthdate=" + formatBirthdate(data.searchKeyword))
+                    .then((response) => response.json())
+                    .then((bundle: IBundle) => {
+                        console.log(bundle);
+                        const patients: IPatient[] = [];
+                        bundle.entry?.forEach((entry: any) => {
+                            patients.push(entry.resource as IPatient);
+                        })
+                        setPatientResult(patients);
+                        setLoading(false);
                     })
-                    setPatientResult(patients);
-                    setLoading(false);
-                })
-        })}>
-            <input {...register("searchKeyword")} id="searchKeyword" />
-            <input type="submit"></input>
-        </form >
+            })}>
+                <input {...register("searchKeyword")} id="searchKeyword" />
+                <input type="submit"></input>
+            </form >
+            <p>{ }</p>
+        </>
     )
 }
 
