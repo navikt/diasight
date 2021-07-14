@@ -1,16 +1,6 @@
 import * as express from "express";
 import * as session from "express-session";
-import { patientRouter } from "./routes/patient";
-import { questionnaireRouter } from "./routes/questionnaire";
-import { questionnaireResponseRouter } from "./routes/questionnaire-response";
-import { conditionRouter } from "./routes/condition";
-import { observationRouter } from "./routes/observation";
-import { practitionerRouter } from "./routes/practitioner";
-import { diagnosticReportRouter } from "./routes/diagnostic-report";
-import { serviceRequestRouter } from "./routes/service-request";
-import { medicationRequestRouter } from "./routes/medication-request";
-import { medicationRouter } from "./routes/medication";
-import { appointmentRouter } from "./routes/appointment";
+import { patientRouter, compositionRouter, conditionRouter, appointmentRouter, questionnaireRouter, questionnaireResponseRouter, practitionerRouter, serviceRequestRouter, observationRouter, diagnosticReportRouter, medicationRequestRouter, medicationRouter } from "./routes";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -31,6 +21,7 @@ app.use(
 );
 
 app.use("/api/Patient", patientRouter);
+app.use("/api/Composition", compositionRouter);
 app.use("/api/Questionnaire", questionnaireRouter);
 app.use("/api/QuestionnaireResponse", questionnaireResponseRouter);
 app.use("/api/Condition", conditionRouter);

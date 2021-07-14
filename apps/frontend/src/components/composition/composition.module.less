@@ -2,18 +2,62 @@
     --timeline-width: 12px;
 }
 
-.wrapper {
-    display: grid;
-    grid-template-rows: auto auto;
-    width: 60%;
-    margin: auto;
-    border: black 2px solid;
+.compositionWrapper {
+    width: 100%;
 }
 
-.conditionHeader {
+.compositionWrapper > h2 {
+    margin: 1% auto;
+}
+
+.mainCondition {
+    grid-template-columns: 80% auto auto auto;
+    justify-content: space-between;
     display: grid;
-    grid-template-columns: auto auto auto;
-    border-bottom: black 2px solid;
+    margin: auto;
+    padding: 8px;
+    border-radius: 3px 3px 0 0;
+    background-color: #EFEFEF;
+}
+
+.mainCondition > h2 {
+    grid-column: span 4;
+}
+
+.active {
+    background-color: #0067C5;
+    color: #FEFEFE;
+}
+
+.expand {
+    grid-column: 4;
+    justify-self: end;
+    cursor: pointer;
+}
+
+.expand > svg {
+    vertical-align: middle;
+}
+
+.biCondition  {
+    padding: 8px;
+    margin: 0.5% auto;
+    display: grid;
+    grid-template-columns: 8% auto auto;
+    background-color: #EFEFEF;
+}
+
+.biCondition:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
+.timelineWrapper {
+    display: none;
+    grid-template-rows: auto auto;
+    padding: 8px;
+    margin: 0.5% auto;
+    background-color: #EFEFEF;
+    z-index: -2;
 }
 
 .dropdown {
@@ -25,7 +69,7 @@
 .tableWrapper {
     column-span: 1 / 4;
     width: 100%;
-    display: none;
+    display: grid;
 }
 
 .tableWrapper > tr {
@@ -39,7 +83,8 @@
 }
 
 .timestamp {
-    background-color: black;
+    background-color: #fefefefe;
+    border: #0067C5 2px solid;
     border-radius: 30px;
     width: var(--timeline-width);
     height: 12px;
@@ -47,24 +92,28 @@
     z-index: 3;
 }
 
+/*
 tr:not(:nth-child(2)) .timestamp {
     background-color: red;
 }
+*/
 
 tr:not(:nth-child(1)) .timestamp::after {
     content: " ";
     position: absolute;
-    height: 22px;
+    height: 25px;
     width: 10px;
     padding-left: 1px;
-    clip-path: inset(0 20% 0 20%);
-    background-color: green;
-    z-index: -1;
+    clip-path: inset(0 40% 0 40%);
+    background-color: #fefefe;
+
+    z-index: 0;
 }
 
+/*
 tr:last-child .timestamp {
     background-color: black;
-}
+}*/
 
 tr:last-child .timestamp::after {
     display: none;

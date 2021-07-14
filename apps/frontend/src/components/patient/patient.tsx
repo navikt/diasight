@@ -18,8 +18,6 @@ export const Patient: FC<IProps> = ({ id }) => {
     const patientName = usePatientName(patient);
     const patientSID = usePatientSID(patient);
 
-    console.log(patient);
-
     if (isLoading) return <h1>Loading</h1>
     if (isError) return <h1>Error</h1>
 
@@ -27,15 +25,22 @@ export const Patient: FC<IProps> = ({ id }) => {
 
         <div className={style.patientCard}>
             <Sidetittel>{patientName}</Sidetittel>
-            <Undertittel>{patientSID}</Undertittel>
-            <Normaltekst>{genderToNorwegian(patient.gender)}</Normaltekst>
-            <Normaltekst>{maritalStatusToNorwegian(patient.maritalStatus)}</Normaltekst>
-            <Normaltekst>Fulltidsansatt</Normaltekst>
-            <Normaltekst>{patientHomeAdressToString(patient.address)}</Normaltekst>
+            <div className={style.infoGroup}>
+                <Undertittel>{patientSID}</Undertittel>
+                <div>
+                    <Normaltekst>{genderToNorwegian(patient.gender)}</Normaltekst>
+                    <div></div>
+                    <Normaltekst>{maritalStatusToNorwegian(patient.maritalStatus)}</Normaltekst>
+                    <div></div>
+                    <Normaltekst>Fulltidsansatt</Normaltekst>
+                </div>
+            </div>
+            {/*
             <div className={style.contact}>
+                <Normaltekst>{patientHomeAdressToString(patient.address)}</Normaltekst>
                 <Normaltekst>{patientPhoneToString(patient.telecom)}</Normaltekst>
                 <Normaltekst>{patientEmailToString(patient.telecom)}</Normaltekst>
-            </div>
+            </div>*/}
         </div>
 
     );

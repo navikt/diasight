@@ -1,82 +1,53 @@
-import React, { useState } from "react";
-import { FC } from "react";
-
+import React, { FC } from "react";
+import { usePatientComposition } from "./hooks/use-patient-composition";
+import { BiCondition } from "./bi-condition";
+import { MainCondition } from "./main-condition";
+import { idToNumber } from "./utils/idToNumber";
+import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import style from "./composition.module.less";
-import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
 interface IProps {
-    composition: IComposition;
+    patientID: number;
 }
 
 /*
- * One composition consists of a condition (primary section of the composition) and several other resources (nested sections of the condition) such as appointments,
+ * One composition consists of a condition (focus of the composition) and several other resources (entries) such as appointments,
  * adverse-events, and procedures.
  */
 
-// TODO: Create bundle component. Figure out what data is shared between resources for better readability.
+export const Composition: FC<IProps> = ({ patientID }) => {
+    const { composition, isLoading, isError } = usePatientComposition(patientID);
 
-export const Composition: FC<IProps> = ({ composition }) => {
-    const [active, setActive] = useState(false);
-
-
-    const primaryCondition = composition.section
-        ? composition.section[0]
-        : null;
-
+    if (isLoading) return <div>Loading</div>
+    if (isError) return <div>Error</div>
 
     if (composition) {
         return (
-            <div className={style.wrapper}>
-                <div className={style.conditionHeader}>
-                    <h2>{primaryCondition?.code}</h2>
-                    <h2>{primaryCondition?.title}</h2>
-                    <div
-                        className={style.dropdown}
-                        onClick={() => setActive(!active)}>
-                        DROP
-                    </div>
-                </div>
-                <table
-                    className={`${style.tableWrapper} ${active ? style.visible : ""
-                        } `}>
-                    <tr>
-                        <th>Dato</th>
-                        <td></td>
-                        <th>Hendelsesforløp</th>
-                        <th>Type</th>
-                        <th>Avdeling</th>
-                    </tr>
-                    <tr>
-                        <td>{composition.date}</td>
-                        <td>
-                            <div className={style.timestamp}></div>
-                        </td>
-                        <td>Tilstand på tidspunkt</td>
-                        <td>Notat</td>
-                        <td>Sykehuset Innlandet</td>
-                    </tr>
-                    <tr>
-                        <td>{composition.date}</td>
-                        <td>
-                            <div className={style.timestamp}></div>
-                        </td>
-                        <td>Tilstand på tidspunkt</td>
-                        <td>Notat</td>
-                        <td>Sykehuset Innlandet</td>
-                    </tr>
-                    <tr>
-                        <td>{composition.date}</td>
-                        <td>
-                            <div className={style.timestamp}></div>
-                        </td>
-                        <td>Tilstand på tidspunkt</td>
-                        <td>Notat</td>
-                        <td>Sykehuset Innlandet</td>
-                    </tr>
-                </table>
+            <div className={style.compositionWrapper}>
+                <Undertittel>Diagnostikk</Undertittel>
+                {
+                    composition.section?.map((condition, mIndex) => {
+                        if (!condition.focus?.reference || !condition.section?.length || !condition.entry) return null;
+                        return (
+                            <div>
+                                <MainCondition key={mIndex} conditionID={idToNumber(condition.focus.reference)} entries={condition.entry} />
+                                {condition.section.map((value, bIndex) => {
+                                    if (!value.focus?.reference) return null;
+                                    const key = mIndex + "B" + bIndex;
+                                    return (
+                                        <BiCondition key={key} conditionID={idToNumber(value.focus.reference)} entries={value.entry} />
+                                    );
+                                })}
+                            </div>
+                        );
+                    })}
             </div>
         );
     }
 
-    return <h1>Failed to load resource</h1>;
+    return (
+        <div>
+            <Normaltekst>Fant ingen resultater</Normaltekst>
+        </div>
+    );
 };
