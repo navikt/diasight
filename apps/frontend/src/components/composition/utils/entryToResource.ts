@@ -10,7 +10,7 @@ interface IEntryLine {
     department: string;
 }
 
-export const extractDataFromEntry = (bundle: IEntryWithAuthor): IEntryLine => {
+export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
     console.log(bundle);
     const resourceType = bundle[0].resourceType;
 
@@ -24,9 +24,9 @@ export const extractDataFromEntry = (bundle: IEntryWithAuthor): IEntryLine => {
         case "QuestionnaireResponse":
             return entry as IQuestionnaireResponse;
         case "Appointment":
-            return entry as IAppointment;
+            return entry as IAppointment;*/
         case "ServiceRequest":
-            return entry as IServiceRequest;*/
+            return serviceRequestToEntry(bundle as [IServiceRequest, IPractitioner]);
         default:
             return {
                 date: "0000-00-00",
@@ -53,4 +53,18 @@ const observationToEntry = (entry: [IObservation, IPractitioner]): IEntryLine =>
         department: "Midlertidig",
     } as IEntryLine;
 
+}
+
+const serviceRequestToEntry = (entry: [IServiceRequest, IPractitioner]): IEntryLine => {
+
+    const serviceRequest = entry[0];
+    const author = entry[1].name ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual) : null;
+
+    return {
+        date: serviceRequest.authoredOn,
+        text: serviceRequest.code?.text,
+        type: "Henvisning",
+        author: author ? humanNameToString(author) : "Ukjent",
+        department: "Midlertidig",
+    } as IEntryLine;
 }
