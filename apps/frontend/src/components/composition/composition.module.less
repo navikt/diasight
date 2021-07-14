@@ -2,17 +2,23 @@
     --timeline-width: 12px;
 }
 
+.compositionWrapper {
+    width: 100%;
+}
+
 .mainCondition {
     grid-template-columns: 80% auto auto auto;
     justify-content: space-between;
     display: grid;
-    width: 100%;
     margin: auto;
+    padding: 1%;
     border: black 2px solid;
     border-radius: 3px 3px 0 0;
-    padding: 1%;
     background-color: #C9C9C9;
+}
 
+.mainCondition > h2 {
+    grid-column: span 4;
 }
 
 .expand {
@@ -21,11 +27,14 @@
     cursor: pointer;
 }
 
+.expand > svg {
+    vertical-align: middle;
+}
+
 .biCondition  {
-    width: 100%;
+    padding: 1%;
     margin: 0.5% auto;
     border: black 2px solid;
-    padding: 1%;
     display: grid;
     grid-template-columns: 8% auto auto;
     background-color: #C9C9C9;
@@ -39,7 +48,6 @@
     display: none;
     grid-template-rows: auto auto;
     border: black 2px solid;
-    width: 100%;
     padding: 1%;
     margin: 0.5% auto;
     background-color: #C9C9C9;

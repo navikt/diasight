@@ -5,6 +5,7 @@ import { MainCondition } from "./main-condition";
 import { Timeline } from "./timeline";
 import { idToNumber } from "./utils/idToNumber";
 import { Normaltekst } from "nav-frontend-typografi";
+import style from "./composition.module.less";
 
 interface IProps {
     patientID: number;
@@ -25,7 +26,7 @@ export const Composition: FC<IProps> = ({ patientID }) => {
 
     if (composition) {
         return (
-            <div>
+            <div className={style.compositionWrapper}>
                 {
                     composition.section?.map((condition, mIndex) => {
                         if (!condition.focus?.reference || !condition.section?.length || !condition.entry) return null;
