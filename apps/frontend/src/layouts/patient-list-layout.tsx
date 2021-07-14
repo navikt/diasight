@@ -1,10 +1,14 @@
 import React from 'react';
-import Search from '../components/patientSearch/searchbar';
+import Searchbar from '../components/patientSearch/searchbar';
+import { SearchResults } from '../components/patientSearch/searchResults';
 
-const App = () => {
+const SearchLayout = () => {
     return (
-        <Search />
+        <>
+            <Searchbar />
+            <SearchResults />
+        </>
     );
 }
 
-export default App;
+export default SearchLayout;

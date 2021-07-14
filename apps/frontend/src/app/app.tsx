@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'wouter';
 import Navbar from '../components/navbar';
 import Patient from '../components/patient';
+import SearchLayout from '../layouts/patient-list-layout';
 import style from "./app.module.less";
 
 export const App = () => {
@@ -42,7 +43,7 @@ export const App = () => {
       <div className={style.content}>
         <Route path="/"><h1>Root</h1></Route>
         <Route path="/pasient/:id">{(params: IPatientRouteParams) => { return <Patient id={params.id} /> }}</Route>
-        <Route path="/pasient"><h1>Pasient liste</h1></Route>
+        <Route path="/pasient"><h1>Pasient liste</h1><SearchLayout /></Route>
         <Route path="/timeplan"><h1>timeplan</h1></Route>
         <Route path="/inbox"><h1>inbox</h1></Route>
         <Route path="/instillinger"><h1>instillinger</h1></Route>

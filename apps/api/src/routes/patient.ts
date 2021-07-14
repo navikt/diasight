@@ -5,10 +5,8 @@ export const patientRouter = express.Router();
 const requestUrl = "http://localhost:8888/fhir/Patient";
 
 patientRouter.get("", async (req, res) => {
-    console.log(req.url);
-
     await axios
-        .get(requestUrl + req.url)
+        .get(requestUrl, { params: req.query })
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -18,8 +16,6 @@ patientRouter.get("", async (req, res) => {
 });
 
 patientRouter.get("/:id", async (req, res) => {
-    console.log(req.url);
-
     const id = req.params.id;
     await axios
         .get(requestUrl + "/" + id)
@@ -32,8 +28,6 @@ patientRouter.get("/:id", async (req, res) => {
 });
 
 patientRouter.post("/", async (req, res) => {
-    console.log(req.url);
-
     await axios
         .post(requestUrl, req.body)
         .then((response) => {
@@ -45,8 +39,6 @@ patientRouter.post("/", async (req, res) => {
 });
 
 patientRouter.put("/:id", async (req, res) => {
-    console.log(req.url);
-
     const id = req.params.id;
     await axios
         .put(requestUrl + "/" + id, req.body)
