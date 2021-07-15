@@ -5,7 +5,7 @@ interface IProps {
     birthdate: string;
 }
 
-export const PatientResult: FC<IProps> = ({ birthdate }) => {
+export const PatientResults: FC<IProps> = ({ birthdate }) => {
     const { patientResults, isLoading, isError } = usePatientResults(birthdate);
 
     if (isLoading) return <h1>Loading</h1>
@@ -15,7 +15,11 @@ export const PatientResult: FC<IProps> = ({ birthdate }) => {
 
     return <div>
         <table>
-            <td></td>
+            {patientResults.map((entry: any) => {
+                return <td key={patientResults.indexOf(entry)}>
+                    {JSON.stringify(entry.name)}
+                </td>
+            })}
         </table>
     </div>
 }

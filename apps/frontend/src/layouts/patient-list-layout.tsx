@@ -1,13 +1,9 @@
 import React from 'react';
-import Searchbar from '../components/patientSearch/searchbar';
-import { SearchResults } from '../components/patientSearch/searchResults';
+import { PatientSearch } from '../components/patientSearch/patientSearch';
 
 const SearchLayout = () => {
     return (
-        <>
-            <Searchbar />
-            <SearchResults />
-        </>
+        <PatientSearch />
     );
 }
 

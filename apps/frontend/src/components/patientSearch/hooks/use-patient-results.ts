@@ -1,4 +1,4 @@
-import fetcher from "../../../utils/fetcher";
+import { fetcher } from "../../../utils";
 import useSWR from "swr";
 
 export const usePatientResults = (birthdate: string) => {

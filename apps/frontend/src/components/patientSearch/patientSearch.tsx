@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { PatientResult } from "./patientResult";
+import { PatientResults } from "./patientResults";
 import { formatBirthdate } from "./utils/patient-birthdate";
 
 type FormValues = {
@@ -22,7 +22,7 @@ export const PatientSearch: FC = () => {
             <input type="submit" />
         </form>
         <div>
-            <PatientResult birthdate={birthdate} />
+            <PatientResults birthdate={birthdate} />
         </div>
     </>
 }
