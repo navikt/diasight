@@ -17,7 +17,7 @@ medicationRequestRouter.get("/", async (req, res) => {
 medicationRequestRouter.get("/:id", async (req, res) => {
     const id = req.params.id;
     await axios
-        .get("http://localhost:8888/fhir/MedicationRequest/" + id)
+        .get("http://localhost:8888/fhir/MedicationRequest?_include=MedicationRequest:requester&_id=" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

@@ -11,7 +11,6 @@ export type IEntryWithAuthor = [IAppointment | IDiagnosticReport | IMedicationRe
 */
 
 export const usePatientEntry = (reference: string) => {
-    // Possibly add type IPatient
     const { data, error } = useSWR<IBundle>(`api/${reference}`, fetcher);
 
     // Unpackage bundle as IEntryWithAuthor
