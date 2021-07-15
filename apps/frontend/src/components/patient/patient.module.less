@@ -4,39 +4,38 @@
     grid-template-columns: auto auto;
 }
 
+.patientCard > h1 {
+    grid-column: span 3;
+}
+
 .infoGroup {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 2% 0;
-    grid-column: span 3;
 }
 
-.infoGroup > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 50%;
-}
-
-.infoGroup > div > div{
+.infoGroup > div{
     background-color: #0067C5;
     width: 2px;
 }
 
-.infoGroup > div > p{
+.infoGroup > p{
     text-transform: capitalize;
 
 }
 
 .contact {
     margin: 2% 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 8% auto;
+    grid-template-rows: auto auto auto;
+    row-gap: 1ch;
 }
 
-.contact > p {
-    display: inline-block;
+.contact > svg {
+    margin: auto 0;
+    font-size: x-large;
 }
 
 .listWrapper {
@@ -69,5 +68,4 @@
 .column {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
