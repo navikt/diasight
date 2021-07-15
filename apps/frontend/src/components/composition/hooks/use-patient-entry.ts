@@ -4,12 +4,6 @@ import { fetcher } from "../../../utils";
 
 export type IEntryWithAuthor = [IAppointment | IDiagnosticReport | IMedicationRequest | IObservation | IQuestionnaireResponse | IServiceRequest, IPractitioner];
 
-/*interface IEntryWithAuthor {
-    0: IAppointment | IDiagnosticReport | IMedicationRequest | IObservation | IQuestionnaireResponse | IServiceRequest;
-    1: IPractitioner;
-}
-*/
-
 export const usePatientEntry = (reference: string) => {
     const { data, error } = useSWR<IBundle>(`api/${reference}`, fetcher);
 
