@@ -17,14 +17,14 @@ export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
     switch (resourceType) {
         case "Observation":
             return observationToEntry(bundle as [IObservation, IPractitioner]);
-        /*case "DiagnosticReport":
-            return entry as IDiagnosticReport;
         case "MedicationRequest":
-            return entry as IMedicationRequest;
-        case "QuestionnaireResponse":
-            return entry as IQuestionnaireResponse;
-        case "Appointment":
-            return entry as IAppointment;*/
+            return medicationRequestToEntry(bundle as [IMedicationRequest, IPractitioner]);
+        /*case "DiagnosticReport":
+    return entry as IDiagnosticReport;
+case "QuestionnaireResponse":
+    return entry as IQuestionnaireResponse;
+case "Appointment":
+    return entry as IAppointment;*/
         case "ServiceRequest":
             return serviceRequestToEntry(bundle as [IServiceRequest, IPractitioner]);
         default:
@@ -64,6 +64,20 @@ const serviceRequestToEntry = (entry: [IServiceRequest, IPractitioner]): IEntryL
         date: serviceRequest.authoredOn,
         text: serviceRequest.code?.text,
         type: "Henvisning",
+        author: author ? humanNameToString(author) : "Ukjent",
+        department: "Midlertidig",
+    } as IEntryLine;
+}
+
+const medicationRequestToEntry = (entry: [IMedicationRequest, IPractitioner]): IEntryLine => {
+
+    const medicationRequest = entry[0];
+    const author = entry[1].name ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual) : null;
+
+    return {
+        date: medicationRequest.authoredOn,
+        text: medicationRequest.medicationCodeableConcept?.text,
+        type: "Resept",
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
     } as IEntryLine;

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { usePatientEntry } from "./hooks/use-patient-entry";
 import style from "./composition.module.less";
 import { Normaltekst } from "nav-frontend-typografi";
-import { bundleToEntry } from "./utils/entryToResource";
+import { bundleToEntry } from "./utils/resourceToEntry";
 
 interface IProps {
     reference: string;
