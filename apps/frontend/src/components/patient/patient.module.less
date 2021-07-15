@@ -1,5 +1,7 @@
 .patientCard {
     width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .infoGroup {
@@ -7,6 +9,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 2% 0;
+    grid-column: span 3;
 }
 
 .infoGroup > div {
@@ -17,7 +20,7 @@
 }
 
 .infoGroup > div > div{
-    background-color: blue;
+    background-color: #0067C5;
     width: 2px;
 }
 
@@ -28,4 +31,43 @@
 
 .contact {
     margin: 2% 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact > p {
+    display: inline-block;
+}
+
+.listWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 1ch 0;
+}
+
+.iconWrapper {
+    border-radius: 100%;
+    background-color: #0067C5;
+    display: flex;
+    align-items: center;
+    width: 7ch;
+    height: 7ch;
+}
+
+.iconWrapper > svg {
+    color: #FEFEFE;
+    font-size: 4ch;
+    margin: auto;
+}
+
+.content {
+    display: inline-block;
+    margin: 0 0 0 2ch;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
