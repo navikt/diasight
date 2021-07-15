@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PatientResults } from "./patientResults";
 import { formatBirthdate } from "./utils/patient-birthdate";
+import { Search } from "@navikt/ds-icons/cjs";
+import style from "./patientSearch.module.less";
+import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 
 type FormValues = {
     searchKeyword: string
@@ -12,17 +15,18 @@ export const PatientSearch: FC = () => {
     const { register, handleSubmit } = useForm<FormValues>();
     const [birthdate, setBirthdate] = useState("");
 
-    return <>
-        <h1>Pasient liste</h1>
-        <label htmlFor="searchKeyword">Vennligst oppgi pasientens fødselsdato:</label>
-        <form onSubmit={handleSubmit((data) => {
-            setBirthdate(formatBirthdate(data.searchKeyword));
-        })}>
-            <input {...register("searchKeyword")} id="searchKeyword" />
-            <input type="submit" />
-        </form>
-        <div>
-            <PatientResults birthdate={birthdate} />
+    return <div className={style.wrapper}>
+        <div className={style.searchWrapper}>
+            <form>
+                <label htmlFor="searchKeyword"></label>
+                <input className={style.input} placeholder="Søk etter pasient basert på personnumer" {...register("searchKeyword")} id="searchKeyword" />
+                <Search className={style.icon} onClick={handleSubmit((data) => {
+                    setBirthdate(formatBirthdate(data.searchKeyword));
+                })} />
+            </form>
         </div>
-    </>
+        <div className={style.resultsWrapper}>
+            {birthdate ? <PatientResults birthdate={birthdate} /> : null}
+        </div>
+    </div>
 }

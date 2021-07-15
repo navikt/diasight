@@ -14,12 +14,10 @@ export const PatientResults: FC<IProps> = ({ birthdate }) => {
     console.log(patientResults.entry[0].resource.name[0].given[0]);
 
     return <div>
-        <table>
-            {patientResults.map((entry: any) => {
-                return <td key={patientResults.indexOf(entry)}>
-                    {JSON.stringify(entry.name)}
-                </td>
-            })}
-        </table>
+        {patientResults.entry.map((entryItem: any, index: number) => {
+            return (<div key={index}>
+                {entryItem.resource.name[0].given[0]} {entryItem.resource.name[0].family}
+            </div>)
+        })}
     </div>
 }
