@@ -1,6 +1,6 @@
 import { IMedication } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { HealthCase } from "@navikt/ds-icons/cjs";
-import { Undertittel } from "nav-frontend-typografi";
+import { Undertittel, Normaltekst } from "nav-frontend-typografi";
 import Lenke from 'nav-frontend-lenker';
 import React, { FC } from "react";
 import style from "./patient.module.less";
@@ -19,7 +19,7 @@ export const ActiveMedication: FC<IProps> = ({ medications }) => {
             <div className={style.content}>
                 <Undertittel>Aktive medikamenter ({medications.length})</Undertittel>
                 {medications.map((c, index) => {
-                    return <Lenke href="#" key={index}>{c.code?.text}</Lenke>
+                    return <Lenke href="#" key={index}><Normaltekst>{c.code?.text}</Normaltekst></Lenke>
                 })}
             </div>
         </div>
