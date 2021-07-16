@@ -26,9 +26,9 @@
 }
 
 .contact {
-    margin: 2% 0;
+    margin: 3ch 0 0 0;
     display: grid;
-    grid-template-columns: 8% auto;
+    grid-template-columns: 4ch auto;
     grid-template-rows: auto auto auto;
     row-gap: 1ch;
 }
@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    margin: 1ch 0;
+    margin: 3ch 0 0 0;
 }
 
 .iconWrapper {
@@ -68,4 +68,30 @@
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.appointmentWrapper {
+    border-radius: 3px;
+    background-color: #EFEFEF;
+    padding: 1ch;
+    gap: 2ch;
+    margin-top: 3ch;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+
+}
+
+.appointmentWrapper > div  p {
+    display: inline-block;
+}
+
+.appointmentWrapper > div > h1 {
+    margin: 0 .5ch 0 0;
+    display: inline-block;
+}
+
+.appointmentWrapper > h2 {
+    grid-column: span 2;
 }

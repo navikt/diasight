@@ -1,15 +1,21 @@
 .wrapper {
     background-color: #EFEFEF;
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 10% auto auto auto;
+    grid-template-columns: 100%;
     width: 180px;
     height: 100vh;
     justify-content: space-between;
     position: fixed;
+    top: 0;
 }
 
 .wrapper div {
-    margin-left: 5%;
+    margin-left: 3ch;
+}
+
+.wrapper > img {
+    margin: auto;
 }
 
 .identifier {
@@ -18,19 +24,24 @@
 
 .options {
     margin: auto 0;
+    text-decoration: underline;
+}
+
+.options > .active {
+    color: #0067C5;
 }
 
 .options p:hover {
-    font-weight: bold;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.options div+div {
-    margin-top: 5%;
+.options p+p {
+    margin-top: 2ch;
 }
 
 .session {
-    margin: auto 0 0 0;
+    margin: auto 3ch 3ch 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
