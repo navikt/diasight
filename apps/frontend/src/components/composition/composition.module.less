@@ -1,23 +1,25 @@
-:root {
-    --timeline-width: 12px;
-}
-
 .compositionWrapper {
     width: 100%;
 }
 
 .compositionWrapper > h2 {
-    margin: 1% auto;
+    margin: 6ch 0 3ch 0;
 }
 
 .mainCondition {
-    grid-template-columns: 80% auto auto auto;
-    justify-content: space-between;
+    grid-template-columns: auto 4ch 4ch 4ch;
     display: grid;
     margin: auto;
     padding: 8px;
     border-radius: 3px 3px 0 0;
-    background-color: #EFEFEF;
+    background-color: #6A6A6A;
+    color: #FEFEFE;
+
+}
+
+.mainCondition svg {
+    margin: auto 0 auto auto;
+    vertical-align: middle;
 }
 
 .mainCondition > h2 {
@@ -26,7 +28,6 @@
 
 .active {
     background-color: #0067C5;
-    color: #FEFEFE;
 }
 
 .expand {
@@ -92,8 +93,8 @@
     background-color: #fefefefe;
     border: #0067C5 2px solid;
     border-radius: 30px;
-    width: var(--timeline-width);
     height: 12px;
+    width: 12px;
     margin: 0.4ex auto;
     z-index: 3;
 }
