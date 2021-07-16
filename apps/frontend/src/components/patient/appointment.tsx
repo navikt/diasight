@@ -4,7 +4,7 @@ import Lenke from 'nav-frontend-lenker';
 import React, { FC } from "react";
 import { dateToStrings } from "../../utils";
 import style from "./patient.module.less";
-import { EyeFilled } from "@navikt/ds-icons";
+import { EyeFilled } from "@navikt/ds-icons/cjs";
 
 interface IProps {
     appointment: IAppointment;
