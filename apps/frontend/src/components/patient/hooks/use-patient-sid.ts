@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const splitIdentifier = (id: string) => {
     return id.substr(0, 6) + " " + id.substr(6, id.length);
-}
+};
 
 export const usePatientSID = (patient: IPatient) => {
     const [id, setID] = useState<string>("");
@@ -14,8 +14,10 @@ export const usePatientSID = (patient: IPatient) => {
             return i.system === "urn:oid:2.16.578.1.12.4.1.4.1";
         });
 
-        return !foundID || !foundID.value ? setID("Ikke tilgjengelig") : setID(foundID.value);
+        return !foundID || !foundID.value
+            ? setID("Ikke tilgjengelig")
+            : setID(foundID.value);
     }, [patient]);
 
     return splitIdentifier(id);
-}
+};
