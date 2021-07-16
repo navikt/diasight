@@ -1,11 +1,40 @@
-export const formatDate = (date: Date) => {
-    const d = new Date(date);
-    let month = "" + (d.getMonth() + 1);
-    let day = "" + d.getDate();
-    const year = d.getFullYear();
+export const dateToStrings = (date: Date) => {
+    const month = monthToString(date.getMonth());
+    const day: string = `${date.getDate()}`.length === 2 ? `${date.getDate()}` : `0${date.getDate()}`
+    const year = date.getFullYear();
 
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
+    return {
+        day, month, year
+    }
+}
 
-    return [year, month, day].join("-");
-};
+const monthToString = (month: number) => {
+    switch (month) {
+        case 0:
+            return "januar";
+        case 1:
+            return "februar";
+        case 2:
+            return "mars";
+        case 3:
+            return "april";
+        case 4:
+            return "mai";
+        case 5:
+            return "juni";
+        case 6:
+            return "juli";
+        case 7:
+            return "august";
+        case 8:
+            return "september";
+        case 9:
+            return "oktober";
+        case 10:
+            return "november";
+        case 11:
+            return "desember";
+        default:
+            return "ukjent";
+    }
+}
