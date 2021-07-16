@@ -15,14 +15,15 @@ export const PatientSearch: FC = () => {
     const { register, handleSubmit } = useForm<FormValues>();
     const [birthdate, setBirthdate] = useState("");
 
+    const search = (data: FormValues) => {
+        setBirthdate(formatBirthdate(data.searchKeyword));
+    }
+
     return <div className={style.wrapper}>
         <div className={style.searchWrapper}>
-            <form autoComplete="off">
-                <label htmlFor="searchKeyword"></label>
+            <form autoComplete="off" onSubmit={handleSubmit(search)}>
                 <input className={style.input} placeholder="Søk etter pasient basert på personnumer" {...register("searchKeyword")} id="searchKeyword" />
-                <Search className={style.icon} onClick={handleSubmit((data) => {
-                    setBirthdate(formatBirthdate(data.searchKeyword));
-                })} />
+                <Search className={style.icon} onClick={handleSubmit(search)} />
             </form>
         </div>
         <div className={style.resultsWrapper}>

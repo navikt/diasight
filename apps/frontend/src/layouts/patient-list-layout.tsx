@@ -1,10 +1,11 @@
 import React from 'react';
 import { PatientSearch } from '../components/patientSearch/patientSearch';
+import style from "./patient-list-layout.module.less";
 
-const SearchLayout = () => {
+export const PatientListLayout = () => {
     return (
-        <PatientSearch />
+        <div className={style.searchBar}>
+            <PatientSearch />
+        </div>
     );
 }
-
-export default SearchLayout;
