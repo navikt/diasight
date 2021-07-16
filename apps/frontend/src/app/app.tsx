@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route } from 'wouter';
 import Navbar from '../components/navbar';
-import Searchbar from '../components/patientSearch/old/searchbar';
-import { PatientSearch } from '../components/patientSearch/patientSearch';
 import { PatientDetailLayout } from '../layouts/patient-detail-layout';
 import { PatientListLayout } from '../layouts/patient-list-layout';
 
