@@ -29,6 +29,7 @@
     "dependencies": {
         "@ahryman40k/ts-fhir-types": "^4.0.36",
         "@navikt/ds-icons": "^0.3.3",
+        "@navikt/fnrvalidator": "^1.1.4",
         "axios": "^0.21.1",
         "classnames": "^2.3.1",
         "core-js": "^3.6.5",
@@ -50,8 +51,10 @@
         "nav-frontend-typografi": "^4.0.1",
         "nav-frontend-typografi-style": "^2.0.1",
         "prop-types": "^15.7.2",
+        "query-string": "^7.0.1",
         "react": "^17.0.2",
         "react-dom": "17.0.2",
+        "react-hook-form": "^7.11.0",
         "regenerator-runtime": "0.13.7",
         "swr": "^0.5.6",
         "tslib": "^2.0.0",
