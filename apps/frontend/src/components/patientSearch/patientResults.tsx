@@ -18,7 +18,7 @@ export const PatientResults: FC<IProps> = ({ identifier }) => {
     return <div>
         {patientResults.entry
             ? patientResults.entry.map((entryItem: any, index: number) => {
-                return (<div className={style.resultWrapper} key={index}>
+                return (<div className={style.patientWrapper} key={index}>
                     <Undertittel className={style.patientName}>
                         {entryItem.resource.name[0].given} {entryItem.resource.name[0].family}
                     </Undertittel>

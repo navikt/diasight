@@ -17,18 +17,18 @@ export const PatientSearch: FC = () => {
         setIdentifier(data.searchKeyword)
     }
 
-    return <div className={style.wrapper}>
+    return <>
         <div className={style.searchWrapper}>
-            <form autoComplete="off" onSubmit={handleSubmit(search)}>
-                <input className={style.input}
+            <form className={style.searchForm} autoComplete="off" onSubmit={handleSubmit(search)}>
+                <input className={style.searchInput}
                     placeholder="Søk etter pasient basert på personnumer"
                     {...register("searchKeyword")}
                     id="searchKeyword" />
-                <Search className={style.icon} onClick={handleSubmit(search)} />
+                <Search className={style.searchIcon} onClick={handleSubmit(search)} />
             </form>
         </div>
         <div className={style.resultsWrapper}>
             {identifier ? <PatientResults identifier={identifier} /> : null}
         </div>
-    </div>
+    </>
 }
