@@ -1,5 +1,5 @@
 .wrapper {
-    background-color: #EFEFEF;
+    background-color: #efefef;
     display: grid;
     grid-template-rows: 10% auto auto auto;
     grid-template-columns: 100%;
@@ -24,11 +24,14 @@
 
 .options {
     margin: auto 0;
-    text-decoration: underline;
 }
 
 .options > .active {
-    color: #0067C5;
+    color: #0067c5;
+}
+
+.options p {
+    text-decoration: underline;
 }
 
 .options p:hover {
@@ -36,7 +39,7 @@
     cursor: pointer;
 }
 
-.options p+p {
+.options p + p {
     margin-top: 2ch;
 }
 
@@ -46,4 +49,3 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
