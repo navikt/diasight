@@ -15,6 +15,6 @@ describe("App", () => {
 
         const { container } = render(<App />);
 
-        await waitFor(() => getByText(container, "Root"));
+        await waitFor(() => getByText(container, "Inbox"));
     });
 });
