@@ -1,4 +1,4 @@
-import { Undertittel } from "nav-frontend-typografi";
+import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react"
 import { usePatientResults } from "./hooks/use-patient-results";
 import style from "./patientSearch.module.less";
@@ -27,6 +27,6 @@ export const PatientResults: FC<IProps> = ({ identifier }) => {
                     </Undertittel>
                 </div>)
             })
-            : <Undertittel className={style.noResults}>Ingen resultater</Undertittel>}
+            : <Sidetittel className={style.noResults}>Ingen resultater</Sidetittel>}
     </div>
 }

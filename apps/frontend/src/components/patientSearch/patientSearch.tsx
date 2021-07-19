@@ -17,7 +17,7 @@ export const PatientSearch: FC = () => {
         setIdentifier(data.searchKeyword)
     }
 
-    return <>
+    return <div className={style.wrapper}>
         <div className={style.searchWrapper}>
             <form className={style.searchForm} autoComplete="off" onSubmit={handleSubmit(search)}>
                 <input className={style.searchInput}
@@ -30,5 +30,5 @@ export const PatientSearch: FC = () => {
         <div className={style.resultsWrapper}>
             {identifier ? <PatientResults identifier={identifier} /> : null}
         </div>
-    </>
+    </div>
 }
