@@ -24,7 +24,7 @@ export const Timeline: FC<IProps> = ({ entries, isActive = true }) => {
                 <th><Element>Avdeling</Element></th>
             </tr>
             {entries.map((ref, index) => {
-                return ref.reference ? <TimelineEntry key={index} reference={ref.reference} /> : null;
+                return ref.reference ? <TimelineEntry key={index} reference={ref} /> : null;
             })}
         </table>
     </div>);

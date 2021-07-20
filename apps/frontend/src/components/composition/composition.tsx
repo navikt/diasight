@@ -29,13 +29,12 @@ export const Composition: FC<IProps> = ({ patientID }) => {
                     composition.section?.map((condition, mIndex) => {
                         if (!condition.focus?.reference || !condition.section?.length || !condition.entry) return null;
                         return (
-                            <div>
-                                <MainCondition key={mIndex} conditionID={idToNumber(condition.focus.reference)} entries={condition.entry} />
+                            <div key={mIndex}>
+                                <MainCondition key={mIndex} conditionRef={condition.focus} entries={condition.entry} />
                                 {condition.section.map((value, bIndex) => {
                                     if (!value.focus?.reference) return null;
-                                    const key = mIndex + "B" + bIndex;
                                     return (
-                                        <BiCondition key={key} conditionID={idToNumber(value.focus.reference)} entries={value.entry} />
+                                        <BiCondition key={bIndex} conditionRef={value.focus} entries={value.entry} />
                                     );
                                 })}
                             </div>

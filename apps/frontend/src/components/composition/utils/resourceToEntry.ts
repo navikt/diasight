@@ -11,7 +11,6 @@ interface IEntryLine {
 }
 
 export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
-    console.log(bundle);
     const resourceType = bundle[0].resourceType;
 
     switch (resourceType) {
