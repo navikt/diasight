@@ -65,17 +65,13 @@ const CompositionProvider: FC = ({ children }) => {
         const selectedMainSection = composition.section?.find((s) => s.focus === main);
         const filteredMainSections = composition.section?.filter((s) => s.focus !== main);
 
-        console.log(selectedMainSection);
-        console.log(filteredMainSections);
-
         if (selectedMainSection && filteredMainSections) {
             const selectedBiSection = selectedMainSection.section?.find((s) => s.focus === bi);
             const filteredBiSections = selectedMainSection.section?.filter((s) => s.focus !== bi);
-            console.log("FOUND MAIN");
+
             // Remove bi condition from selected main condition
             if (selectedBiSection && filteredBiSections) {
                 selectedMainSection.section = filteredBiSections;
-                console.log("FOUND BI");
 
                 setComposition({
                     ...composition,
@@ -120,9 +116,6 @@ const CompositionProvider: FC = ({ children }) => {
         if (selectedMainSection && filteredMainSections && !bi) {
             const selectedEntry = selectedMainSection.entry?.find((e) => e === entry);
             const filteredEntries = selectedMainSection.entry?.filter((e) => e !== entry);
-
-            console.log(selectedEntry);
-            console.log(filteredEntries);
 
             // Remove entry if exists
             if (selectedEntry && filteredEntries) {

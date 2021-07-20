@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { usePatientEntry } from "./hooks/use-patient-entry";
 import style from "./composition.module.less";
 import { Normaltekst } from "nav-frontend-typografi";
@@ -10,12 +10,17 @@ interface IProps {
     reference: IReference;
     mainRef: IReference;
     biRef?: IReference | null;
+    visible: boolean;
 }
 
-export const TimelineEntry: FC<IProps> = ({ reference, mainRef, biRef = null }) => {
+export const TimelineEntry: FC<IProps> = ({ reference, mainRef, biRef = null, visible }) => {
     const { entry, isLoading, isError } = usePatientEntry(reference);
     const { toggleEntry } = useContext(CompositionContext);
     const [selected, setSelected] = useState<boolean>(false);
+
+    useEffect(() => {
+        setSelected(false);
+    }, [visible]);
 
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;

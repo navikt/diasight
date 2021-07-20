@@ -34,18 +34,8 @@ export const Composition: FC<IProps> = ({ patientID }) => {
                                 key={mIndex}
                                 conditionRef={condition.focus}
                                 entries={condition.entry}
+                                biConditions={condition.section}
                             />
-                            {condition.section.map((value, bIndex) => {
-                                if (!value.focus || !condition.focus) return null;
-                                return (
-                                    <BiCondition
-                                        key={bIndex}
-                                        mainRef={condition.focus}
-                                        biRef={value.focus}
-                                        entries={value.entry}
-                                    />
-                                );
-                            })}
                         </div>
                     );
                 })}

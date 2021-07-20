@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FC } from "react";
 import style from "./composition.module.less";
 import { Expand, Collapse } from "@navikt/ds-icons/cjs";
@@ -12,9 +12,10 @@ interface IProps {
     biRef: IReference;
     mainRef: IReference;
     entries: IReference[] | undefined;
+    visible: boolean;
 }
 
-export const BiCondition: FC<IProps> = ({ biRef, mainRef, entries }) => {
+export const BiCondition: FC<IProps> = ({ biRef, mainRef, entries, visible = false }) => {
     const { condition, isLoading, isError } = usePatientCondition(biRef);
     const { toggleBiCondition } = useContext(CompositionContext);
     const [expanded, setExpanded] = useState(false);
@@ -24,13 +25,20 @@ export const BiCondition: FC<IProps> = ({ biRef, mainRef, entries }) => {
         toggleBiCondition(biRef, mainRef);
     };
 
+    useEffect(() => {
+        setExpanded(false);
+    }, [visible]);
+
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;
 
     if (condition?.code?.coding) {
         return (
             <>
-                <div className={`${style.biCondition} ${expanded ? style.active : ""}`}>
+                <div
+                    className={`${style.biCondition} ${expanded ? style.active : ""} ${
+                        visible ? "" : style.invisible
+                    }`}>
                     <Normaltekst>{condition.code.coding[0].code}</Normaltekst>
                     <Element className={style.name}>{condition.code.text}</Element>
                     <div className={style.expand} onClick={() => toggleCondition()}>

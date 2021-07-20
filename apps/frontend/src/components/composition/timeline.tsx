@@ -15,7 +15,7 @@ export const Timeline: FC<IProps> = ({ entries, mainRef, biRef = null, isActive 
     if (entries === undefined) return null;
 
     return (
-        <div className={`${style.timelineWrapper} ${isActive ? style.visible : ""} `}>
+        <div className={`${style.timelineWrapper} ${isActive ? "" : style.invisible} `}>
             <table className={style.tableWrapper}>
                 <tr>
                     <th>
@@ -39,6 +39,7 @@ export const Timeline: FC<IProps> = ({ entries, mainRef, biRef = null, isActive 
                             reference={ref}
                             mainRef={mainRef}
                             biRef={biRef}
+                            visible={isActive}
                         />
                     ) : null;
                 })}
