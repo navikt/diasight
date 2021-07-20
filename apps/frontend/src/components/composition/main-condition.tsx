@@ -14,18 +14,17 @@ interface IProps {
 }
 
 export const MainCondition: FC<IProps> = ({ conditionRef, entries }) => {
-
     const { condition, isLoading, isError } = usePatientCondition(conditionRef);
-    const { references, toggleReference } = useContext(CompositionContext);
+    const { toggleMainCondition } = useContext(CompositionContext);
     const [expanded, setExpanded] = useState(false);
 
     const toggleCondition = () => {
         setExpanded(!expanded);
-        toggleReference(conditionRef);
-    }
+        toggleMainCondition(conditionRef);
+    };
 
-    if (isLoading) return <div>Loading</div>
-    if (isError) return <div>Error</div>
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
 
     if (condition?.code?.coding) {
         return (
@@ -41,7 +40,7 @@ export const MainCondition: FC<IProps> = ({ conditionRef, entries }) => {
                         {expanded ? <Expand /> : <Collapse />}
                     </div>
                 </div>
-                <Timeline entries={entries} isActive={expanded} />
+                <Timeline entries={entries} isActive={expanded} mainRef={conditionRef} />
             </>
         );
     }

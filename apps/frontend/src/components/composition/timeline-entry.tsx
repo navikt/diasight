@@ -8,13 +8,14 @@ import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 
 interface IProps {
     reference: IReference;
+    mainRef: IReference;
+    biRef?: IReference | null;
 }
 
-export const TimelineEntry: FC<IProps> = ({ reference }) => {
-
+export const TimelineEntry: FC<IProps> = ({ reference, mainRef, biRef = null }) => {
     const { entry, isLoading, isError } = usePatientEntry(reference);
-    const { references, toggleReference } = useContext(CompositionContext);
-    const [ selected, setSelected ] = useState<boolean>(false);
+    const { toggleEntry } = useContext(CompositionContext);
+    const [selected, setSelected] = useState<boolean>(false);
 
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;
@@ -24,19 +25,29 @@ export const TimelineEntry: FC<IProps> = ({ reference }) => {
 
         return (
             <tr>
-                <td><Normaltekst>{resource.date}</Normaltekst></td>
                 <td>
-                    <div className={`${style.timestamp} ${selected ? style.selected : ""}`} onClick={() => {
-                        toggleReference(reference);
-                        setSelected(!selected);}}>
-                    </div>
+                    <Normaltekst>{resource.date}</Normaltekst>
                 </td>
-                <td><Normaltekst>{resource.text}</Normaltekst></td>
-                <td><Normaltekst>{resource.type}</Normaltekst></td>
-                <td><Normaltekst>{resource.author}</Normaltekst></td>
+                <td>
+                    <div
+                        className={`${style.timestamp} ${selected ? style.selected : ""}`}
+                        onClick={() => {
+                            toggleEntry(reference, mainRef, biRef);
+                            setSelected(!selected);
+                        }}></div>
+                </td>
+                <td>
+                    <Normaltekst>{resource.text}</Normaltekst>
+                </td>
+                <td>
+                    <Normaltekst>{resource.type}</Normaltekst>
+                </td>
+                <td>
+                    <Normaltekst>{resource.author}</Normaltekst>
+                </td>
             </tr>
         );
     }
 
     return null;
-}
+};

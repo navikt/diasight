@@ -9,23 +9,23 @@ import { Timeline } from "./timeline";
 import { CompositionContext } from "../../layouts/contexts/composition-context";
 
 interface IProps {
-    conditionRef: IReference;
+    biRef: IReference;
+    mainRef: IReference;
     entries: IReference[] | undefined;
 }
 
-export const BiCondition: FC<IProps> = ({ conditionRef, entries }) => {
-
-    const { condition, isLoading, isError } = usePatientCondition(conditionRef);
-    const { references, toggleReference } = useContext(CompositionContext);
+export const BiCondition: FC<IProps> = ({ biRef, mainRef, entries }) => {
+    const { condition, isLoading, isError } = usePatientCondition(biRef);
+    const { toggleBiCondition } = useContext(CompositionContext);
     const [expanded, setExpanded] = useState(false);
 
     const toggleCondition = () => {
         setExpanded(!expanded);
-        toggleReference(conditionRef);
-    }
+        toggleBiCondition(biRef, mainRef);
+    };
 
-    if (isLoading) return <div>Loading</div>
-    if (isError) return <div>Error</div>
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
 
     if (condition?.code?.coding) {
         return (
@@ -37,7 +37,7 @@ export const BiCondition: FC<IProps> = ({ conditionRef, entries }) => {
                         {expanded ? <Expand /> : <Collapse />}
                     </div>
                 </div>
-                <Timeline entries={entries} isActive={expanded} />
+                <Timeline entries={entries} isActive={expanded} mainRef={mainRef} biRef={biRef} />
             </>
         );
     }
