@@ -1,21 +1,26 @@
-import {
-    IQuestionnaire,
-    Questionnaire_ItemTypeKind,
-} from "@ahryman40k/ts-fhir-types/lib/R4";
+import { Close } from "@navikt/ds-icons/cjs";
+import { Undertittel } from "nav-frontend-typografi";
 import React, { useState } from "react";
 import { FC } from "react";
-import { Answer } from "../itemAnswer/itemAnswer";
+import { useQuestionnaire } from "./hooks/use-questionnaire";
+import { Input } from 'nav-frontend-skjema';
+import style from "./questionnaire.module.less";
+import { generateFHIRForm } from "./utils/generate-form";
 
 interface IProps {
-    questionnaire: IQuestionnaire;
+    id: number;
 }
 type AnswerType = {
     linkId: string;
     answer: string;
 };
 
-export const Questionnaire: FC<IProps> = ({ questionnaire }) => {
+export const Questionnaire: FC<IProps> = ({ id }) => {
     const [answers, setAnswers] = useState<AnswerType[]>([]);
+    const {questionnaire, isLoading, isError } = useQuestionnaire(id);
+
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
 
     const setAnswer = (linkId: string) => {
         return (answer: string) => {
@@ -40,19 +45,19 @@ export const Questionnaire: FC<IProps> = ({ questionnaire }) => {
     };
 
     if (questionnaire) {
+        console.log(questionnaire);
         return (
-            <div>
-                {questionnaire.item?.map((value) => {
-                    return value.linkId ? (
-                        <div key={value.linkId}>
-                            <p>{value.text}</p>
-                            <Answer
-                                answer={findAnswer(value.linkId)}
-                                setAnswer={setAnswer(value.linkId)}
-                            />
-                        </div>
-                    ) : null;
-                })}
+            <div className={style.wrapper}>
+                <div className={style.header}>
+                    <Undertittel>Legeerklæring</Undertittel>
+                    <Close />
+                </div>
+                <form onSubmit={() => console.log("Hallo")}>
+                    {questionnaire.item?.map((value) => {
+                        return generateFHIRForm(value);
+                    })}
+                    <input type="submit" value="SEND" className="knapp"/>
+                </form>
             </div>
         );
     }
