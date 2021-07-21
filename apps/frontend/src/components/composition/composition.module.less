@@ -10,11 +10,10 @@
     grid-template-columns: auto 4ch 4ch 4ch;
     display: grid;
     margin: auto;
-    padding: 8px;
+    padding: 2ch;
     border-radius: 3px 3px 0 0;
-    background-color: #6A6A6A;
-    color: #FEFEFE;
-
+    background-color: #6a6a6a;
+    color: #fefefe;
 }
 
 .mainCondition svg {
@@ -26,8 +25,8 @@
     grid-column: span 4;
 }
 
-.active {
-    background-color: #0067C5;
+.mainCondition.active {
+    background-color: #0067c5;
 }
 
 .expand {
@@ -40,12 +39,15 @@
     vertical-align: middle;
 }
 
-.biCondition  {
-    padding: 8px;
+.biCondition {
+    padding: 2ch;
     margin: 0.5% auto;
     display: grid;
     grid-template-columns: 8% auto auto;
-    background-color: #EFEFEF;
+    background-color: #efefef;
+}
+.biCondition.active {
+    background-color: #e0f5fb;
 }
 
 .biCondition:last-child {
@@ -53,11 +55,11 @@
 }
 
 .timelineWrapper {
-    display: none;
+    display: grid;
     grid-template-rows: auto auto;
-    padding: 8px;
+    padding: 2ch;
     margin: 0.5% auto;
-    background-color: #EFEFEF;
+    background-color: #efefef;
     z-index: -2;
 }
 
@@ -85,18 +87,23 @@
     text-overflow: ellipsis;
 }
 
-.visible {
-    display: grid;
+.invisible {
+    display: none;
 }
 
 .timestamp {
     background-color: #fefefefe;
-    border: #0067C5 2px solid;
+    border: #0067c5 2px solid;
     border-radius: 30px;
     height: 12px;
     width: 12px;
     margin: 0.4ex auto;
     z-index: 3;
+    cursor: pointer;
+}
+
+.selected {
+    border-color: #06893a;
 }
 
 /*

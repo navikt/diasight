@@ -18,29 +18,27 @@ interface IProps {
 export const Composition: FC<IProps> = ({ patientID }) => {
     const { composition, isLoading, isError } = usePatientComposition(patientID);
 
-    if (isLoading) return <div>Loading</div>
-    if (isError) return <div>Error</div>
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
 
     if (composition) {
         return (
             <div className={style.compositionWrapper}>
                 <Undertittel>Diagnostikk</Undertittel>
-                {
-                    composition.section?.map((condition, mIndex) => {
-                        if (!condition.focus?.reference || !condition.section?.length || !condition.entry) return null;
-                        return (
-                            <div>
-                                <MainCondition key={mIndex} conditionID={idToNumber(condition.focus.reference)} entries={condition.entry} />
-                                {condition.section.map((value, bIndex) => {
-                                    if (!value.focus?.reference) return null;
-                                    const key = mIndex + "B" + bIndex;
-                                    return (
-                                        <BiCondition key={key} conditionID={idToNumber(value.focus.reference)} entries={value.entry} />
-                                    );
-                                })}
-                            </div>
-                        );
-                    })}
+                {composition.section?.map((condition, mIndex) => {
+                    if (!condition.focus || !condition.section?.length || !condition.entry)
+                        return null;
+                    return (
+                        <div key={mIndex}>
+                            <MainCondition
+                                key={mIndex}
+                                conditionRef={condition.focus}
+                                entries={condition.entry}
+                                biConditions={condition.section}
+                            />
+                        </div>
+                    );
+                })}
             </div>
         );
     }

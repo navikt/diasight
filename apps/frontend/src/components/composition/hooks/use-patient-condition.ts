@@ -1,10 +1,10 @@
 import { fetcher } from "../../../utils";
 import useSWR from "swr"
-import { ICondition } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { ICondition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 
-export const usePatientCondition = (id: number) => {
+export const usePatientCondition = (ref: IReference) => {
     // Possibly add type IPatient
-    const { data, error } = useSWR<ICondition>(`api/Condition/${id}`, fetcher);
+    const { data, error } = useSWR<ICondition>(`api/${ref.reference}`, fetcher);
 
     return {
         condition: data,
