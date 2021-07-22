@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { PatientResults } from "./patientResults";
+import { PatientResults } from "./patient-results";
 import { Search } from "@navikt/ds-icons/cjs";
 import style from "./patientSearch.module.less";
 

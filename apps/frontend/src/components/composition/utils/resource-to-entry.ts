@@ -1,4 +1,10 @@
-import { HumanNameUseKind, IAppointment, IDiagnosticReport, IMedicationRequest, IObservation, IPractitioner, IQuestionnaireResponse, IServiceRequest } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    HumanNameUseKind,
+    IMedicationRequest,
+    IObservation,
+    IPractitioner,
+    IServiceRequest,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import { filterHumanNameOnUse, humanNameToString } from "../../../utils";
 import { IEntryWithAuthor } from "../hooks/use-patient-entry";
 
@@ -32,17 +38,16 @@ case "Appointment":
                 text: "Ukjent",
                 type: "Ukjent",
                 author: "Ukjent",
-                department: "Ukjent"
+                department: "Ukjent",
             };
     }
-
-
-}
+};
 
 const observationToEntry = (entry: [IObservation, IPractitioner]): IEntryLine => {
-
     const observation = entry[0];
-    const author = entry[1].name ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual) : null;
+    const author = entry[1].name
+        ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual)
+        : null;
 
     return {
         date: observation.issued,
@@ -51,13 +56,13 @@ const observationToEntry = (entry: [IObservation, IPractitioner]): IEntryLine =>
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
     } as IEntryLine;
-
-}
+};
 
 const serviceRequestToEntry = (entry: [IServiceRequest, IPractitioner]): IEntryLine => {
-
     const serviceRequest = entry[0];
-    const author = entry[1].name ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual) : null;
+    const author = entry[1].name
+        ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual)
+        : null;
 
     return {
         date: serviceRequest.authoredOn,
@@ -66,12 +71,13 @@ const serviceRequestToEntry = (entry: [IServiceRequest, IPractitioner]): IEntryL
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
     } as IEntryLine;
-}
+};
 
 const medicationRequestToEntry = (entry: [IMedicationRequest, IPractitioner]): IEntryLine => {
-
     const medicationRequest = entry[0];
-    const author = entry[1].name ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual) : null;
+    const author = entry[1].name
+        ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual)
+        : null;
 
     return {
         date: medicationRequest.authoredOn,
@@ -80,4 +86,4 @@ const medicationRequestToEntry = (entry: [IMedicationRequest, IPractitioner]): I
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
     } as IEntryLine;
-}
+};
