@@ -1,13 +1,13 @@
 import { Knapp } from "nav-frontend-knapper";
-import React, { FC } from "react"
-import { Composition } from "../components/composition";
+import React, { FC } from "react";
+import CompositionList from "../components/composition";
 import Patient from "../components/patient";
 import { Questionnaire } from "../components/questionnaire/questionnaire";
 import CompositionProvider from "./contexts/composition-context";
 import style from "./patient-detail-layout.module.less";
 
 interface IProps {
-    id: number
+    id: number;
 }
 
 export const PatientDetailLayout: FC<IProps> = ({ id }) => {
@@ -16,7 +16,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
             <div className={style.patientDetailWrapper}>
                 <div className={style.column}>
                     <Patient id={id} />
-                    <Questionnaire id={11}/>
+                    <Questionnaire id={11} />
                 </div>
                 <div className={style.column}>
                     <div className={style.buttons}>
@@ -27,10 +27,10 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                     </div>
 
                     <div className={style.composition}>
-                        <Composition patientID={id} />
+                        <CompositionList patientRef={id} />
                     </div>
                 </div>
             </div>
         </CompositionProvider>
     );
-}
+};

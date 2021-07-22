@@ -1,13 +1,13 @@
 import { fetcher } from "../../../utils";
 import useSWR from "swr"
-import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IBundle_Entry, IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
-export const usePatientComposition = (id: number) => {
+export const usePatientComposition = (patientID: number) => {
     // Possibly add type IPatient
-    const { data, error } = useSWR<IComposition>(`api/Composition/${id}`, fetcher);
+    const { data, error } = useSWR<IBundle_Entry[]>(`api/Composition/${patientID}`, fetcher);
 
     return {
-        composition: data,
+        compositions: data?.map((comp) => comp.resource as IComposition),
         isLoading: !error && !data,
         isError: error,
     }

@@ -1,4 +1,4 @@
-import { HumanNameUseKind, IAppointment, IDiagnosticReport, IMedicationRequest, IObservation, IPractitioner, IQuestionnaireResponse, IServiceRequest } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { HumanNameUseKind, IMedicationRequest, IObservation, IPractitioner, IServiceRequest } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { filterHumanNameOnUse, humanNameToString } from "../../../utils";
 import { IEntryWithAuthor } from "../hooks/use-patient-entry";
 
@@ -10,6 +10,8 @@ interface IEntryLine {
     department: string;
 }
 
+
+// Add DiagnosticReport, QuestionnaireResponse and Appointment in the future. 
 export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
     const resourceType = bundle[0].resourceType;
 
@@ -18,12 +20,6 @@ export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
             return observationToEntry(bundle as [IObservation, IPractitioner]);
         case "MedicationRequest":
             return medicationRequestToEntry(bundle as [IMedicationRequest, IPractitioner]);
-        /*case "DiagnosticReport":
-    return entry as IDiagnosticReport;
-case "QuestionnaireResponse":
-    return entry as IQuestionnaireResponse;
-case "Appointment":
-    return entry as IAppointment;*/
         case "ServiceRequest":
             return serviceRequestToEntry(bundle as [IServiceRequest, IPractitioner]);
         default:

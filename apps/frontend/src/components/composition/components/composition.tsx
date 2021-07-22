@@ -1,13 +1,10 @@
 import React, { FC } from "react";
-import { usePatientComposition } from "./hooks/use-patient-composition";
-import { BiCondition } from "./bi-condition";
-import { MainCondition } from "./main-condition";
-import { idToNumber } from "./utils/idToNumber";
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
-import style from "./composition.module.less";
+import { Condition } from "./condition";
+import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 
 interface IProps {
-    patientID: number;
+    composition: IComposition;
 }
 
 /*
@@ -15,17 +12,29 @@ interface IProps {
  * adverse-events, and procedures.
  */
 
-export const Composition: FC<IProps> = ({ patientID }) => {
-    const { composition, isLoading, isError } = usePatientComposition(patientID);
+export const Composition: FC<IProps> = ({ composition }) => {
+    return (
+        <div>
+            {composition.section?.map((comp, index) => {
+                if (!comp.title || !comp.focus) return null;
+                return (
+                    <Condition
+                        key={index}
+                        title={comp.title}
+                        focus={comp.focus}
+                        entries={comp.entry}
+                    />
+                );
+            })}
+        </div>
+    );
 
-    if (isLoading) return <div>Loading</div>;
-    if (isError) return <div>Error</div>;
-
-    if (composition) {
+    /*
+    if (compositions) {
         return (
             <div className={style.compositionWrapper}>
                 <Undertittel>Diagnostikk</Undertittel>
-                {composition.section?.map((condition, mIndex) => {
+                {compositions.section?.map((condition, mIndex) => {
                     if (!condition.focus || !condition.section?.length || !condition.entry)
                         return null;
                     return (
@@ -41,7 +50,7 @@ export const Composition: FC<IProps> = ({ patientID }) => {
                 })}
             </div>
         );
-    }
+    }*/
 
     return (
         <div>

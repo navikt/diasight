@@ -1,1 +1,3 @@
-export * from "./composition";
+import { CompositionList } from "./composition-list";
+
+export default CompositionList;

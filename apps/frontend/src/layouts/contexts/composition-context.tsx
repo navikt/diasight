@@ -8,9 +8,8 @@ import React, { createContext, FC, useState } from "react";
 
 type CompositionContextState = {
     composition: IComposition;
-    toggleMainCondition: (main: IReference) => void;
-    toggleBiCondition: (bi: IReference, main: IReference) => void;
-    toggleEntry: (entry: IReference, main: IReference, bi: IReference | null) => void;
+    toggleCondition: (condition: IReference) => void;
+    toggleEntry: (entry: IReference, condition: IReference) => void;
 };
 
 const contextDefaultValues: CompositionContextState = {
@@ -27,8 +26,7 @@ const contextDefaultValues: CompositionContextState = {
             ],
         },
     },
-    toggleMainCondition: () => null,
-    toggleBiCondition: () => null,
+    toggleCondition: () => null,
     toggleEntry: () => null,
 };
 
@@ -37,93 +35,46 @@ export const CompositionContext = createContext<CompositionContextState>(context
 const CompositionProvider: FC = ({ children }) => {
     const [composition, setComposition] = useState<IComposition>(contextDefaultValues.composition);
 
-    const toggleMainCondition = (main: IReference) => {
-        const selectedMainSection = composition.section?.find((s) => s.focus === main);
-        const filteredMainSections = composition.section?.filter((s) => s.focus !== main);
+    const toggleCondition = (condition: IReference) => {
+        const selectedSection = composition.section?.find((s) => s.focus === condition);
+        const filteredSections = composition.section?.filter((s) => s.focus !== condition);
 
-        // Remove main condition
-        if (selectedMainSection && filteredMainSections) {
-            selectedMainSection.section = filteredMainSections;
-            setComposition({ ...composition, section: filteredMainSections });
+        // Remove condition
+        if (selectedSection && filteredSections) {
+            selectedSection.section = filteredSections;
+            setComposition({ ...composition, section: filteredSections });
             return;
         }
 
-        // Add main condition if it does not exist and section is not empty
-        if (filteredMainSections) {
+        // Add condition if it does not exist and section is not empty
+        if (filteredSections) {
             setComposition({
                 ...composition,
-                section: [...filteredMainSections, { focus: main }],
+                section: [...filteredSections, { focus: condition }],
             });
             return;
         }
 
-        // Add main condition of section is empty
-        setComposition({ ...composition, section: [{ focus: main }] });
+        // Add condition of section is empty
+        setComposition({ ...composition, section: [{ focus: condition }] });
     };
 
-    const toggleBiCondition = (bi: IReference, main: IReference) => {
-        const selectedMainSection = composition.section?.find((s) => s.focus === main);
-        const filteredMainSections = composition.section?.filter((s) => s.focus !== main);
-
-        if (selectedMainSection && filteredMainSections) {
-            const selectedBiSection = selectedMainSection.section?.find((s) => s.focus === bi);
-            const filteredBiSections = selectedMainSection.section?.filter((s) => s.focus !== bi);
-
-            // Remove bi condition from selected main condition
-            if (selectedBiSection && filteredBiSections) {
-                selectedMainSection.section = filteredBiSections;
-
-                setComposition({
-                    ...composition,
-                    section: [
-                        ...filteredMainSections,
-                        { ...selectedMainSection, section: filteredBiSections },
-                    ],
-                });
-
-                return;
-            }
-
-            // Add bi condition if it does not exist and section is not empty
-            if (filteredBiSections) {
-                setComposition({
-                    ...composition,
-                    section: [
-                        ...filteredMainSections,
-                        { ...selectedMainSection, section: [...filteredBiSections, { focus: bi }] },
-                    ],
-                });
-
-                return;
-            }
-
-            // Add bi condition if section in empty
-            setComposition({
-                ...composition,
-                section: [
-                    ...filteredMainSections,
-                    { ...selectedMainSection, section: [{ focus: bi }] },
-                ],
-            });
-        }
-    };
-
-    const toggleEntry = (entry: IReference, main: IReference, bi: IReference | null = null) => {
-        const selectedMainSection = composition.section?.find((s) => s.focus === main);
-        const filteredMainSections = composition.section?.filter((s) => s.focus !== main);
+    const toggleEntry = (entry: IReference, main: IReference) => {
+        const selectedSection = composition.section?.find((s) => s.focus === main);
+        const filteredSections = composition.section?.filter((s) => s.focus !== main);
 
         // Is bi condition provided?
-        if (selectedMainSection && filteredMainSections && !bi) {
-            const selectedEntry = selectedMainSection.entry?.find((e) => e === entry);
-            const filteredEntries = selectedMainSection.entry?.filter((e) => e !== entry);
+        if (selectedSection && filteredSections) {
+            const selectedEntry = selectedSection.entry?.find((e) => e === entry);
+            const filteredEntries = selectedSection.entry?.filter((e) => e !== entry);
 
             // Remove entry if exists
             if (selectedEntry && filteredEntries) {
-                selectedMainSection.entry = filteredEntries;
+                selectedSection.entry = filteredEntries;
 
                 setComposition({
                     ...composition,
-                    section: [...filteredMainSections, selectedMainSection],
+                    section: [...filteredSections, selectedSection],
                 });
 
                 return;
@@ -134,8 +85,8 @@ const CompositionProvider: FC = ({ children }) => {
                 setComposition({
                     ...composition,
                     section: [
-                        ...filteredMainSections,
-                        { ...selectedMainSection, entry: [...filteredEntries, entry] },
+                        ...filteredSections,
+                        { ...selectedSection, entry: [...filteredEntries, entry] },
                     ],
                 });
 
@@ -145,76 +96,13 @@ const CompositionProvider: FC = ({ children }) => {
             // Add entry if no others exist
             setComposition({
                 ...composition,
-                section: [...filteredMainSections, { ...selectedMainSection, entry: [entry] }],
+                section: [...filteredSections, { ...selectedSection, entry: [entry] }],
             });
-        }
-
-        if (selectedMainSection && filteredMainSections && bi) {
-            const selectedBiSection = selectedMainSection.section?.find((s) => s.focus === bi);
-            const filteredBiSections = selectedMainSection.section?.filter((s) => s.focus !== bi);
-
-            if (selectedBiSection && filteredBiSections) {
-                const selectedEntry = selectedBiSection.entry?.find((e) => e.reference === entry);
-                const filteredEntries = selectedBiSection.entry?.filter(
-                    (e) => e.reference !== entry
-                );
-
-                // Remove entry if exists
-                if (selectedEntry && filteredEntries) {
-                    selectedBiSection.entry = filteredEntries;
-
-                    setComposition({
-                        ...composition,
-                        section: [
-                            ...filteredMainSections,
-                            {
-                                ...selectedMainSection,
-                                section: [...filteredBiSections, selectedBiSection],
-                            },
-                        ],
-                    });
-
-                    return;
-                }
-
-                if (filteredEntries) {
-                    setComposition({
-                        ...composition,
-                        section: [
-                            ...filteredMainSections,
-                            {
-                                ...selectedMainSection,
-                                section: [
-                                    ...filteredBiSections,
-                                    { ...selectedBiSection, entry: [...filteredEntries, entry] },
-                                ],
-                            },
-                        ],
-                    });
-
-                    return;
-                }
-
-                setComposition({
-                    ...composition,
-                    section: [
-                        ...filteredMainSections,
-                        {
-                            ...selectedMainSection,
-                            section: [
-                                ...filteredBiSections,
-                                { ...selectedBiSection, entry: [entry] },
-                            ],
-                        },
-                    ],
-                });
-            }
         }
     };
 
     return (
-        <CompositionContext.Provider
-            value={{ composition, toggleMainCondition, toggleBiCondition, toggleEntry }}>
+        <CompositionContext.Provider value={{ composition, toggleCondition, toggleEntry }}>
             {children}
         </CompositionContext.Provider>
     );
