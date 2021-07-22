@@ -1,7 +1,8 @@
-import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React, { FC } from "react";
 import { Composition } from "./components/composition";
 import { usePatientComposition } from "./hooks/use-patient-composition";
+import style from "./composition.module.less";
+import { Undertittel } from "nav-frontend-typografi";
 
 interface IProps {
     patientRef: number;
@@ -14,7 +15,8 @@ export const CompositionList: FC<IProps> = ({ patientRef }) => {
     if (isError) return <div>Error</div>;
 
     return (
-        <div>
+        <div className={style.compositionWrapper}>
+            <Undertittel>Diagnostikk</Undertittel>
             {compositions?.map((c, i) => {
                 return <Composition key={i} composition={c} />;
             })}

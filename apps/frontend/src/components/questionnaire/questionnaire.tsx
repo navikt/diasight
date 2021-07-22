@@ -24,28 +24,6 @@ export const Questionnaire: FC<IProps> = ({ id }) => {
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;
 
-    const setAnswer = (linkId: string) => {
-        return (answer: string) => {
-            const results = [...answers];
-            const foundIndex = answers.findIndex((i) => i.linkId === linkId);
-            if (foundIndex) {
-                results[foundIndex] = { linkId, answer };
-            } else {
-                results.push({ linkId, answer });
-            }
-            setAnswers(results);
-        };
-    };
-
-    const findAnswer = (linkId: string) => {
-        const found = answers.find((i: AnswerType) => i.linkId === linkId);
-        if (found) {
-            return found.answer;
-        } else {
-            return "";
-        }
-    };
-
     if (questionnaire) {
         return (
             <div className={style.wrapper}>
