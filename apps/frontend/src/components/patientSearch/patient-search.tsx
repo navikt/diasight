@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { PatientResults } from "./patient-results";
 import { Search } from "@navikt/ds-icons/cjs";
-import style from "./patientSearch.module.less";
+import style from "./patient-search.module.less";
 
 type FormValues = {
     searchKeyword: string

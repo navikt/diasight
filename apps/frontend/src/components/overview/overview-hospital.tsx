@@ -1,7 +1,7 @@
 import { WarningFilled } from "@navikt/ds-icons";
 import { Undertekst, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
-import style from "./overviewHospital.module.less"
+import style from "./overview-hospital.module.less"
 
 export const OverviewHospital: FC = () => {
     return <div className={style.wrapper}>

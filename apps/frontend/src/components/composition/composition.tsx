@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { usePatientComposition } from "./hooks/use-patient-composition";
 import { BiCondition } from "./bi-condition";
 import { MainCondition } from "./main-condition";
-import { idToNumber } from "./utils/idToNumber";
+import { idToNumber } from "./utils/id-to-number";
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import style from "./composition.module.less";
 

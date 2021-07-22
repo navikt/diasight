@@ -1,7 +1,7 @@
 import { Sidetittel, Element } from "nav-frontend-typografi";
 import React, { FC } from "react";
-import { OverviewHospital } from "../components/overview/overviewHospital";
-import { OverviewNAV } from "../components/overview/overviewNAV";
+import { OverviewHospital } from "../components/overview/overview-hospital";
+import { OverviewNAV } from "../components/overview/overview-NAV";
 import style from "./overview-layout.module.less";
 
 

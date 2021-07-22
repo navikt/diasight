@@ -1,7 +1,7 @@
 import { Sidetittel, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react"
 import { usePatientResults } from "./hooks/use-patient-results";
-import style from "./patientSearch.module.less";
+import style from "./patient-search.module.less";
 import { IBundle_Entry, IPatient } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Link } from "wouter";
 
