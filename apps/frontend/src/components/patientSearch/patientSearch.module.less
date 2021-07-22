@@ -1,5 +1,5 @@
 .wrapper {
-    width: 100%;
+    margin-top: 30%;
 }
 
 .searchWrapper {
@@ -8,18 +8,13 @@
     border-bottom: 0.1rem solid gray;
 }
 
-.searchWrapper > form {
+.searchForm {
     display: grid;
     grid-template-columns: auto 5%;
     grid-template-rows: auto;
 }
 
-.resultsWrapper {
-    width: 60%;
-    margin: auto;
-}
-
-.input {
+.searchInput {
     border: none;
     font-family: Source Sans Pro;
     font-style: normal;
@@ -27,18 +22,23 @@
     font-size: 24px;
 }
 
-.input:focus {
+.searchInput:focus {
     outline: none;
 }
 
-.icon {
+.searchIcon {
     width: 24px;
     height: 24px;
     color: #0067c5;
     cursor: pointer;
 }
 
-.resultWrapper {
+.resultsWrapper {
+    width: 60%;
+    margin: auto;
+}
+
+.patientWrapper {
     padding: 20px;
     margin: 10px 0px 10px 0px;
     background-color: #f1f1f1;
