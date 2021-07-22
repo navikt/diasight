@@ -23,6 +23,5 @@ export const OverviewHospital: FC = () => {
             <Undertittel>Sofie Fagermo</Undertittel>
             <Undertekst>Medisinsk avdeling, Sykehus</Undertekst>
         </div>
-
     </div>
 }

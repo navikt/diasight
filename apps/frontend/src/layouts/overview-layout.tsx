@@ -1,6 +1,7 @@
 import { Sidetittel, Element } from "nav-frontend-typografi";
 import React, { FC } from "react";
-import { OverviewHospital } from "../components/overviewHospital/overviewHospital";
+import { OverviewHospital } from "../components/overview/overviewHospital";
+import { OverviewNAV } from "../components/overview/overviewNAV";
 import style from "./overview-layout.module.less";
 
 
@@ -28,6 +29,7 @@ export const OverviewLayout: FC = () => {
             </div>
             <div className={style.notifications}>
                 <Element>Fra NAV</Element>
+                <OverviewNAV />
                 <div></div>
             </div>
         </div>
