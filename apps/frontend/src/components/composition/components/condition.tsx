@@ -31,7 +31,7 @@ export const Condition: FC<IProps> = ({ title, focus, entries }) => {
     if (condition) {
         return (
             <>
-                <div className={`${style.biCondition} ${expanded ? style.active : ""}`}>
+                <div className={`${style.condition} ${expanded ? style.active : ""}`}>
                     <Normaltekst>
                         {condition.code ? findICPCCode(condition.code)?.code : "????"}
                     </Normaltekst>

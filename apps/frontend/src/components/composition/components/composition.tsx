@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { Normaltekst, Undertittel } from "nav-frontend-typografi";
+import { Element, Undertekst } from "nav-frontend-typografi";
 import { Condition } from "./condition";
 import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
-
+import style from "../composition.module.less";
 interface IProps {
     composition: IComposition;
 }
@@ -14,7 +14,17 @@ interface IProps {
 
 export const Composition: FC<IProps> = ({ composition }) => {
     return (
-        <div>
+        <div className={style.composition}>
+            <div className={style.date}>
+                <div>
+                    <Undertekst>Sist oppdatert</Undertekst>
+                    <Element>{composition.meta?.lastUpdated?.substr(0, 10)}</Element>
+                </div>
+                <div>
+                    <Undertekst>Opprettet </Undertekst>
+                    <Element>{composition.date}</Element>
+                </div>
+            </div>
             {composition.section?.map((comp, index) => {
                 if (!comp.title || !comp.focus) return null;
                 return (
@@ -26,35 +36,6 @@ export const Composition: FC<IProps> = ({ composition }) => {
                     />
                 );
             })}
-        </div>
-    );
-
-    /*
-    if (compositions) {
-        return (
-            <div className={style.compositionWrapper}>
-                <Undertittel>Diagnostikk</Undertittel>
-                {compositions.section?.map((condition, mIndex) => {
-                    if (!condition.focus || !condition.section?.length || !condition.entry)
-                        return null;
-                    return (
-                        <div key={mIndex}>
-                            <MainCondition
-                                key={mIndex}
-                                conditionRef={condition.focus}
-                                entries={condition.entry}
-                                biConditions={condition.section}
-                            />
-                        </div>
-                    );
-                })}
-            </div>
-        );
-    }*/
-
-    return (
-        <div>
-            <Normaltekst>Fant ingen resultater</Normaltekst>
         </div>
     );
 };

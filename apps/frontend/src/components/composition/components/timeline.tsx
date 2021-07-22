@@ -32,7 +32,7 @@ export const Timeline: FC<IProps> = ({ entries, condition, isActive = true }) =>
                     </th>
                 </tr>
                 {entries.map((ref, index) => {
-                    return ref.reference ? (
+                    return ref ? (
                         <TimelineEntry
                             key={index}
                             reference={ref}

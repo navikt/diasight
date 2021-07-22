@@ -1,19 +1,6 @@
 import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import React, { FC, useContext } from "react";
-import { Normaltekst } from "nav-frontend-typografi";
-
-interface ISimplifiedComposition {
-    main: {
-        display: string;
-        entries: string[];
-        bis: ISimplifiedBiCondition[];
-    };
-}
-
-interface ISimplifiedBiCondition {
-    display: string;
-    entries: string[];
-}
+import { Normaltekst, Undertekst, UndertekstBold } from "nav-frontend-typografi";
 
 export const Entry: FC = () => {
     const { composition } = useContext(CompositionContext);
@@ -21,8 +8,16 @@ export const Entry: FC = () => {
     if (composition.section && composition.section.length > 0) {
         return (
             <div>
-                {composition.section.map((main) => {
-                    return <Normaltekst>{main.focus?.display}</Normaltekst>;
+                <UndertekstBold>Se vedlagt</UndertekstBold>
+                {composition.section.map((c, i) => {
+                    return (
+                        <div key={i}>
+                            <Normaltekst key={i}>{c.focus?.display}</Normaltekst>
+                            {c.entry?.map((e, j) => {
+                                return <Undertekst key={j}>{e.display || "hei"}</Undertekst>;
+                            })}
+                        </div>
+                    );
                 })}
             </div>
         );

@@ -47,10 +47,8 @@ export const Questionnaire: FC<IProps> = ({ id }) => {
     };
 
     if (questionnaire) {
-        console.log(questionnaire);
         return (
             <div className={style.wrapper}>
-                {<Entry />}
                 <div className={style.header}>
                     <Undertittel>Legeerklæring</Undertittel>
                     <Close />

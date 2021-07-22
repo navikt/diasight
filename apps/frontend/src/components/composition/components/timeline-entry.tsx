@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { usePatientEntry } from "../hooks/use-patient-entry";
 import style from "../composition.module.less";
 import { Normaltekst } from "nav-frontend-typografi";
-import { bundleToEntry } from "../utils/resourceToEntry";
+import { bundleToEntry } from "../utils/resource-to-entry";
 import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 
