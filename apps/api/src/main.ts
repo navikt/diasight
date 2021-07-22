@@ -1,6 +1,20 @@
 import * as express from "express";
 import * as session from "express-session";
-import { patientRouter, compositionRouter, conditionRouter, appointmentRouter, questionnaireRouter, questionnaireResponseRouter, practitionerRouter, serviceRequestRouter, observationRouter, diagnosticReportRouter, medicationRequestRouter, medicationRouter } from "./routes";
+import {
+    patientRouter,
+    compositionRouter,
+    conditionRouter,
+    appointmentRouter,
+    questionnaireRouter,
+    questionnaireResponseRouter,
+    practitionerRouter,
+    serviceRequestRouter,
+    observationRouter,
+    diagnosticReportRouter,
+    medicationRequestRouter,
+    medicationRouter,
+} from "./routes";
+import { taskRouter } from "./routes/task";
 
 const app = express();
 const port = process.env.port || 3333;
@@ -32,5 +46,6 @@ app.use("/api/ServiceRequest", serviceRequestRouter);
 app.use("/api/MedicationRequest", medicationRequestRouter);
 app.use("/api/Medication", medicationRouter);
 app.use("/api/Appointment", appointmentRouter);
+app.use("/api/Task", taskRouter);
 
 server.on("error", console.error);
