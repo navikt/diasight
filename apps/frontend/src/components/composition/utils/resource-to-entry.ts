@@ -16,6 +16,7 @@ interface IEntryLine {
     department: string;
 }
 
+// Add DiagnosticReport, QuestionnaireResponse and Appointment in the future.
 export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
     const resourceType = bundle[0].resourceType;
 
@@ -24,12 +25,6 @@ export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
             return observationToEntry(bundle as [IObservation, IPractitioner]);
         case "MedicationRequest":
             return medicationRequestToEntry(bundle as [IMedicationRequest, IPractitioner]);
-        /*case "DiagnosticReport":
-    return entry as IDiagnosticReport;
-case "QuestionnaireResponse":
-    return entry as IQuestionnaireResponse;
-case "Appointment":
-    return entry as IAppointment;*/
         case "ServiceRequest":
             return serviceRequestToEntry(bundle as [IServiceRequest, IPractitioner]);
         default:

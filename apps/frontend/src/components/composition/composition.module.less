@@ -1,32 +1,21 @@
 .compositionWrapper {
-    width: 100%;
+    margin: 3ch 0;
 }
 
-.compositionWrapper > h2 {
-    margin: 6ch 0 3ch 0;
+.composition {
+    margin: 3ch auto 0;
 }
 
-.mainCondition {
-    grid-template-columns: auto 4ch 4ch 4ch;
-    display: grid;
-    margin: auto;
-    padding: 2ch;
-    border-radius: 3px 3px 0 0;
-    background-color: #6a6a6a;
-    color: #fefefe;
+.date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.mainCondition svg {
-    margin: auto 0 auto auto;
-    vertical-align: middle;
-}
-
-.mainCondition > h2 {
-    grid-column: span 4;
-}
-
-.mainCondition.active {
-    background-color: #0067c5;
+.date > div {
+    display: flex;
+    flex-direction: row;
+    gap: 1ch;
 }
 
 .expand {
@@ -39,18 +28,24 @@
     vertical-align: middle;
 }
 
-.biCondition {
+.condition {
     padding: 2ch;
     margin: 0.5% auto;
     display: grid;
     grid-template-columns: 8% auto auto;
     background-color: #efefef;
+    border-radius: 3px 3px 0 0;
 }
-.biCondition.active {
-    background-color: #e0f5fb;
+.condition.active {
+    background-color: #0067c5;
+    color: #ffffff;
 }
 
-.biCondition:last-child {
+.condition.active:last-child {
+    border-radius: 0;
+}
+
+.condition:last-child {
     border-radius: 0 0 3px 3px;
 }
 
@@ -60,7 +55,7 @@
     padding: 2ch;
     margin: 0.5% auto;
     background-color: #efefef;
-    z-index: -2;
+    z-index: 0;
 }
 
 .dropdown {
@@ -73,6 +68,7 @@
     column-span: 1 / 4;
     width: 100%;
     display: grid;
+    z-index: 2;
 }
 
 .tableWrapper > tr {
@@ -94,16 +90,23 @@
 .timestamp {
     background-color: #fefefefe;
     border: #0067c5 2px solid;
-    border-radius: 30px;
-    height: 12px;
-    width: 12px;
-    margin: 0.4ex auto;
+    border-radius: 100%;
+    height: 16px;
+    width: 16px;
+    margin: 1px auto;
     z-index: 3;
     cursor: pointer;
 }
 
-.selected {
-    border-color: #06893a;
+.selected::before {
+    content: " ";
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    margin: 2px 2px;
+    background-color: #0067c5;
+    border-radius: 100%;
+    z-index: 4;
 }
 
 /*
@@ -115,13 +118,12 @@ tr:not(:nth-child(2)) .timestamp {
 tr:not(:nth-child(1)) .timestamp::after {
     content: " ";
     position: absolute;
-    height: 25px;
-    width: 10px;
-    padding-left: 3px;
+    height: 32px;
+    width: 16px;
     clip-path: inset(0 40% 0 40%);
-    background-color: #fefefe;
+    background-color: #ffffff;
 
-    z-index: 0;
+    z-index: -1;
 }
 
 /*

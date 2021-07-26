@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import style from "./composition.module.less";
+import style from "../composition.module.less";
 import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { TimelineEntry } from "./timeline-entry";
 import { Normaltekst, Element, Undertittel } from "nav-frontend-typografi";
@@ -7,11 +7,10 @@ import { Normaltekst, Element, Undertittel } from "nav-frontend-typografi";
 interface IProps {
     entries: IReference[] | undefined;
     isActive: boolean;
-    mainRef: IReference;
-    biRef?: IReference;
+    condition: IReference;
 }
 
-export const Timeline: FC<IProps> = ({ entries, mainRef, biRef = null, isActive = true }) => {
+export const Timeline: FC<IProps> = ({ entries, condition, isActive = true }) => {
     if (entries === undefined) return null;
 
     return (
@@ -33,12 +32,11 @@ export const Timeline: FC<IProps> = ({ entries, mainRef, biRef = null, isActive 
                     </th>
                 </tr>
                 {entries.map((ref, index) => {
-                    return ref.reference ? (
+                    return ref ? (
                         <TimelineEntry
                             key={index}
                             reference={ref}
-                            mainRef={mainRef}
-                            biRef={biRef}
+                            condition={condition}
                             visible={isActive}
                         />
                     ) : null;
