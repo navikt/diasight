@@ -43,7 +43,6 @@ const observationToEntry = (entry: [IObservation, IPractitioner]): IEntryLine =>
     const author = entry[1].name
         ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual)
         : null;
-
     return {
         date: observation.issued,
         text: observation.code.text,

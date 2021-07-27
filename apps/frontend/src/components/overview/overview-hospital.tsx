@@ -1,5 +1,5 @@
 import { ITask } from "@ahryman40k/ts-fhir-types/lib/R4";
-import { WarningFilled } from "@navikt/ds-icons";
+import { WarningFilled } from "@navikt/ds-icons/cjs";
 import { Undertekst, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
 import { useHospitalTasks } from "./hooks/use-hospital-task";
@@ -29,7 +29,8 @@ export const OverviewHospital: FC = () => {
                         <WarningFilled className={style.warningIcon} />
                         <div className={style.hospitalEvent} key={index}>
                             <Undertekst>{task.code ? task.code.text : "Ingen info"}</Undertekst>
-                            <Undertekst>{ }</Undertekst>
+                            <Undertittel>Sofie Fagermo</Undertittel>
+                            <Undertekst>Dr. Ola Nordmann, Ullevål</Undertekst>
                         </div>
                     </>
                 )

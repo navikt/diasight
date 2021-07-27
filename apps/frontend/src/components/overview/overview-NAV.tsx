@@ -4,7 +4,7 @@ import style from "./overview-NAV.module.less"
 import { useNAVtask } from "./hooks/use-NAV-task"
 import { ITask } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { dateReverser } from "./utils/date-formatter";
-import { WarningFilled } from "@navikt/ds-icons";
+import { WarningFilled } from "@navikt/ds-icons/cjs";
 
 interface IProps {
     id: number;

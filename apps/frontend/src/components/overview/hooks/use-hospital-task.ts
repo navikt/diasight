@@ -1,6 +1,26 @@
 import { fetcher } from "../../../utils";
 import useSWR from "swr";
-import { IBundle_Entry, ITask } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    IBundle_Entry,
+    ICondition,
+    IDiagnosticReport,
+    IOrganization,
+    IPatient,
+    IPractitioner,
+    IQuestionnaire,
+    IServiceRequest,
+    ITask,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
+
+export type IHospitalCardWithOwner = [
+    ICondition,
+    IDiagnosticReport,
+    IPatient,
+    IPractitioner,
+    IOrganization,
+    IQuestionnaire,
+    IServiceRequest
+];
 
 export const useHospitalTasks = (receiverId: string) => {
     const { data, error } = useSWR<IBundle_Entry[]>(`api/Task?owner=${receiverId}`, fetcher);
@@ -10,7 +30,7 @@ export const useHospitalTasks = (receiverId: string) => {
     return {
         hospitalTasks: data
             ?.map((task) => task.resource as ITask)
-            .filter((task) => task.requester?.reference.includes("Practitioner")),
+            .filter((task) => task?.requester?.reference?.includes("Practitioner")),
         isLoading: !error && !data,
         isError: error,
     };
