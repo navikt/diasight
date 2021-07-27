@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const medicationRouter = express.Router();
+export const medicationRouter = Router();
 
 medicationRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/Medication")
+    await fhirClient
+        .get("/Medication")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ medicationRouter.get("/", async (req, res) => {
 });
 
 medicationRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/Medication/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/Medication/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ medicationRouter.get("/:id", async (req, res) => {
 });
 
 medicationRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/Medication", req.body)
+    await fhirClient
+        .post("/Medication", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ medicationRouter.post("/", async (req, res) => {
 });
 
 medicationRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/Medication/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/Medication/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ medicationRouter.put("/:id", async (req, res) => {
 });
 
 medicationRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/Medication/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/Medication/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

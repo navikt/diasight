@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const patientRouter = express.Router();
-const requestUrl = "http://localhost:8888/fhir/Patient";
+export const patientRouter = Router();
+const requestUrl = "/Patient";
 
 patientRouter.get("", async (req, res) => {
-    await axios
+    await fhirClient
         .get(requestUrl, { params: req.query })
         .then((response) => {
             res.send(JSON.stringify(response.data));
@@ -16,8 +16,8 @@ patientRouter.get("", async (req, res) => {
 });
 
 patientRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
+    const { id } = req.params;
+    await fhirClient
         .get(requestUrl + "/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
@@ -28,7 +28,7 @@ patientRouter.get("/:id", async (req, res) => {
 });
 
 patientRouter.post("/", async (req, res) => {
-    await axios
+    await fhirClient
         .post(requestUrl, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
@@ -39,8 +39,8 @@ patientRouter.post("/", async (req, res) => {
 });
 
 patientRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
+    const { id } = req.params;
+    await fhirClient
         .put(requestUrl + "/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
@@ -51,8 +51,8 @@ patientRouter.put("/:id", async (req, res) => {
 });
 
 patientRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
+    const { id } = req.params;
+    await fhirClient
         .delete(requestUrl + "/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
