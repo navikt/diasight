@@ -1,9 +1,4 @@
-import {
-    IComposition,
-    ICondition,
-    IReference,
-    IComposition_Section,
-} from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IComposition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React, { createContext, FC, useState } from "react";
 
 type CompositionContextState = {

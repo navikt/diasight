@@ -1,29 +1,55 @@
-import {
-    IAnnotation,
-    IComposition,
-    IObservation,
-    IReference,
-} from "@ahryman40k/ts-fhir-types/lib/R4";
-import { of } from "fp-ts/lib/Either";
+import { IAnnotation, IObservation, ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Element, Undertekst } from "nav-frontend-typografi";
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
 import { CompositionContext } from "../../layouts/contexts/composition-context";
+import { SummaryContext } from "../../layouts/contexts/summary-context";
 import style from "./observation.module.less";
 
 export const Observation: FC = () => {
     const { composition } = useContext(CompositionContext);
+    const { addChange, removeChange, updateChange } = useContext(SummaryContext);
     const [observations, setObservations] = useState<IObservation[]>([]);
+
+    const handleChange = (text: string, observation: IObservation) => {
+        const updatedObservations = [...observations];
+        const index = observations.indexOf(observation);
+        updatedObservations[index].note = [{ text }];
+
+        const ref = updatedObservations[index].focus?.find((r) => r);
+        if (ref) {
+            const status: ObservationStatusKind =
+                updatedObservations[index].status || ObservationStatusKind._unknown;
+            if (status === ObservationStatusKind._registered) {
+                updateChange({
+                    resource: updatedObservations[index],
+                    ref,
+                });
+            } else if (status === ObservationStatusKind._unknown) {
+                updatedObservations[index].status = ObservationStatusKind._registered;
+                addChange({ resource: updatedObservations[index], ref });
+            }
+        }
+        setObservations(updatedObservations);
+    };
+
+    const observationIsEdited = (observation: IObservation) => {
+        const input = observation.note?.find((n) => n)?.text || "";
+        return input.length > 0;
+    };
 
     useEffect(() => {
         const obs = [...observations];
         const refs = composition.section?.map((s) => s.focus);
 
         if (refs) {
-            // Exists in both obs and comp or does not exist in comp but has content
+            // Remains if in both obs and comp or does not exist in comp but has content
             const filteredObs = obs.filter((o) => {
                 const focus = o.focus?.find((f) => f);
-                const input = o.note?.find((n) => n)?.text || "";
-                return (!refs.includes(focus) && input.length) || refs.includes(focus);
+                const edited = observationIsEdited(o);
+                const result: boolean = (!refs.includes(focus) && edited) || refs.includes(focus);
+
+                if (!result && focus) removeChange({ resource: o, ref: focus });
+                return result;
             });
 
             // Add new observation for each reference if it does not already exist
@@ -34,12 +60,15 @@ export const Observation: FC = () => {
                     const alreadyExists = filteredObs.find((o) => o.focus?.includes(ref));
 
                     if (!alreadyExists) {
-                        newObs.push({
+                        const observation: IObservation = {
                             resourceType: "Observation",
                             code: { text: ref?.display },
                             focus: [ref],
                             note: [{ text: "" }],
-                        });
+                            issued: new Date().toISOString(),
+                        };
+                        newObs.push(observation);
+                        //addChange({ resource: observation, ref });
                     }
                 }
             }
@@ -65,11 +94,7 @@ export const Observation: FC = () => {
                                     className={style.inputField}
                                     value={o.note?.find((n) => n !== undefined)?.text}
                                     onChange={(e) => {
-                                        const obs = [...observations];
-                                        observations[i].note = [
-                                            { text: e.target.value },
-                                        ] as IAnnotation[];
-                                        setObservations(obs);
+                                        handleChange(e.target.value, o);
                                     }}
                                 />
                             }
