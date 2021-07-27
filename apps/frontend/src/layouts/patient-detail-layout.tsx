@@ -1,6 +1,7 @@
 import { Knapp } from "nav-frontend-knapper";
 import React, { FC } from "react";
 import CompositionList from "../components/composition";
+import { Observation } from "../components/observation/observation";
 import Patient from "../components/patient";
 import { Questionnaire } from "../components/questionnaire/questionnaire";
 import CompositionProvider from "./contexts/composition-context";
@@ -16,7 +17,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
             <div className={style.patientDetailWrapper}>
                 <div className={style.column}>
                     <Patient id={id} />
-                    <Questionnaire id={11} />
+                    <Observation />
                 </div>
                 <div className={style.column}>
                     <div className={style.buttons}>
