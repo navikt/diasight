@@ -8,7 +8,7 @@ taskRouter.get("", async (req, res) => {
     await axios
         .get(requestUrl, { params: req.query })
         .then((response) => {
-            res.send(JSON.stringify(response.data.entry));
+            res.send(JSON.stringify(response.data));
         })
         .catch((error) => {
             res.send(error);

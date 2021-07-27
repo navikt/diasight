@@ -8,7 +8,8 @@ import {
     ITask,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { humanNameToString } from "../../../utils";
-import { ICardWithOwner } from "../hooks/use-task";
+import { ICardWithOwner } from "../hooks/use-task-card";
+import { dateReverser } from "./date-formatter";
 
 interface ICard {
     date: string;
@@ -18,10 +19,12 @@ interface ICard {
 }
 
 export const bundleToCard = (bundle: ICardWithOwner): ICard => {
-    const resourceType = bundle[3].resourceType;
+    const resourceType = bundle[5].resourceType;
+
+    console.log(resourceType);
 
     switch (resourceType) {
-        case "Practitioner":
+        case "DiagnosticReport":
             return hospitalTaskToEntry(
                 bundle as [
                     ITask,
@@ -36,11 +39,11 @@ export const bundleToCard = (bundle: ICardWithOwner): ICard => {
             return navTaskToEntry(
                 bundle as [
                     ITask,
-                    IPatient,
                     IPractitioner,
-                    IOrganization,
+                    IPatient,
                     ICondition,
-                    IQuestionnaire
+                    IQuestionnaire,
+                    IOrganization
                 ]
             );
         default:
@@ -61,7 +64,7 @@ const hospitalTaskToEntry = (
     const practitioner = entry[3];
 
     return {
-        date: task.lastModified ? task.lastModified : "0000-00-00",
+        date: task.lastModified ? dateReverser(task.lastModified) : "00.00.0000",
         title: task.description ? task.description : "Ukjent",
         subject: patient.name ? humanNameToString(patient.name[0]) : "Ukjent",
         details: practitioner.name ? humanNameToString(practitioner.name[0]) : "Ukjent",
@@ -69,16 +72,18 @@ const hospitalTaskToEntry = (
 };
 
 const navTaskToEntry = (
-    entry: [ITask, IPatient, IPractitioner, IOrganization, ICondition, IQuestionnaire]
+    entry: [ITask, IPractitioner, IPatient, ICondition, IQuestionnaire, IOrganization]
 ): ICard => {
     const task = entry[0];
     const patient = entry[1];
-    const condition = entry[4];
+    const condition = entry[3];
+
+    console.log(condition);
 
     return {
-        date: task.lastModified ? task.lastModified : "0000-00-00",
+        date: task.lastModified ? dateReverser(task.lastModified) : "00.00.0000",
         title: task.description ? task.description : "Ukjent",
         subject: patient.name ? humanNameToString(patient.name[0]) : "Ukjent",
-        details: condition.code?.text ? condition.code.text : "Ukjent",
+        details: (condition?.code?.coding ?? [])[0]?.display ?? "Ukjent",
     };
 };
