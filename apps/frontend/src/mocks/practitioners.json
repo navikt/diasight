@@ -1,0 +1,15 @@
+[
+    {
+        "resourceType": "Practitioner",
+        "id": "2",
+        "active": true,
+        "name": [
+            {
+                "use": "usual",
+                "family": "Tangen",
+                "given": ["Knut"]
+            }
+        ],
+        "gender": "male"
+    }
+]
