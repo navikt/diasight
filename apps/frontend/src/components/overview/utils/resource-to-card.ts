@@ -7,6 +7,7 @@ import {
     IQuestionnaire,
     ITask,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { humanNameToString } from "../../../utils";
 import { ICardWithOwner } from "../hooks/use-task";
 
 interface ICard {
@@ -62,8 +63,8 @@ const hospitalTaskToEntry = (
     return {
         date: task.lastModified ? task.lastModified : "0000-00-00",
         title: task.description ? task.description : "Ukjent",
-        subject: patient.name?[0] ? patient.name?[0].given[0] : "Ukjent",
-        details: practitioner.name?[0] ? practitioner.name?[0].given[0] : "Ukjent",
+        subject: patient.name ? humanNameToString(patient.name[0]) : "Ukjent",
+        details: practitioner.name ? humanNameToString(practitioner.name[0]) : "Ukjent",
     };
 };
 
@@ -77,7 +78,7 @@ const navTaskToEntry = (
     return {
         date: task.lastModified ? task.lastModified : "0000-00-00",
         title: task.description ? task.description : "Ukjent",
-        subject: patient.name?[0].given?[0] ? patient.name?[0].given?[0] : "Ukjent",
+        subject: patient.name ? humanNameToString(patient.name[0]) : "Ukjent",
         details: condition.code?.text ? condition.code.text : "Ukjent",
-    }
+    };
 };
