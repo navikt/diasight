@@ -50,12 +50,11 @@
 }
 
 .timelineWrapper {
-    display: grid;
-    grid-template-rows: auto auto;
     padding: 2ch;
     margin: 0.5% auto;
     background-color: #efefef;
     z-index: 0;
+    width: inherit;
 }
 
 .dropdown {
@@ -65,15 +64,18 @@
 }
 
 .tableWrapper {
-    column-span: 1 / 4;
-    width: 100%;
-    display: grid;
     z-index: 2;
+    width: 100%;
+    table-layout: auto;
 }
 
-.tableWrapper > tr {
-    display: grid;
-    grid-template-columns: 10ch 5% 54% 15% auto;
+.tableWrapper thead tr {
+    width: 100%;
+    text-align: left;
+}
+
+.tableWrapper tbody tr {
+    width: inherit;
     text-align: left;
 }
 

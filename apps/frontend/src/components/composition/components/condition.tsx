@@ -12,7 +12,7 @@ import { findICPCCode } from "../utils/find-ICPC";
 interface IProps {
     title: string;
     focus: IReference;
-    entries: IReference[] | undefined;
+    entries: IReference[];
 }
 
 export const Condition: FC<IProps> = ({ title, focus, entries }) => {
