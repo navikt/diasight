@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const serviceRequestRouter = express.Router();
+export const serviceRequestRouter = Router();
 
 serviceRequestRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/ServiceRequest")
+    await fhirClient
+        .get("/ServiceRequest")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ serviceRequestRouter.get("/", async (req, res) => {
 });
 
 serviceRequestRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/ServiceRequest?_include=ServiceRequest:requester&_id=" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/ServiceRequest?_include=ServiceRequest:requester&_id=" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ serviceRequestRouter.get("/:id", async (req, res) => {
 });
 
 serviceRequestRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/ServiceRequest", req.body)
+    await fhirClient
+        .post("/ServiceRequest", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ serviceRequestRouter.post("/", async (req, res) => {
 });
 
 serviceRequestRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/ServiceRequest/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/ServiceRequest/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ serviceRequestRouter.put("/:id", async (req, res) => {
 });
 
 serviceRequestRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/ServiceRequest/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/ServiceRequest/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

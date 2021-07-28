@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const appointmentRouter = express.Router();
+export const appointmentRouter = Router();
 
 appointmentRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/Appointment")
+    await fhirClient
+        .get("/Appointment")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ appointmentRouter.get("/", async (req, res) => {
 });
 
 appointmentRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/Appointment/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/Appointment/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ appointmentRouter.get("/:id", async (req, res) => {
 });
 
 appointmentRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/Appointment", req.body)
+    await fhirClient
+        .post("/Appointment", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ appointmentRouter.post("/", async (req, res) => {
 });
 
 appointmentRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/Appointment/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/Appointment/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ appointmentRouter.put("/:id", async (req, res) => {
 });
 
 appointmentRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/Appointment/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/Appointment/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const questionnaireRouter = express.Router();
+export const questionnaireRouter = Router();
 
 questionnaireRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/Questionnaire")
+    await fhirClient
+        .get("/Questionnaire")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ questionnaireRouter.get("/", async (req, res) => {
 });
 
 questionnaireRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/Questionnaire/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/Questionnaire/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ questionnaireRouter.get("/:id", async (req, res) => {
 });
 
 questionnaireRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/Questionnaire", req.body)
+    await fhirClient
+        .post("/Questionnaire", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ questionnaireRouter.post("/", async (req, res) => {
 });
 
 questionnaireRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/Questionnaire/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/Questionnaire/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ questionnaireRouter.put("/:id", async (req, res) => {
 });
 
 questionnaireRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/Questionnaire/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/Questionnaire/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

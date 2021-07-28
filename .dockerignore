@@ -1,0 +1,4 @@
+*
+!dist
+!apps/**
+apps/**/*.ts

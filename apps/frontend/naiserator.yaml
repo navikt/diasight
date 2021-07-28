@@ -1,0 +1,31 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: diasight-frontend
+  namespace: helseopplysninger
+  labels:
+    team: helseopplysninger
+spec:
+  image: {{image}}
+  port: 2022
+  team: helseopplysninger
+  liveness:
+    path: /
+  readiness:
+    path: /
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  replicas:
+    min: 1
+    max: 2
+    cpuThresholdPercentage: 80
+  prometheus:
+    enabled: false
+    path: /internal/prometheus
+  ingresses:
+    - https://diasight.labs.nais.io/
