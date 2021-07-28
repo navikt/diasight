@@ -11,5 +11,18 @@
             }
         ],
         "gender": "male"
+    }, 
+    {
+        "resourceType": "Practitioner",
+        "id": "3",
+        "active": true,
+        "name": [
+            {
+                "use": "usual",
+                "family": "Antonsen",
+                "given": ["Atle"]
+            }
+        ],
+        "gender": "male"
     }
 ]
