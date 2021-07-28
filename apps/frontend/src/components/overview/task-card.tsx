@@ -3,6 +3,7 @@ import React from "react";
 import { FC } from "react";
 import { useTaskCard } from "./hooks/use-task-card";
 import { bundleToCard } from "./utils/resource-to-card";
+import style from "./task-overview.module.less"
 
 interface IProps {
     taskId: string,
@@ -19,7 +20,7 @@ export const TaskCard: FC<IProps> = ({ taskId, ownerId }) => {
         const resource = bundleToCard(card);
 
         return (
-            <div>
+            <div className={style.card}>
                 <Undertekst>Mottat {resource.date}</Undertekst>
                 <Undertekst>{resource.title}</Undertekst>
                 <Undertittel>{resource.subject}</Undertittel>

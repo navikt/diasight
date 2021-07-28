@@ -16,16 +16,12 @@ export const TaskOverview: FC<IProps> = ({ practitionerId }) => {
 
     return (
         <div className={style.wrapper}>
-            <hr />
             {tasks?.entry?.map((task, index) => {
                 return task.resource?.id ? (
-                    <>
-                        <TaskCard
-                            key={index}
-                            taskId={task.resource.id}
-                            ownerId={practitionerId} />
-                        <hr />
-                    </>
+                    <TaskCard
+                        key={index}
+                        taskId={task.resource.id}
+                        ownerId={practitionerId} />
                 ) : null;
             })}
         </div>
