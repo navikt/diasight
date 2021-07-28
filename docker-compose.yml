@@ -1,13 +1,15 @@
 version: "3.7"
 services:
     web:
-        image: "hapiproject/hapi:latest"
+        image: "hapiproject/hapi"
         ports:
             - "8888:8080"
         volumes:
             - hapi-data:/data/hapi
-        # environment:
-        # SPRING_CONFIG_LOCATION: 'file:///data/hapi/application.yaml'
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"
 volumes:
     hapi-data:
         external: true

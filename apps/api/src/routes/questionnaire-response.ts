@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const questionnaireResponseRouter = express.Router();
+export const questionnaireResponseRouter = Router();
 
 questionnaireResponseRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/QuestionnaireResponse")
+    await fhirClient
+        .get("/QuestionnaireResponse")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ questionnaireResponseRouter.get("/", async (req, res) => {
 });
 
 questionnaireResponseRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/QuestionnaireResponse/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/QuestionnaireResponse/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ questionnaireResponseRouter.get("/:id", async (req, res) => {
 });
 
 questionnaireResponseRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/QuestionnaireResponse", req.body)
+    await fhirClient
+        .post("/QuestionnaireResponse", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ questionnaireResponseRouter.post("/", async (req, res) => {
 });
 
 questionnaireResponseRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/QuestionnaireResponse/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/QuestionnaireResponse/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ questionnaireResponseRouter.put("/:id", async (req, res) => {
 });
 
 questionnaireResponseRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/QuestionnaireResponse/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/QuestionnaireResponse/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

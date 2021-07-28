@@ -1,0 +1,47 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: diasight-api
+  namespace: helseopplysninger
+  labels:
+    team: helseopplysninger
+spec:
+  image: {{image}}
+  port: 2022
+  team: helseopplysninger
+  liveness:
+    path: /internal/is-alive
+  readiness:
+    path: /internal/is-ready
+  resources:
+    limits:
+      cpu: 400m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  replicas:
+    min: 1
+    max: 2
+    cpuThresholdPercentage: 80
+  prometheus:
+    true: false
+    path: /internal/prometheus
+  ingresses:
+    - https://diasight.labs.nais.io/api
+    - https://diasight.labs.nais.io/auth
+    - https://diasight.labs.nais.io/callback
+  env:
+    - name: REDIS_HOST
+      value: "redis.helseopplysninger.svc.cluster.local"
+    - name: REQUIRE_AUTH
+      value: "true"
+    - name: FHIR_URL
+      value: "http://hapi.fhir.org/baseR4"
+  envFrom:
+    - secret: diasight
+  accessPolicy:
+    outbound:
+      rules:
+        - application: redis
+

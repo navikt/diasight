@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const practitionerRouter = express.Router();
+export const practitionerRouter = Router();
 
 practitionerRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/Practitioner")
+    await fhirClient
+        .get("/Practitioner")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ practitionerRouter.get("/", async (req, res) => {
 });
 
 practitionerRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/Practitioner/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/Practitioner/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ practitionerRouter.get("/:id", async (req, res) => {
 });
 
 practitionerRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/Practitioner", req.body)
+    await fhirClient
+        .post("/Practitioner", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ practitionerRouter.post("/", async (req, res) => {
 });
 
 practitionerRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/Practitioner/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/Practitioner/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ practitionerRouter.put("/:id", async (req, res) => {
 });
 
 practitionerRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/Practitioner/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/Practitioner/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

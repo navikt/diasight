@@ -1,11 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const conditionRouter = express.Router();
+export const conditionRouter = Router();
 
 conditionRouter.get("/", async (req, res) => {
-    await axios
-        .get("http://localhost:8888/fhir/Condition")
+    await fhirClient
+        .get("/Condition")
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -15,9 +15,9 @@ conditionRouter.get("/", async (req, res) => {
 });
 
 conditionRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .get("http://localhost:8888/fhir/Condition/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .get("/Condition/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -27,8 +27,8 @@ conditionRouter.get("/:id", async (req, res) => {
 });
 
 conditionRouter.post("/", async (req, res) => {
-    await axios
-        .post("http://localhost:8888/fhir/Condition", req.body)
+    await fhirClient
+        .post("/Condition", req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -38,9 +38,9 @@ conditionRouter.post("/", async (req, res) => {
 });
 
 conditionRouter.put("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .put("http://localhost:8888/fhir/Condition/" + id, req.body)
+    const { id } = req.params;
+    await fhirClient
+        .put("/Condition/" + id, req.body)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })
@@ -50,9 +50,9 @@ conditionRouter.put("/:id", async (req, res) => {
 });
 
 conditionRouter.delete("/:id", async (req, res) => {
-    const id = req.params.id;
-    await axios
-        .delete("http://localhost:8888/fhir/Condition/" + id)
+    const { id } = req.params;
+    await fhirClient
+        .delete("/Condition/" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

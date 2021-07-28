@@ -3,6 +3,7 @@ import { Element, Undertekst } from "nav-frontend-typografi";
 import { Condition } from "./condition";
 import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
 import style from "../composition.module.less";
+
 interface IProps {
     composition: IComposition;
 }
@@ -26,7 +27,7 @@ export const Composition: FC<IProps> = ({ composition }) => {
                 </div>
             </div>
             {composition.section?.map((comp, index) => {
-                if (!comp.title || !comp.focus) return null;
+                if (!comp.title || !comp.focus || !comp.entry) return null;
                 return (
                     <Condition
                         key={index}

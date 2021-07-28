@@ -1,14 +1,13 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const compositionRouter = express.Router();
-
+export const compositionRouter = Router();
 
 compositionRouter.get("/:id", async (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
-    await axios.get("http://localhost:8888/fhir/Composition?subject=Patient/" + id)
+    await fhirClient
+        .get("/Composition?subject=Patient/" + id)
         .then((result) => res.send(JSON.stringify(result.data.entry)))
-        .catch((error) => console.log(error))
+        .catch((error) => console.log(error));
 });
-
