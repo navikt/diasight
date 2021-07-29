@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { FC } from "react";
 import style from "../composition.module.less";
-import { CoApplicantFilled, EditFilled, Expand, EyeFilled, Collapse } from "@navikt/ds-icons/cjs";
-import { IComposition_Section, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { Expand, Collapse } from "@navikt/ds-icons/cjs";
+import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { usePatientCondition } from "../hooks/use-patient-condition";
-import { Normaltekst, Undertittel, Element } from "nav-frontend-typografi";
+import { Normaltekst, Element } from "nav-frontend-typografi";
 import { Timeline } from "./timeline";
 import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import { findICPCCode } from "../utils/find-ICPC";
@@ -12,7 +12,7 @@ import { findICPCCode } from "../utils/find-ICPC";
 interface IProps {
     title: string;
     focus: IReference;
-    entries: IReference[];
+    entries: IReference[] | undefined;
 }
 
 export const Condition: FC<IProps> = ({ title, focus, entries }) => {

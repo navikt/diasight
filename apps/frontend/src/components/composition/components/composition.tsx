@@ -27,7 +27,7 @@ export const Composition: FC<IProps> = ({ composition }) => {
                 </div>
             </div>
             {composition.section?.map((comp, index) => {
-                if (!comp.title || !comp.focus || !comp.entry) return null;
+                if (!comp.title || !comp.focus) return null;
                 return (
                     <Condition
                         key={index}

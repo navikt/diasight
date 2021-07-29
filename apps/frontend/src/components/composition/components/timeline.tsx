@@ -7,7 +7,7 @@ import { SummaryContext } from "../../../layouts/contexts/summary-context";
 import { TimelineAddition } from "./timeline-addition";
 
 interface IProps {
-    entries: IReference[];
+    entries: IReference[] | undefined;
     isActive: boolean;
     condition: IReference;
 }

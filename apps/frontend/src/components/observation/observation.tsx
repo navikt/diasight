@@ -1,6 +1,7 @@
-import { IAnnotation, IObservation, ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { IObservation, ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Element, Undertekst } from "nav-frontend-typografi";
-import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { CompositionContext } from "../../layouts/contexts/composition-context";
 import { SummaryContext } from "../../layouts/contexts/summary-context";
 import style from "./observation.module.less";
@@ -68,7 +69,6 @@ export const Observation: FC = () => {
                             issued: new Date().toISOString(),
                         };
                         newObs.push(observation);
-                        //addChange({ resource: observation, ref });
                     }
                 }
             }
