@@ -11,24 +11,24 @@ type FormValues = {
 
 export const PatientSearch: FC = () => {
     const { register, handleSubmit } = useForm<FormValues>();
-    const [identifier, setIdentifier] = useState("");
+    const [searchValue, setSearchValue] = useState("");
 
     const search = (data: FormValues) => {
-        setIdentifier(data.searchKeyword)
+        setSearchValue(data.searchKeyword)
     }
 
     return <div className={style.wrapper}>
         <div className={style.searchWrapper}>
             <form className={style.searchForm} autoComplete="off" onSubmit={handleSubmit(search)}>
                 <input className={style.searchInput}
-                    placeholder="Søk etter pasient basert på personnumer"
+                    placeholder="Søk etter pasient basert på personnumer eller navn"
                     {...register("searchKeyword")}
                     id="searchKeyword" />
                 <Search className={style.searchIcon} onClick={handleSubmit(search)} />
             </form>
         </div>
         <div className={style.resultsWrapper}>
-            {identifier ? <PatientResults identifier={identifier} /> : null}
+            {searchValue ? <PatientResults searchValue={searchValue} /> : null}
         </div>
     </div>
 }
