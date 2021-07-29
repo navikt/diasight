@@ -1,7 +1,7 @@
 [
     {
         "resourceType": "Observation",
-        "id": "6",
+        "id": "7",
         "status": "registered",
         "code": {
             "text": "Ortostatisk blodtrykksmåling",

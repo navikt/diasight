@@ -1,0 +1,54 @@
+[
+    {
+        "resourceType": "Questionnaire",
+        "id": "10",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2021-07-28T11:37:53.046+00:00"
+        },
+        "language": "no",
+        "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+        "version": "1.0.0",
+        "name": "computerFriendlyName",
+        "title": "Human friendly name",
+        "status": "active",
+        "subjectType": ["Patient"],
+        "item": [
+            {
+                "linkId": "1",
+                "text": "Statsborgerskap",
+                "type": "choice",
+                "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+            },
+            {
+                "linkId": "2",
+                "text": "Kan pasienten jobbe?",
+                "type": "boolean"
+            },
+            {
+                "linkId": "3",
+                "text": "Kan pasienten løfte over 5 kg over hodet?",
+                "type": "boolean"
+            },
+            {
+                "linkId": "4",
+                "text": "Hvor mye kan pasienten løfte over hodet?",
+                "type": "integer",
+                "enableWhen": [
+                    {
+                        "question": "3",
+                        "operator": "=",
+                        "answerBoolean": true
+                    }
+                ],
+                "required": true
+            },
+            {
+                "linkId": "5",
+                "text": "Sikkerhetsklassifisering",
+                "type": "choice",
+                "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
+            }
+        ]
+    }
+]

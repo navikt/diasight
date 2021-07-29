@@ -1,93 +1,95 @@
-{
-    "resourceType": "Composition",
-    "id": "14",
-    "status": "preliminary",
-    "type": {
-        "coding": [
+[
+    {
+        "resourceType": "Composition",
+        "id": "9",
+        "status": "preliminary",
+        "type": {
+            "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "11503-0"
+                }
+            ],
+            "text": "Medical record"
+        },
+        "subject": {
+            "reference": "Patient/1",
+            "type": "Patient"
+        },
+        "date": "2021-07-09",
+        "author": [
             {
-                "system": "http://loinc.org",
-                "code": "11503-0"
+                "reference": "Practitioner/2",
+                "type": "Practitioner"
             }
         ],
-        "text": "Medical record"
-    },
-    "subject": {
-        "reference": "Patient/1",
-        "type": "Patient"
-    },
-    "date": "2021-07-09",
-    "author": [
-        {
-            "reference": "Practitioner/2",
-            "type": "Practitioner"
-        }
-    ],
-    "title": "Bilulykke",
-    "section": [
-        {
-            "title": "Multiple skader/traumer",
-            "code": {
-                "coding": [
+        "title": "Bilulykke",
+        "section": [
+            {
+                "title": "Multiple skader/traumer",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11329-0"
+                        }
+                    ],
+                    "text": "History of general Narrative - Reported"
+                },
+                "focus": {
+                    "reference": "Condition/4",
+                    "type": "Condition",
+                    "display": "Multiple skader/traume"
+                },
+                "orderedBy": {
+                    "coding": [
+                        {
+                            "code": "event-date"
+                        }
+                    ]
+                },
+                "entry": [
                     {
-                        "system": "http://loinc.org",
-                        "code": "11329-0"
-                    }
-                ],
-                "text": "History of general Narrative - Reported"
-            },
-            "focus": {
-                "reference": "Condition/12",
-                "type": "Condition",
-                "display": "Multiple skader/traume"
-            },
-            "orderedBy": {
-                "coding": [
+                        "reference": "Observation/7",
+                        "type": "Observation",
+                        "display": "Ortostatisk blodtrykksmåling"
+                    },
                     {
-                        "code": "event-date"
+                        "reference": "ServiceRequest/8",
+                        "type": "ServiceRequest",
+                        "display": "Måling av transdiafragmale trykk ved voluntær ventilasjon"
+                    },
+                    {
+                        "reference": "MedicationRequest/6",
+                        "type": "MedicationRequest",
+                        "display": "Paracetamol"
                     }
                 ]
             },
-            "entry": [
-                {
-                    "reference": "Observation/6",
-                    "type": "Observation",
-                    "display": "Ortostatisk blodtrykksmåling"
+            {
+                "title": "Streptokokkhals",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "11329-0"
+                        }
+                    ],
+                    "text": "History of general Narrative - Reported"
                 },
-                {
-                    "reference": "ServiceRequest/8",
-                    "type": "ServiceRequest",
-                    "display": "Måling av transdiafragmale trykk ved voluntær ventilasjon"
+                "focus": {
+                    "reference": "Condition/5",
+                    "type": "Condition",
+                    "display": "Streptokokkhals"
                 },
-                {
-                    "reference": "MedicationRequest/9",
-                    "type": "MedicationRequest",
-                    "display": "Paracetamol"
+                "orderedBy": {
+                    "coding": [
+                        {
+                            "code": "event-date"
+                        }
+                    ]
                 }
-            ]
-        },
-        {
-            "title": "Streptokokkhals",
-            "code": {
-                "coding": [
-                    {
-                        "system": "http://loinc.org",
-                        "code": "11329-0"
-                    }
-                ],
-                "text": "History of general Narrative - Reported"
-            },
-            "focus": {
-                "reference": "Condition/13",
-                "type": "Condition",
-                "display": "Streptokokkhals"
-            },
-            "orderedBy": {
-                "coding": [
-                    {
-                        "code": "event-date"
-                    }
-                ]
             }
-        }
-    ]
-}
+        ]
+    }
+]

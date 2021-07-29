@@ -8,7 +8,7 @@ patientRouter.get("", async (req, res) => {
     await fhirClient
         .get(requestUrl, { params: req.query })
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(JSON.stringify(response.data.entry));
         })
         .catch((error) => {
             res.send(error);

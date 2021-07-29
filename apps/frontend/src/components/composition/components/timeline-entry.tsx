@@ -17,6 +17,8 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, visible }) => 
     const { toggleEntry } = useContext(CompositionContext);
     const [selected, setSelected] = useState<boolean>(false);
 
+    console.log(reference)
+
     useEffect(() => {
         setSelected(false);
     }, [visible]);

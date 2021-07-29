@@ -19,7 +19,7 @@
         },
         "performer": [
             {
-                "reference": "Practitioner/7"
+                "reference": "Practitioner/3"
             }
         ],
         "occurrenceDateTime": "2021-07-21",

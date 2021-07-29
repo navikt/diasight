@@ -1,6 +1,6 @@
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
-import style from "./scheduleTimeline.module.less"
+import style from "./schedule-timeline.module.less"
 
 export const ScheduleTimeline: FC = () => {
     return (

@@ -26,7 +26,7 @@ app.use(
         secret: "my secret",
         resave: false,
         saveUninitialized: false,
-    }),
+    })
 );
 configureAuth(app);
 app.use("/api/Patient", patientRouter);
