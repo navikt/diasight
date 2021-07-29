@@ -25,8 +25,6 @@ export const Condition: FC<IProps> = ({ title, focus, entries }) => {
         toggleCondition(focus);
     };
 
-    console.log(focus)
-
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;
 

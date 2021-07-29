@@ -20,7 +20,7 @@ export const OverviewLayout: FC = () => {
             </div>
             <div className={style.notifications}>
                 <Element>Fra sykehus</Element>
-                <TaskOverview practitionerId={"1553"} />
+                <TaskOverview practitionerId={"2"} />
             </div>
             <div className={style.calendar}>
                 <Element>Dato</Element>
@@ -28,7 +28,7 @@ export const OverviewLayout: FC = () => {
             </div>
             <div className={style.notifications}>
                 <Element>Fra NAV</Element>
-                <TaskOverview practitionerId={"1553"} />
+                <TaskOverview practitionerId={"2"} />
                 <div></div>
             </div>
         </div>
