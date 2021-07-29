@@ -4,7 +4,7 @@ import CompositionList from "../components/composition";
 import { Observation } from "../components/observation/observation";
 import { ActiveMedication, Patient, PatientContact } from "../components/patient";
 import { Summary, SummaryButton } from "../components/summary";
-import CompositionProvider from "./contexts/composition-context";
+import SelectionProvider from "./contexts/selection-context";
 import SummaryProvider from "./contexts/summary-context";
 import { usePatient } from "./hooks";
 import style from "./patient-detail-layout.module.less";
@@ -22,7 +22,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
 
     if (patient && patient.telecom && patient.address) {
         return (
-            <CompositionProvider>
+            <SelectionProvider>
                 <SummaryProvider>
                     {showSummary ? (
                         <div className={style.patientSummaryWrapper}>
@@ -62,7 +62,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                         </div>
                     )}
                 </SummaryProvider>
-            </CompositionProvider>
+            </SelectionProvider>
         );
     }
 

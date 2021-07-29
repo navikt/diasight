@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Element, Undertekst } from "nav-frontend-typografi";
 import { Condition } from "./condition";
-import { IComposition } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IComposition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import style from "../composition.module.less";
 
 interface IProps {
@@ -14,6 +14,8 @@ interface IProps {
  */
 
 export const Composition: FC<IProps> = ({ composition }) => {
+    const reference: IReference = { reference: `Composition/${composition.id}` };
+
     return (
         <div className={style.composition}>
             <div className={style.date}>
@@ -32,6 +34,7 @@ export const Composition: FC<IProps> = ({ composition }) => {
                     <Condition
                         key={index}
                         title={comp.title}
+                        composition={reference}
                         focus={comp.focus}
                         entries={comp.entry}
                     />
