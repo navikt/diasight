@@ -1,19 +1,19 @@
-import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import React, { FC, useContext } from "react";
 import { Normaltekst, Undertekst, UndertekstBold } from "nav-frontend-typografi";
+import { SelectionContext } from "../../../layouts/contexts/selection-context";
 
 export const Entry: FC = () => {
-    const { composition } = useContext(CompositionContext);
+    const { selections } = useContext(SelectionContext);
 
-    if (composition.section && composition.section.length > 0) {
+    if (selections) {
         return (
             <div>
                 <UndertekstBold>Se vedlagt</UndertekstBold>
-                {composition.section.map((c, i) => {
+                {selections.map((s, i) => {
                     return (
                         <div key={i}>
-                            <Normaltekst key={i}>{c.focus?.display}</Normaltekst>
-                            {c.entry?.map((e, j) => {
+                            <Normaltekst key={i}>{s.condition.display}</Normaltekst>
+                            {s.resources.map((e, j) => {
                                 return <Undertekst key={j}>{e.display || "hei"}</Undertekst>;
                             })}
                         </div>
