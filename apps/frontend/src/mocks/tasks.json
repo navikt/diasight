@@ -57,5 +57,65 @@
         "owner": {
             "reference": "Practitioner/2"
         }
+    }, 
+    {
+        "resourceType": "Task",
+        "id": "16",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2021-07-29T13:38:42.825+00:00",
+            "source": "#X15ZRqHXsnibUG1k"
+        },
+        "basedOn": [
+            {
+                "reference": "Condition/4"
+            }
+        ],
+        "status": "received",
+        "intent": "order",
+        "description": "Bestilt utfyllende arbeidsavklaringsskjema",
+        "focus": {
+            "reference": "Questionnaire/15"
+        },
+        "for": {
+            "reference": "Patient/1"
+        },
+        "lastModified": "2016-03-10T22:39:32-04:00",
+        "requester": {
+            "reference": "Organization/12"
+        },
+        "owner": {
+            "reference": "Practitioner/2"
+        }
+    }, 
+    {
+        "resourceType": "Task",
+        "id": "19",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2021-07-29T14:00:38.359+00:00",
+            "source": "#ONLu0cxqGEDyzTAU"
+        },
+        "basedOn": [
+            {
+                "reference": "ServiceRequest/17"
+            }
+        ],
+        "status": "received",
+        "intent": "order",
+        "description": "Svar på henvisning",
+        "focus": {
+            "reference": "DiagnosticReport/18"
+        },
+        "for": {
+            "reference": "Patient/1"
+        },
+        "lastModified": "2016-03-10T22:39:32-04:00",
+        "requester": {
+            "reference": "Practitioner/3"
+        },
+        "owner": {
+            "reference": "Practitioner/2"
+        }
     }
 ]

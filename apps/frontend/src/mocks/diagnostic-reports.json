@@ -52,5 +52,50 @@
                 "display": "Knut Tangen"
             }
         ]
+    },
+    {
+        "resourceType": "DiagnosticReport",
+        "id": "18",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2021-07-29T13:58:58.410+00:00",
+            "source": "#OdFr4LQuDVYdZg16"
+        },
+        "text": {
+            "status": "generated",
+            "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\"> DXA Beintetthetsmåling </div><table class=\"hapiPropertyTable\"><tbody><tr><td>Status</td><td>FINAL</td></tr><tr><td>Issued</td><td> 17 June 2008 23:23:00 </td></tr></tbody></table></div>"
+        },
+        "status": "final",
+        "code": {
+            "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "38269-7"
+                }
+            ],
+            "text": "DXA Beintetthetsmåling"
+        },
+        "subject": {
+            "reference": "Patient/1"
+        },
+        "effectiveDateTime": "2008-06-17",
+        "issued": "2008-06-18T09:23:00+10:00",
+        "performer": [
+            {
+                "reference": "Practitioner/3",
+                "display": "Knut Tangen"
+            }
+        ],
+        "conclusionCode": [
+            {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "391040000",
+                        "display": "Fare for osteoporotisk brudd"
+                    }
+                ]
+            }
+        ]
     }
 ]
