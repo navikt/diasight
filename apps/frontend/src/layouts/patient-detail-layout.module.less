@@ -7,11 +7,8 @@
 }
 
 .buttons {
-    width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .buttons button {
@@ -21,4 +18,26 @@
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.patientSummaryWrapper {
+    width: 100%;
+}
+
+.patientSummaryInfo {
+    width: 50%;
+}
+
+.returnButton {
+    font-size: 4ch;
+    color: #0067c5;
+    margin: 2ch 0 0 0;
+    cursor: pointer;
 }

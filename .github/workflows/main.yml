@@ -7,7 +7,7 @@ env:
   NX_BASE: ""
   IMAGE_PREFIX: diasight-
   CLUSTER: labs-gcp
-  FORCE_DEPLOY: false
+  SHOULD_DEPLOY: ${{ github.ref == 'refs/heads/main' || false }}
 
 concurrency:
   group: ${{ github.ref }}
@@ -87,20 +87,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: .
           build-args: APPNAME=${{ matrix.appname }}
-          push: ${{ github.ref == 'refs/heads/main' || env.FORCE_DEPLOY }}
+          push: ${{ env.SHOULD_DEPLOY }}
           tags: ${{ steps.tag.outputs.base }}:${{ steps.tag.outputs.sha }},${{ steps.tag.outputs.base }}:latest
-      - name: Deploy to Dev
+      - name: Deploy to ${{ env.CLUSTER }}
+        if: env.SHOULD_DEPLOY == 'true'
         uses: nais/deploy/actions/deploy@v1
         env:
           IMAGE: ${{ steps.tag.outputs.base }}:${{ steps.tag.outputs.sha }}
           CLUSTER: ${{ env.CLUSTER }}
-          DRY_RUN: ${{ (github.ref == 'refs/heads/main' || env.FORCE_DEPLOY) != 'true' }}
           VARS: .nais/dev.json
           RESOURCE: apps/${{ matrix.appname }}/naiserator.yaml

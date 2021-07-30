@@ -9,6 +9,7 @@ type SummaryChange = {
 type SummaryContextState = {
     changes: SummaryChange[];
     getResourcesByCondition: (condition: IReference) => IResourceList[];
+    getUniqueConditions: () => IReference[];
     addChange: (change: SummaryChange) => void;
     removeChange: (change: SummaryChange) => void;
     updateChange: (change: SummaryChange) => void;
@@ -17,6 +18,7 @@ type SummaryContextState = {
 const contextDefaultValues: SummaryContextState = {
     changes: [],
     getResourcesByCondition: (condition: IReference): IResourceList[] => [],
+    getUniqueConditions: () => [],
     addChange: (change: SummaryChange) => null,
     removeChange: (change: SummaryChange) => null,
     updateChange: (change: SummaryChange) => null,
@@ -26,6 +28,18 @@ export const SummaryContext = createContext<SummaryContextState>(contextDefaultV
 
 const SummaryProvider: FC = ({ children }) => {
     const [changes, setChanges] = useState<SummaryChange[]>(contextDefaultValues.changes);
+
+    const getUniqueConditions = () => {
+        const uniqueChanges: IReference[] = [];
+        changes.map((c) => {
+            if (!uniqueChanges.includes(c.ref)) {
+                return uniqueChanges.push(c.ref);
+            }
+            return false;
+        });
+
+        return uniqueChanges;
+    };
 
     // Returns all changes referenced by their grouped condition
     const getResourcesByCondition = (condition: IReference) => {
@@ -52,7 +66,14 @@ const SummaryProvider: FC = ({ children }) => {
 
     return (
         <SummaryContext.Provider
-            value={{ changes, getResourcesByCondition, addChange, removeChange, updateChange }}>
+            value={{
+                changes,
+                getResourcesByCondition,
+                getUniqueConditions,
+                addChange,
+                removeChange,
+                updateChange,
+            }}>
             {children}
         </SummaryContext.Provider>
     );

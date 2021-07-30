@@ -1,28 +1,29 @@
 import React, { useContext, useState } from "react";
 import { FC } from "react";
 import style from "../composition.module.less";
-import { CoApplicantFilled, EditFilled, Expand, EyeFilled, Collapse } from "@navikt/ds-icons/cjs";
-import { IComposition_Section, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { Expand, Collapse } from "@navikt/ds-icons/cjs";
+import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { usePatientCondition } from "../hooks/use-patient-condition";
-import { Normaltekst, Undertittel, Element } from "nav-frontend-typografi";
+import { Normaltekst, Element } from "nav-frontend-typografi";
 import { Timeline } from "./timeline";
-import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import { findICPCCode } from "../utils/find-ICPC";
+import { SelectionContext } from "../../../layouts/contexts/selection-context";
 
 interface IProps {
     title: string;
+    composition: IReference;
     focus: IReference;
-    entries: IReference[];
+    entries: IReference[] | undefined;
 }
 
-export const Condition: FC<IProps> = ({ title, focus, entries }) => {
+export const Condition: FC<IProps> = ({ title, composition, focus, entries }) => {
     const { condition, isLoading, isError } = usePatientCondition(focus);
-    const { toggleCondition } = useContext(CompositionContext);
+    const { toggleCondition } = useContext(SelectionContext);
     const [expanded, setExpanded] = useState(false);
 
     const toggle = () => {
         setExpanded(!expanded);
-        toggleCondition(focus);
+        toggleCondition(focus, composition);
     };
 
     if (isLoading) return <div>Loading</div>;
@@ -40,7 +41,12 @@ export const Condition: FC<IProps> = ({ title, focus, entries }) => {
                         {expanded ? <Expand /> : <Collapse />}
                     </div>
                 </div>
-                <Timeline entries={entries} isActive={expanded} condition={focus} />
+                <Timeline
+                    entries={entries}
+                    isActive={expanded}
+                    condition={focus}
+                    composition={composition}
+                />
             </>
         );
     }

@@ -1,12 +1,13 @@
-import { IAnnotation, IObservation, ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { IObservation, IReference, ObservationStatusKind } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Element, Undertekst } from "nav-frontend-typografi";
-import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
-import { CompositionContext } from "../../layouts/contexts/composition-context";
+import React, { FC, useContext, useEffect, useState } from "react";
+import { SelectionContext } from "../../layouts/contexts/selection-context";
 import { SummaryContext } from "../../layouts/contexts/summary-context";
 import style from "./observation.module.less";
 
 export const Observation: FC = () => {
-    const { composition } = useContext(CompositionContext);
+    const { selections } = useContext(SelectionContext);
     const { addChange, removeChange, updateChange } = useContext(SummaryContext);
     const [observations, setObservations] = useState<IObservation[]>([]);
 
@@ -39,14 +40,16 @@ export const Observation: FC = () => {
 
     useEffect(() => {
         const obs = [...observations];
-        const refs = composition.section?.map((s) => s.focus);
+        const refs: IReference[] = selections.map((s) => s.condition);
+        const filteredRefs = refs.filter((item, index) => refs.indexOf(item) === index);
 
-        if (refs) {
+        if (filteredRefs) {
             // Remains if in both obs and comp or does not exist in comp but has content
             const filteredObs = obs.filter((o) => {
-                const focus = o.focus?.find((f) => f);
+                const focus = o.focus?.find((f) => f) || { reference: "error" };
                 const edited = observationIsEdited(o);
-                const result: boolean = (!refs.includes(focus) && edited) || refs.includes(focus);
+                const result: boolean =
+                    (!filteredRefs.includes(focus) && edited) || filteredRefs.includes(focus);
 
                 if (!result && focus) removeChange({ resource: o, ref: focus });
                 return result;
@@ -55,7 +58,7 @@ export const Observation: FC = () => {
             // Add new observation for each reference if it does not already exist
             const newObs: IObservation[] = [];
 
-            for (const ref of refs) {
+            for (const ref of filteredRefs) {
                 if (ref) {
                     const alreadyExists = filteredObs.find((o) => o.focus?.includes(ref));
 
@@ -68,14 +71,13 @@ export const Observation: FC = () => {
                             issued: new Date().toISOString(),
                         };
                         newObs.push(observation);
-                        //addChange({ resource: observation, ref });
                     }
                 }
             }
 
             setObservations([...filteredObs, ...newObs]);
         }
-    }, [composition.section]);
+    }, [selections]);
 
     return (
         <div className={style.observationWrapper}>

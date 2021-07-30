@@ -7,12 +7,13 @@ import { SummaryContext } from "../../../layouts/contexts/summary-context";
 import { TimelineAddition } from "./timeline-addition";
 
 interface IProps {
-    entries: IReference[];
+    entries: IReference[] | undefined;
     isActive: boolean;
+    composition: IReference;
     condition: IReference;
 }
 
-export const Timeline: FC<IProps> = ({ entries, condition, isActive = true }) => {
+export const Timeline: FC<IProps> = ({ entries, composition, condition, isActive = true }) => {
     const { getResourcesByCondition } = useContext(SummaryContext);
 
     const additions = getResourcesByCondition(condition);
@@ -47,6 +48,7 @@ export const Timeline: FC<IProps> = ({ entries, condition, isActive = true }) =>
                                       key={index}
                                       resource={resource as IObservation}
                                       condition={condition}
+                                      composition={composition}
                                       visible={isActive}
                                   />
                               ) : null;
@@ -58,6 +60,7 @@ export const Timeline: FC<IProps> = ({ entries, condition, isActive = true }) =>
                                   <TimelineEntry
                                       key={index}
                                       reference={ref}
+                                      composition={composition}
                                       condition={condition}
                                       visible={isActive}
                                   />

@@ -3,18 +3,19 @@ import { usePatientEntry } from "../hooks/use-patient-entry";
 import style from "../composition.module.less";
 import { Normaltekst } from "nav-frontend-typografi";
 import { bundleToEntry } from "../utils/resource-to-entry";
-import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { SelectionContext } from "../../../layouts/contexts/selection-context";
 
 interface IProps {
     reference: IReference;
     condition: IReference;
+    composition: IReference;
     visible: boolean;
 }
 
-export const TimelineEntry: FC<IProps> = ({ reference, condition, visible }) => {
+export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, visible }) => {
     const { entry, isLoading, isError } = usePatientEntry(reference);
-    const { toggleEntry } = useContext(CompositionContext);
+    const { toggleEntry } = useContext(SelectionContext);
     const [selected, setSelected] = useState<boolean>(false);
 
     useEffect(() => {
@@ -36,7 +37,7 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, visible }) => 
                     <div
                         className={`${style.timestamp} ${selected ? style.selected : ""}`}
                         onClick={() => {
-                            toggleEntry(reference, condition);
+                            toggleEntry(reference, condition, composition);
                             setSelected(!selected);
                         }}></div>
                 </td>

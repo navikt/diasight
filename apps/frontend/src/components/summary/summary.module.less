@@ -1,0 +1,62 @@
+.summaryWrapper {
+    margin: 8ch auto 0;
+    width: 80%;
+}
+
+.summaryWrapper > p {
+    color: #0067c5;
+    margin: 1ch 0;
+}
+
+.summaryWrapper > h1 {
+    margin: 0 0 4ch;
+}
+
+.summaryWrapper > h1 > span {
+    color: #0067c5;
+}
+
+.summaryEntryWrapper {
+    padding: 0 0 2ch;
+}
+
+.summaryEntryWrapper:not(:last-child) {
+    border-bottom: 1px solid #0067c5;
+    margin: 0 0 4ch;
+}
+
+.summaryEntryWrapper > h2 {
+    margin: 0 0 1ch;
+}
+
+.summaryButton {
+    background-color: #0067c5;
+    color: white;
+    border-radius: 0 0 3px 3px;
+    text-align: center;
+    padding: 2ch;
+    cursor: pointer;
+}
+
+.summarySubmitButton {
+    background-color: #0067c5;
+    color: white;
+    border-radius: 3px 3px 0 0;
+    text-align: center;
+    padding: 2ch;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 40ch;
+    animation: slideInAnimation 1s ease;
+}
+
+@keyframes slideInAnimation {
+    0% {
+        height: 4ch;
+    }
+    100% {
+        height: 40ch;
+    }
+}

@@ -1,11 +1,12 @@
-import { Knapp } from "nav-frontend-knapper";
-import React, { FC } from "react";
+import { Cancel } from "@navikt/ds-icons/cjs";
+import React, { FC, useState } from "react";
 import CompositionList from "../components/composition";
 import { Observation } from "../components/observation/observation";
-import Patient from "../components/patient";
-import { Questionnaire } from "../components/questionnaire/questionnaire";
-import CompositionProvider from "./contexts/composition-context";
+import { ActiveMedication, Patient, PatientContact } from "../components/patient";
+import { Summary, SummaryButton } from "../components/summary";
+import SelectionProvider from "./contexts/selection-context";
 import SummaryProvider from "./contexts/summary-context";
+import { usePatient } from "./hooks";
 import style from "./patient-detail-layout.module.less";
 
 interface IProps {
@@ -13,28 +14,57 @@ interface IProps {
 }
 
 export const PatientDetailLayout: FC<IProps> = ({ id }) => {
-    return (
-        <CompositionProvider>
-            <SummaryProvider>
-                <div className={style.patientDetailWrapper}>
-                    <div className={style.column}>
-                        <Patient id={id} />
-                        <Observation />
-                    </div>
-                    <div className={style.column}>
-                        <div className={style.buttons}>
-                            <Knapp>Resept</Knapp>
-                            <Knapp>Henvisning</Knapp>
-                            <Knapp>Sykmelding</Knapp>
-                            <Knapp>Legeerklæring</Knapp>
-                        </div>
+    const [showSummary, setShowSummary] = useState(false);
+    const { patient, isLoading, isError } = usePatient(id);
 
-                        <div className={style.composition}>
-                            <CompositionList patientRef={id} />
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
+
+    if (patient && patient.telecom && patient.address) {
+        return (
+            <SelectionProvider>
+                <SummaryProvider>
+                    {showSummary ? (
+                        <div className={style.patientSummaryWrapper}>
+                            <div className={style.patientSummaryInfo}>
+                                <Patient patient={patient} />
+                            </div>
+                            <Cancel
+                                onClick={() => setShowSummary(false)}
+                                className={style.returnButton}
+                            />
+                            <div className={style.patientSummaryContent}>
+                                <Summary />
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </SummaryProvider>
-        </CompositionProvider>
-    );
+                    ) : (
+                        <div className={style.patientDetailWrapper}>
+                            <div className={style.column}>
+                                <Patient patient={patient} />
+                                <div className={style.row}>
+                                    <ActiveMedication />
+                                    <PatientContact
+                                        address={patient.address}
+                                        telecom={patient.telecom}
+                                    />
+                                </div>
+                                <Observation />
+                            </div>
+                            <div className={style.column}>
+                                <div className={style.buttons}>
+                                    <SummaryButton showSummary={() => setShowSummary(true)} />
+                                </div>
+
+                                <div className={style.composition}>
+                                    <CompositionList patientRef={id} />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </SummaryProvider>
+            </SelectionProvider>
+        );
+    }
+
+    return <div>Pasienten finnes ikke</div>;
 };
