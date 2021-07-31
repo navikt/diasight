@@ -48,6 +48,12 @@
         "issued": "2013-05-15T19:32:52+01:00",
         "performer": [
             {
+                "reference": "Practitioner/3",
+                "display": "Atle Antonsen"
+            }
+        ],
+        "resultsInterpreter": [
+            {
                 "reference": "Practitioner/2",
                 "display": "Knut Tangen"
             }
@@ -83,6 +89,12 @@
         "performer": [
             {
                 "reference": "Practitioner/3",
+                "display": "Atle Antonsen"
+            }
+        ],
+        "resultsInterpreter": [
+            {
+                "reference": "Practitioner/2",
                 "display": "Knut Tangen"
             }
         ],

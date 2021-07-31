@@ -21,7 +21,7 @@ export const OverviewLayout: FC = () => {
             </div>
             <div className={style.notifications}>
                 <Element>Fra sykehus</Element>
-                <TaskOverview practitionerId={"2"} />
+                <TaskOverview practitionerId={"2"} type={"hospital"} />
             </div>
             <div className={style.calendar}>
                 <Element>Fredag 11. juli 2021</Element>
@@ -29,7 +29,7 @@ export const OverviewLayout: FC = () => {
             </div>
             <div className={style.notifications}>
                 <Element>Fra NAV</Element>
-                <TaskOverview practitionerId={"2"} />
+                <TaskOverview practitionerId={"2"} type={"nav"} />
             </div>
         </div>
     );
