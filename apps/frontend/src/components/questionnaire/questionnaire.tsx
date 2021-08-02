@@ -3,12 +3,8 @@ import { Undertittel } from "nav-frontend-typografi";
 import React, { useContext, useState } from "react";
 import { FC } from "react";
 import { useQuestionnaire } from "./hooks/use-questionnaire";
-import { Input } from "nav-frontend-skjema";
 import style from "./questionnaire.module.less";
 import { generateFHIRForm } from "./utils/generate-form";
-import { CompositionContext } from "../../layouts/contexts/composition-context";
-import { Entry } from "./components/entry";
-
 interface IProps {
     id: number;
 }

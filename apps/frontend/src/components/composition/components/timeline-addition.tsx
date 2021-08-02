@@ -3,17 +3,18 @@ import style from "../composition.module.less";
 import { v4 } from "uuid";
 import { Normaltekst } from "nav-frontend-typografi";
 import { bundleToEntry } from "../utils/resource-to-entry";
-import { CompositionContext } from "../../../layouts/contexts/composition-context";
 import { HumanNameUseKind, IObservation, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { SelectionContext } from "../../../layouts/contexts/selection-context";
 
 interface IProps {
     resource: IObservation;
     condition: IReference;
+    composition: IReference;
     visible: boolean;
 }
 
-export const TimelineAddition: FC<IProps> = ({ resource, condition, visible }) => {
-    const { toggleEntry } = useContext(CompositionContext);
+export const TimelineAddition: FC<IProps> = ({ resource, condition, composition, visible }) => {
+    const { toggleEntry } = useContext(SelectionContext);
     const [selected, setSelected] = useState<boolean>(false);
 
     const generatedReference: IReference = {
@@ -48,7 +49,7 @@ export const TimelineAddition: FC<IProps> = ({ resource, condition, visible }) =
                     <div
                         className={`${style.timestamp} ${selected ? style.selected : ""}`}
                         onClick={() => {
-                            toggleEntry(generatedReference, condition);
+                            toggleEntry(generatedReference, condition, composition);
                             setSelected(!selected);
                         }}></div>
                 </td>
