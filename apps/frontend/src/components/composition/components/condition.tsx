@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { FC } from "react";
 import style from "../composition.module.less";
 import { Expand, Collapse } from "@navikt/ds-icons/cjs";
-import { IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IComposition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { usePatientCondition } from "../hooks/use-patient-condition";
 import { Normaltekst, Element } from "nav-frontend-typografi";
 import { Timeline } from "./timeline";
@@ -11,7 +11,7 @@ import { SelectionContext } from "../../../layouts/contexts/selection-context";
 
 interface IProps {
     title: string;
-    composition: IReference;
+    composition: IComposition;
     focus: IReference;
     entries: IReference[] | undefined;
 }
@@ -22,8 +22,9 @@ export const Condition: FC<IProps> = ({ title, composition, focus, entries }) =>
     const [expanded, setExpanded] = useState(false);
 
     const toggle = () => {
+        if (!condition) return;
         setExpanded(!expanded);
-        toggleCondition(focus, composition);
+        toggleCondition(condition, composition);
     };
 
     if (isLoading) return <div>Loading</div>;
@@ -44,7 +45,7 @@ export const Condition: FC<IProps> = ({ title, composition, focus, entries }) =>
                 <Timeline
                     entries={entries}
                     isActive={expanded}
-                    condition={focus}
+                    condition={condition}
                     composition={composition}
                 />
             </>
