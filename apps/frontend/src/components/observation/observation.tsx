@@ -90,7 +90,7 @@ export const Observation: FC = () => {
                         "Observation"
                     ) as IObservation;
 
-                    if (observation)
+                    if (observation) {
                         return (
                             <>
                                 <Undertekst key={"t" + i} className={style.inputHeader}>
@@ -120,6 +120,9 @@ export const Observation: FC = () => {
                                 }
                             </>
                         );
+                    } else {
+                        return null;
+                    }
                 })}
             </div>
         </div>

@@ -12,9 +12,9 @@ export const Entry: FC = () => {
                 {selections.map((s, i) => {
                     return (
                         <div key={i}>
-                            <Normaltekst key={i}>{s.condition.display}</Normaltekst>
+                            <Normaltekst key={i}>{s.condition.code?.text}</Normaltekst>
                             {s.resources.map((e, j) => {
-                                return <Undertekst key={j}>{e.display || "hei"}</Undertekst>;
+                                return <Undertekst key={j}>{e.id || "hei"}</Undertekst>;
                             })}
                         </div>
                     );
