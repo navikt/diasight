@@ -10,34 +10,34 @@ export const ScheduleList: FC = () => {
                 <div className={style.currentTimeMarker} />
             </div>
             <div className={style.timeBlock}>
-                <Undertekst className={style.timeHour}>09:00</Undertekst>
+                <Undertekst className={style.timeHour}>11:30</Undertekst>
                 <div className={style.patient}>
                     <Element className={style.patientName}>Sofie Fagermo</Element>
                     <Undertekst className={style.patientAge}>22 år</Undertekst>
                 </div>
             </div>
             <div className={style.timeBlock}>
-                <Undertekst className={style.timeHour}>10:00</Undertekst>
+                <Undertekst className={style.timeHour}>11:45</Undertekst>
                 <div className={style.patient}>
                     <Element className={style.patientName}>Daniel Salvesen</Element>
                     <Undertekst className={style.patientAge}>48 år</Undertekst>
                 </div>
             </div>
             <div className={style.timeBlock}>
-                <Undertekst className={style.timeHour}>11:00</Undertekst>
-                <div className={style.patient}>
-                    <Element className={style.patientName}>Maja Ingebretsen</Element>
-                    <Undertekst className={style.patientAge}>32 år</Undertekst>
-                </div>
-            </div>
-            <div className={style.timeBlock}>
                 <Undertekst className={style.timeHour}>12:00</Undertekst>
             </div>
             <div className={style.timeBlock}>
-                <Undertekst className={style.timeHour}>13:00</Undertekst>
+                <Undertekst className={style.timeHour}>12:15</Undertekst>
                 <div className={style.patient}>
-                    <Element className={style.patientName}>Kari Hansen</Element>
-                    <Undertekst className={style.patientAge}>47 år</Undertekst>
+                    <Element className={style.patientName}>Ola Normann</Element>
+                    <Undertekst className={style.patientAge}>72 år</Undertekst>
+                </div>
+            </div>
+            <div className={style.timeBlock}>
+                <Undertekst className={style.timeHour}>12:30</Undertekst>
+                <div className={style.patient}>
+                    <Element className={style.patientName}>Maja Ingebretsen</Element>
+                    <Undertekst className={style.patientAge}>32 år</Undertekst>
                 </div>
             </div>
         </div>
