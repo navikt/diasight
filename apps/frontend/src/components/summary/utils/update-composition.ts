@@ -1,107 +1,70 @@
 import {
+    BundleTypeKind,
+    IBundle,
     IComposition,
     ICondition,
-    IMedicationRequest,
-    IObservation,
-    IReference,
-    IServiceRequest,
+    IResourceList,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { SummaryChange } from "../../../layouts/contexts/summary-context";
 
-type CompositionReferenceEntry = {
-    reference: string;
-    type: string;
-    display: string;
-};
+export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
+    const resources: IResourceList[] = [];
+    summary.map((s) => s.resources.map((r) => resources.push(r)));
 
-export const updateComposition = (
-    composition: IComposition,
-    condition: ICondition,
-    resources: IReference[]
-) => {
-    const existingCondition = composition.section?.find(
-        (e) => e.focus?.reference === condition.resourceType + "/" + condition.id
-    );
+    const compositions: IComposition[] = [];
 
-    if (existingCondition) {
-        console.log("exists");
-        resources.forEach((resource) => existingCondition.entry?.push(referenceToEntry(resource)));
-    } else {
-        addConditionSection(composition, condition, resources);
+    for (const s of summary) {
+        const index = compositions.indexOf(s.composition);
+        const updatedComposition = addResourceToComposition(
+            s.composition,
+            s.condition,
+            s.resources
+        );
+
+        if (index !== -1) {
+            compositions[index] = updatedComposition;
+        } else {
+            compositions.push(updatedComposition);
+        }
     }
 
-    console.log("doesn't exist");
+    console.log(compositions);
+    console.log(resources);
+
+    const transactionBundle: IBundle = {
+        resourceType: "Bundle",
+        id: "bundle-transaction",
+        type: BundleTypeKind._transaction,
+        entry: [],
+    };
+
+    return;
 };
 
-const addConditionSection = (
+const addResourceToComposition = (
     composition: IComposition,
     condition: ICondition,
-    resources: IReference[]
+    resources: IResourceList[]
 ) => {
-    const coding = {
-        coding: [
-            {
-                system: "http://loinc.org",
-                code: "11329-0",
-            },
-        ],
-        text: "History of general Narrative - Reported",
-    };
+    const conditionSection = findCompositionSection(composition, condition);
 
-    const orderBy = {
-        coding: [
-            {
-                code: "event-date",
-            },
-        ],
-    };
+    if (conditionSection && composition.section) {
+        const index = composition.section?.indexOf(conditionSection);
 
-    const sectionEntry = {
-        title: condition.code?.text,
-        code: coding,
-        focus: referenceToEntry(condition as IReference),
-        orderedBy: orderBy,
-        entry: resources.map((resource) => referenceToEntry(resource)),
-    };
+        resources.map((r) => {
+            if (!conditionSection.entry) conditionSection.entry = [];
+            conditionSection.entry = [
+                ...conditionSection.entry,
+                { reference: r.resourceType + "/" + r.id },
+            ];
+        });
 
-    composition.section?.push(sectionEntry);
+        composition.section[index] = conditionSection;
+    }
+
+    return composition;
 };
 
-const referenceToEntry = (reference: IReference): CompositionReferenceEntry => {
-    if (reference.type === "Observation") {
-        const observation: IObservation = reference as IObservation;
-        return {
-            reference: observation.resourceType + "/" + observation.id,
-            type: observation.resourceType,
-            display: observation?.code?.text ? observation.code.text : "",
-        };
-    } else if (reference.type === "ServiceRequest") {
-        const serviceRequest: IServiceRequest = reference as IServiceRequest;
-        return {
-            reference: serviceRequest.resourceType + "/" + serviceRequest.id,
-            type: serviceRequest.resourceType,
-            display: serviceRequest?.code?.text ? serviceRequest.code.text : "",
-        };
-    } else if (reference.type === "MedicationRequest") {
-        const medicationRequest: IMedicationRequest = reference as IMedicationRequest;
-        return {
-            reference: medicationRequest.resourceType + "/" + medicationRequest.id,
-            type: medicationRequest.resourceType,
-            display: medicationRequest?.medicationCodeableConcept?.text
-                ? medicationRequest.medicationCodeableConcept.text
-                : "",
-        };
-    } else if (reference.type === "Condition") {
-        const condition: ICondition = reference as ICondition;
-        return {
-            reference: condition.resourceType + "/" + condition.id,
-            type: condition.resourceType,
-            display: condition?.code?.text ? condition.code.text : "",
-        };
-    } else {
-        return {
-            reference: "",
-            type: "",
-            display: "",
-        };
-    }
+const findCompositionSection = (composition: IComposition, condition: ICondition) => {
+    return composition.section?.find((s) => s.focus?.reference === "Condition/" + condition.id);
 };

@@ -1,22 +1,27 @@
 import React, { FC, useContext, useState } from "react";
 import style from "../composition.module.less";
-import { IObservation, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    IComposition,
+    ICondition,
+    IObservation,
+    IReference,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import { TimelineEntry } from "./timeline-entry";
-import { Normaltekst, Element, Undertittel } from "nav-frontend-typografi";
+import { Element } from "nav-frontend-typografi";
 import { SummaryContext } from "../../../layouts/contexts/summary-context";
 import { TimelineAddition } from "./timeline-addition";
 
 interface IProps {
     entries: IReference[] | undefined;
     isActive: boolean;
-    composition: IReference;
-    condition: IReference;
+    composition: IComposition;
+    condition: ICondition;
 }
 
 export const Timeline: FC<IProps> = ({ entries, composition, condition, isActive = true }) => {
-    const { getResourcesByCondition } = useContext(SummaryContext);
+    const { getResourcesFromChange } = useContext(SummaryContext);
 
-    const additions = getResourcesByCondition(condition);
+    const additions = getResourcesFromChange(condition, composition);
 
     if (!(entries || additions.length)) return null;
 

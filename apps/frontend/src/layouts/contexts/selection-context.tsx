@@ -1,16 +1,21 @@
-import { IComposition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    IComposition,
+    ICondition,
+    IReference,
+    IResourceList,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import React, { createContext, FC, useState } from "react";
 
 type EntrySelection = {
-    composition: IReference;
-    condition: IReference;
-    resources: IReference[];
+    composition: IComposition;
+    condition: ICondition;
+    resources: IResourceList[];
 };
 
 type SelectionContextState = {
     selections: EntrySelection[];
-    toggleCondition: (condition: IReference, composition: IReference) => void;
-    toggleEntry: (entry: IReference, condition: IReference, composition: IReference) => void;
+    toggleCondition: (condition: ICondition, composition: IComposition) => void;
+    toggleEntry: (entry: IResourceList, condition: ICondition, composition: IComposition) => void;
 };
 
 const contextDefaultValues: SelectionContextState = {
@@ -24,7 +29,7 @@ export const SelectionContext = createContext<SelectionContextState>(contextDefa
 const SelectionProvider: FC = ({ children }) => {
     const [selections, setSelections] = useState<EntrySelection[]>(contextDefaultValues.selections);
 
-    const toggleCondition = (condition: IReference, composition: IReference) => {
+    const toggleCondition = (condition: ICondition, composition: IComposition) => {
         const selection = selections.find(
             (s) => s.composition === composition && s.condition === condition
         );
@@ -45,7 +50,11 @@ const SelectionProvider: FC = ({ children }) => {
         }
     };
 
-    const toggleEntry = (entry: IReference, condition: IReference, composition: IReference) => {
+    const toggleEntry = (
+        entry: IResourceList,
+        condition: ICondition,
+        composition: IComposition
+    ) => {
         const tempSelections = [...selections];
         const selection = tempSelections.find(
             (s) => s.composition === composition && s.condition === condition
