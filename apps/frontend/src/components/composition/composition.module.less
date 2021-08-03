@@ -111,12 +111,6 @@
     z-index: 4;
 }
 
-/*
-tr:not(:nth-child(2)) .timestamp {
-    background-color: red;
-}
-*/
-
 tr:not(:nth-child(1)) .timestamp::after {
     content: " ";
     position: absolute;
@@ -125,14 +119,21 @@ tr:not(:nth-child(1)) .timestamp::after {
     clip-path: inset(0 40% 0 40%);
     background-color: #ffffff;
 
-    z-index: -1;
+    z-index: 1;
 }
-
-/*
-tr:last-child .timestamp {
-    background-color: black;
-}*/
 
 tr:last-child .timestamp::after {
     display: none;
+}
+
+.addEntry svg {
+    font-size: 20px;
+    vertical-align: middle;
+    color: #6a6a6a;
+    cursor: pointer;
+}
+
+.addEntry p {
+    cursor: pointer;
+    color: #6a6a6a;
 }

@@ -10,7 +10,7 @@ export const useTask = (ownerId: string, type: string) => {
     );
 
     const navTasks = data?.entry?.filter(
-        (task) => (task.resource as ITask)?.requester?.reference === "Organization/12"
+        (task) => (task.resource as ITask)?.requester?.reference === "Organization/14"
     );
 
     return {

@@ -12,6 +12,7 @@ import { v4 } from "uuid";
 import { SelectionContext } from "../../layouts/contexts/selection-context";
 import { SummaryContext } from "../../layouts/contexts/summary-context";
 import style from "./observation.module.less";
+import { Textarea } from "nav-frontend-skjema";
 
 export const Observation: FC = () => {
     const { selections } = useContext(SelectionContext);
@@ -103,11 +104,12 @@ export const Observation: FC = () => {
                                     }
                                 />
                                 {
-                                    <textarea
+                                    <Textarea
                                         key={i}
                                         placeholder="Skriv notat her..."
+                                        maxLength={0}
                                         className={style.inputField}
-                                        value={observation.note?.find((f) => f)?.text}
+                                        value={observation.note?.find((f) => f)?.text || ""}
                                         onChange={(e) => {
                                             handleChange(
                                                 e.target.value,

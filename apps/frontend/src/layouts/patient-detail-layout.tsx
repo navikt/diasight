@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import CompositionList from "../components/composition";
 import { Observation } from "../components/observation/observation";
 import { ActiveMedication, Patient, PatientContact } from "../components/patient";
+import { Questionnaire } from "../components/questionnaire/questionnaire";
 import { Summary, SummaryButton } from "../components/summary";
 import SelectionProvider from "./contexts/selection-context";
 import SummaryProvider from "./contexts/summary-context";
@@ -48,6 +49,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                                         telecom={patient.telecom}
                                     />
                                 </div>
+                                <Questionnaire id={16} patient={patient} />
                                 <Observation />
                             </div>
                             <div className={style.column}>
