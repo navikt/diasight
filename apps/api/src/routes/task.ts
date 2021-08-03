@@ -1,12 +1,11 @@
-import express = require("express");
-import axios from "axios";
+import { Router } from "express";
+import fhirClient from "../utils/fhir-client";
 
-export const taskRouter = express.Router();
-const requestUrl = "http://localhost:8888/fhir/Task";
+export const taskRouter = Router();
 
-taskRouter.get("", async (req, res) => {
-    await axios
-        .get(requestUrl, { params: req.query })
+taskRouter.get("/", async (req, res) => {
+    await fhirClient
+        .get("/Task", { params: req.query })
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

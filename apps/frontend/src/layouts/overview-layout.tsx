@@ -1,6 +1,7 @@
 import { Sidetittel, Element } from "nav-frontend-typografi";
 import React, { FC } from "react";
 import { TaskOverview } from "../components/overview/task-overview";
+import { ScheduleList } from "../components/schedule/schedule-list";
 import style from "./overview-layout.module.less";
 
 
@@ -20,16 +21,15 @@ export const OverviewLayout: FC = () => {
             </div>
             <div className={style.notifications}>
                 <Element>Fra sykehus</Element>
-                <TaskOverview practitionerId={"1553"} />
+                <TaskOverview practitionerId={"2"} type={"hospital"} />
             </div>
             <div className={style.calendar}>
-                <Element>Dato</Element>
-                <div></div>
+                <Element>Fredag 11. juli 2021</Element>
+                <ScheduleList />
             </div>
             <div className={style.notifications}>
                 <Element>Fra NAV</Element>
-                <TaskOverview practitionerId={"1553"} />
-                <div></div>
+                <TaskOverview practitionerId={"2"} type={"nav"} />
             </div>
         </div>
     );
