@@ -16,6 +16,7 @@ import {
 } from "./routes";
 import { configureAuth } from "./auth";
 import { internalRouter } from "./internal/internal-router";
+import { taskRouter } from "./routes/task";
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use("/api/ServiceRequest", serviceRequestRouter);
 app.use("/api/MedicationRequest", medicationRequestRouter);
 app.use("/api/Medication", medicationRouter);
 app.use("/api/Appointment", appointmentRouter);
+app.use("/api/Task", taskRouter);
 app.use("/internal", internalRouter);
 const port = process.env.SERVER_PORT || 3333;
 const server = app.listen(port, () => {

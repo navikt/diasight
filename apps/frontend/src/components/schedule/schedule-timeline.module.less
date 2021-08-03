@@ -11,19 +11,13 @@
     align-items: center;
     padding: 20px;
     background-attachment: fixed;
-    background: linear-gradient(
-        to right,
-        white 0%,
-        transparent 30%,
-        transparent 70%,
-        white 100%
-    );
+    background: linear-gradient(to right, white 0%, transparent 30%, transparent 70%, white 100%);
     z-index: 1;
     overflow-x: auto;
 }
 
 .currentTimeWrapper {
-    position: absolute;
+    position: relative;
     top: -30px;
     left: 250px;
 }
@@ -32,11 +26,13 @@
     width: 1px;
     height: 150px;
     left: 18px;
+    top: 175px;
     position: relative;
     background: #0067c5;
 }
 
 .currentTimeClock {
+    top: 175px;
     position: relative;
     z-index: 2;
     color: #0067c5;

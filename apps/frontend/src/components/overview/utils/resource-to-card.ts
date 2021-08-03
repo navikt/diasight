@@ -21,8 +21,6 @@ interface ICard {
 export const bundleToCard = (bundle: ICardWithOwner): ICard => {
     const resourceType = bundle[5].resourceType;
 
-    console.log(resourceType);
-
     switch (resourceType) {
         case "DiagnosticReport":
             return hospitalTaskToEntry(
@@ -77,8 +75,6 @@ const navTaskToEntry = (
     const task = entry[0];
     const patient = entry[1];
     const condition = entry[3];
-
-    console.log(condition);
 
     return {
         date: task.lastModified ? dateReverser(task.lastModified) : "00.00.0000",

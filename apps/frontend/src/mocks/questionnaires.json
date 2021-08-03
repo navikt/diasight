@@ -9,8 +9,8 @@
         "language": "no",
         "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
         "version": "1.0.0",
-        "name": "computerFriendlyName",
-        "title": "Human friendly name",
+        "name": "sykemelding",
+        "title": "Sykemelding",
         "status": "active",
         "subjectType": ["Patient"],
         "item": [
@@ -33,6 +33,59 @@
             {
                 "linkId": "4",
                 "text": "Hvor mye kan pasienten løfte over hodet?",
+                "type": "integer",
+                "enableWhen": [
+                    {
+                        "question": "3",
+                        "operator": "=",
+                        "answerBoolean": true
+                    }
+                ],
+                "required": true
+            },
+            {
+                "linkId": "5",
+                "text": "Sikkerhetsklassifisering",
+                "type": "choice",
+                "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
+            }
+        ]
+    },
+    {
+        "resourceType": "Questionnaire",
+        "id": "15",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2021-07-29T13:37:25.830+00:00",
+            "source": "#3yguaUtzLbnLETST"
+        },
+        "language": "no",
+        "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+        "version": "1.0.0",
+        "name": "arbeidsavklaringsskjema",
+        "title": "Arbeidsavklaringsskjema",
+        "status": "active",
+        "subjectType": ["Patient"],
+        "item": [
+            {
+                "linkId": "1",
+                "text": "Statsborgerskap",
+                "type": "choice",
+                "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+            },
+            {
+                "linkId": "2",
+                "text": "Kan pasienten jobbe?",
+                "type": "boolean"
+            },
+            {
+                "linkId": "3",
+                "text": "Er pasienten ute av stand til å utføre daglige gjøremål?",
+                "type": "boolean"
+            },
+            {
+                "linkId": "4",
+                "text": "Hvor mange måneder gjelder arbeidsavklaringsskjemaet for?",
                 "type": "integer",
                 "enableWhen": [
                     {
