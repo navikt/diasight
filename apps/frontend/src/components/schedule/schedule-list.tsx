@@ -5,6 +5,7 @@ import style from "./schedule-list.module.less"
 export const ScheduleList: FC = () => {
     return (
         <div className={style.wrapper}>
+            <Element>Fredag 11. juli 2021</Element>
             <div className={style.currentTimeWrapper}>
                 <Undertekst className={style.currentTimeClock}>12:12</Undertekst>
                 <div className={style.currentTimeMarker} />
