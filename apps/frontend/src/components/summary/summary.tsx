@@ -5,7 +5,7 @@ import { SummaryEntry, SummarySubmitButton } from "./components/";
 import style from "./summary.module.less";
 
 export const Summary: FC = () => {
-    const { getUniqueConditions, getResourcesByCondition } = useContext(SummaryContext);
+    const { changes } = useContext(SummaryContext);
 
     // TODO: Handle observation when returning to composition view
 
@@ -16,9 +16,8 @@ export const Summary: FC = () => {
                 I dagens konsultasjon har du opprettet <span>1 notat</span> og skrevet{" "}
                 <span>1 sykemelding</span>.
             </Sidetittel>
-            {getUniqueConditions().map((ref) => {
-                const resources = getResourcesByCondition(ref);
-                return <SummaryEntry resources={resources} reference={ref} />;
+            {changes.map((c, index) => {
+                return <SummaryEntry key={index} resources={c.resources} condition={c.condition} />;
             })}
             <SummarySubmitButton />
         </div>

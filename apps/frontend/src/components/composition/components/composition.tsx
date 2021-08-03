@@ -14,8 +14,6 @@ interface IProps {
  */
 
 export const Composition: FC<IProps> = ({ composition }) => {
-    const reference: IReference = { reference: `Composition/${composition.id}` };
-
     return (
         <div className={style.composition}>
             <div className={style.date}>
@@ -34,7 +32,7 @@ export const Composition: FC<IProps> = ({ composition }) => {
                     <Condition
                         key={index}
                         title={comp.title}
-                        composition={reference}
+                        composition={composition}
                         focus={comp.focus}
                         entries={comp.entry}
                     />

@@ -1,27 +1,58 @@
-import { IObservation, IReference, IResourceList } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    IComposition,
+    ICondition,
+    IContactPoint,
+    IReference,
+    IResourceList,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import React, { createContext, FC, useState } from "react";
 
-type SummaryChange = {
-    resource: IObservation;
-    ref: IReference;
+export type SummaryChange = {
+    composition: IComposition;
+    condition: ICondition;
+    resources: IResourceList[];
 };
 
 type SummaryContextState = {
     changes: SummaryChange[];
-    getResourcesByCondition: (condition: IReference) => IResourceList[];
-    getUniqueConditions: () => IReference[];
-    addChange: (change: SummaryChange) => void;
-    removeChange: (change: SummaryChange) => void;
-    updateChange: (change: SummaryChange) => void;
+    getResourcesFromChange: (condition: ICondition, composition: IComposition) => IResourceList[];
+    findResourceByType: (
+        composition: IComposition,
+        condition: ICondition,
+        type: string
+    ) => IResourceList | undefined;
+    addResource: (
+        composition: IComposition,
+        condition: ICondition,
+        resource: IResourceList
+    ) => void;
+    removeResource: (
+        composition: IComposition,
+        condition: ICondition,
+        resource: IResourceList
+    ) => void;
+    updateResource: (
+        composition: IComposition,
+        condition: ICondition,
+        resource: IResourceList
+    ) => void;
 };
 
 const contextDefaultValues: SummaryContextState = {
     changes: [],
-    getResourcesByCondition: (condition: IReference): IResourceList[] => [],
-    getUniqueConditions: () => [],
-    addChange: (change: SummaryChange) => null,
-    removeChange: (change: SummaryChange) => null,
-    updateChange: (change: SummaryChange) => null,
+    getResourcesFromChange: (
+        condition: ICondition,
+        composition: IComposition
+    ): IResourceList[] => [],
+    findResourceByType: (composition: IComposition, condition: ICondition, type: string) => {
+        return undefined;
+    },
+    addResource: (composition: IComposition, condition: ICondition, resource: IResourceList) =>
+        null,
+    removeResource: (composition: IComposition, condition: ICondition, resource: IResourceList) =>
+        null,
+    updateResource: (composition: IComposition, condition: ICondition, resource: IResourceList) =>
+        null,
 };
 
 export const SummaryContext = createContext<SummaryContextState>(contextDefaultValues);
@@ -29,50 +60,93 @@ export const SummaryContext = createContext<SummaryContextState>(contextDefaultV
 const SummaryProvider: FC = ({ children }) => {
     const [changes, setChanges] = useState<SummaryChange[]>(contextDefaultValues.changes);
 
-    const getUniqueConditions = () => {
-        const uniqueChanges: IReference[] = [];
-        changes.map((c) => {
-            if (!uniqueChanges.includes(c.ref)) {
-                return uniqueChanges.push(c.ref);
-            }
-            return false;
+    // Returns all changes referenced by their grouped condition
+    const getResourcesFromChange = (condition: ICondition, composition: IComposition) => {
+        const change = changes.find(
+            (c) => c.condition === condition && c.composition === composition
+        );
+        return change?.resources || [];
+    };
+
+    const findChange = (composition: IComposition, condition: ICondition) => {
+        const selection = changes.find((c) => {
+            return c.composition === composition && c.condition === condition;
         });
 
-        return uniqueChanges;
+        return selection;
     };
 
-    // Returns all changes referenced by their grouped condition
-    const getResourcesByCondition = (condition: IReference) => {
-        const filteredChanges = changes.filter((c) => c.ref === condition);
-        return filteredChanges.map((c) => c.resource);
+    const addResource = (
+        composition: IComposition,
+        condition: ICondition,
+        resource: IResourceList
+    ) => {
+        const selection = findChange(composition, condition);
+
+        if (selection) {
+            const tempChanges = [...changes];
+            const index = tempChanges.indexOf(selection);
+            tempChanges[index].resources.push(resource);
+
+            setChanges(tempChanges);
+        } else {
+            setChanges([...changes, { composition, condition, resources: [resource] }]);
+        }
     };
 
-    const addChange = (change: SummaryChange) => {
-        setChanges([...changes, change]);
+    const removeResource = (
+        composition: IComposition,
+        condition: ICondition,
+        resource: IResourceList
+    ) => {
+        const tempChanges = [...changes];
+        const change = findChange(composition, condition);
+
+        if (change) {
+            const index = tempChanges.indexOf(change);
+            tempChanges[index].resources = change.resources.filter((r) => r !== resource);
+
+            if (change.resources.length === 0) {
+                setChanges(tempChanges.filter((c) => c !== tempChanges[index]));
+                return;
+            }
+
+            setChanges(tempChanges);
+        }
     };
 
-    const removeChange = (change: SummaryChange) => {
-        const filteredChanges = changes.filter(
-            (c) => c.resource !== change.resource && c.ref !== change.ref
-        );
-        setChanges(filteredChanges);
-    };
-
-    const updateChange = (change: SummaryChange) => {
+    // Find resource by ID or ResourceType, what if there are several?
+    const updateResource = (
+        composition: IComposition,
+        condition: ICondition,
+        resource: IResourceList
+    ) => {
         const updatedChanges = [...changes];
-        updatedChanges[changes.indexOf(change)] = change;
-        setChanges(updatedChanges);
+        const change = findChange(composition, condition);
+
+        if (change) {
+            const changeIndex = updatedChanges.indexOf(change);
+            const resourceIndex = updatedChanges[changeIndex].resources.indexOf(resource);
+
+            updatedChanges[changeIndex].resources[resourceIndex] = resource;
+            setChanges(updatedChanges);
+        }
+    };
+
+    const findResourceByType = (composition: IComposition, condition: ICondition, type: string) => {
+        const change = findChange(composition, condition);
+        return change?.resources.find((r) => r.resourceType === type);
     };
 
     return (
         <SummaryContext.Provider
             value={{
                 changes,
-                getResourcesByCondition,
-                getUniqueConditions,
-                addChange,
-                removeChange,
-                updateChange,
+                getResourcesFromChange,
+                findResourceByType,
+                addResource,
+                removeResource,
+                updateResource,
             }}>
             {children}
         </SummaryContext.Provider>

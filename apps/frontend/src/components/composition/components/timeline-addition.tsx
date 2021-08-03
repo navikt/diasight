@@ -3,13 +3,19 @@ import style from "../composition.module.less";
 import { v4 } from "uuid";
 import { Normaltekst } from "nav-frontend-typografi";
 import { bundleToEntry } from "../utils/resource-to-entry";
-import { HumanNameUseKind, IObservation, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    HumanNameUseKind,
+    IComposition,
+    ICondition,
+    IObservation,
+    IReference,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import { SelectionContext } from "../../../layouts/contexts/selection-context";
 
 interface IProps {
     resource: IObservation;
-    condition: IReference;
-    composition: IReference;
+    condition: ICondition;
+    composition: IComposition;
     visible: boolean;
 }
 
@@ -49,7 +55,7 @@ export const TimelineAddition: FC<IProps> = ({ resource, condition, composition,
                     <div
                         className={`${style.timestamp} ${selected ? style.selected : ""}`}
                         onClick={() => {
-                            toggleEntry(generatedReference, condition, composition);
+                            toggleEntry(resource, condition, composition);
                             setSelected(!selected);
                         }}></div>
                 </td>
