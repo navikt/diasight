@@ -1,16 +1,21 @@
-import { IObservation, IReference, IResourceList } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    ICondition,
+    IObservation,
+    IReference,
+    IResourceList,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Normaltekst, Systemtittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
 import style from "../summary.module.less";
 
 interface IProps {
     resources: IResourceList[];
-    reference: IReference;
+    condition: ICondition;
 }
 
 // TODO: create resourceToSummaryEntry functions for unpackaging resources.
 
-export const SummaryEntry: FC<IProps> = ({ resources, reference }) => {
+export const SummaryEntry: FC<IProps> = ({ resources, condition }) => {
     const observation: IObservation = resources.find(
         (r) => r.resourceType === "Observation"
     ) as IObservation;
@@ -19,7 +24,7 @@ export const SummaryEntry: FC<IProps> = ({ resources, reference }) => {
 
     return (
         <div className={style.summaryEntryWrapper}>
-            <Systemtittel>{reference.display}</Systemtittel>
+            <Systemtittel>{condition.code?.text}</Systemtittel>
             <Normaltekst>{note}</Normaltekst>
         </div>
     );

@@ -1,6 +1,5 @@
 import { Systemtittel, Undertekst } from "nav-frontend-typografi";
 import React, { FC, useContext } from "react";
-import { Link } from "wouter";
 import { SummaryContext } from "../../layouts/contexts/summary-context";
 import style from "./summary.module.less";
 
