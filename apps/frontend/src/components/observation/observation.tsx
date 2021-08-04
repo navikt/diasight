@@ -104,21 +104,22 @@ export const Observation: FC = () => {
                                     }
                                 />
                                 {
-                                    <Textarea
-                                        key={i}
-                                        placeholder="Skriv notat her..."
-                                        maxLength={0}
-                                        className={style.inputField}
-                                        value={observation.note?.find((f) => f)?.text || ""}
-                                        onChange={(e) => {
-                                            handleChange(
-                                                e.target.value,
-                                                observation,
-                                                c.condition,
-                                                c.composition
-                                            );
-                                        }}
-                                    />
+                                    <div className={style.inputField}>
+                                        <Textarea
+                                            key={i}
+                                            placeholder="Skriv notat her..."
+                                            maxLength={0}
+                                            value={observation.note?.find((f) => f)?.text || ""}
+                                            onChange={(e) => {
+                                                handleChange(
+                                                    e.target.value,
+                                                    observation,
+                                                    c.condition,
+                                                    c.composition
+                                                );
+                                            }}
+                                        />
+                                    </div>
                                 }
                             </>
                         );

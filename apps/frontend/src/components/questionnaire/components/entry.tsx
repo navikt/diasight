@@ -1,10 +1,28 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { Element, Normaltekst, Undertekst, UndertekstBold } from "nav-frontend-typografi";
 import { SelectionContext } from "../../../layouts/contexts/selection-context";
 import { AlertStripeInfo } from "nav-frontend-alertstriper";
+import { IQuestionnaireResponse_Answer, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
+import { selectionsToReferences } from "../utils/selections-to-references";
 
-export const Entry: FC = () => {
+interface IProps {
+    onChange: (answer: IQuestionnaireResponse_Answer[]) => void;
+    values: IQuestionnaireResponse_Answer[];
+}
+
+export const Entry: FC<IProps> = ({ onChange, values }) => {
     const { selections } = useContext(SelectionContext);
+
+    useEffect(() => {
+        const references: IReference[] = selectionsToReferences(selections);
+        const answers: IQuestionnaireResponse_Answer[] = [];
+
+        references.map((ref) => {
+            answers.push({ valueReference: ref });
+        });
+
+        onChange(answers);
+    }, [selections]);
 
     if (selections) {
         return (
@@ -18,9 +36,7 @@ export const Entry: FC = () => {
                                     <Normaltekst key={i}>{s.condition.code?.text}</Normaltekst>
                                     {s.resources.map((e, j) => {
                                         return (
-                                            <Undertekst key={j}>
-                                                {e.resourceType || "hei"}
-                                            </Undertekst>
+                                            <Undertekst key={j}>{e.resourceType || ""}</Undertekst>
                                         );
                                     })}
                                 </div>

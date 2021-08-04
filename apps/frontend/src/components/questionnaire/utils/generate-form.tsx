@@ -5,7 +5,7 @@ import {
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React from "react";
 import { Checkbox, Input, Select, Textarea } from "nav-frontend-skjema";
-import { Datepicker } from "nav-datovelger/";
+import { Datepicker, isISODateString } from "nav-datovelger/";
 import { Entry } from "../components/entry";
 import { Element } from "nav-frontend-typografi";
 
@@ -14,26 +14,29 @@ import style from "../questionnaire.module.less";
 export const generateFHIRForm = (
     question: IQuestionnaire_Item,
     value: IQuestionnaireResponse_Answer[],
-    setValue: (answer: IQuestionnaireResponse_Answer) => void
+    setValue: (answer: IQuestionnaireResponse_Answer[]) => void
 ) => {
+    const v = value.find((v) => v);
+
     switch (question.type) {
         case Questionnaire_ItemTypeKind._string:
             return (
                 <Input
                     type="text"
                     label={question.text}
+                    required={question.required || false}
                     key={question.linkId}
-                    value={value.find((v) => v.valueString)?.valueString || ""}
-                    onChange={(e) => setValue({ valueString: e.target.value })}
+                    value={v?.valueString || ""}
+                    onChange={(e) => setValue([{ valueString: e.target.value }])}
                 />
             );
         case Questionnaire_ItemTypeKind._text:
             return (
                 <Textarea
-                    value={value.find((v) => v.valueString)?.valueString || ""}
-                    onChange={(e) => setValue({ valueString: e.target.value })}
+                    value={v?.valueString || ""}
+                    onChange={(e) => setValue([{ valueString: e.target.value }])}
                     label={question.text}
-                    defaultValue={""}
+                    required={question.required || false}
                     maxLength={0}
                     key={question.linkId}
                 />
@@ -46,16 +49,21 @@ export const generateFHIRForm = (
                     inputMode="numeric"
                     pattern="[0-9]*"
                     label={question.text}
+                    required={question.required || false}
                     key={question.linkId}
                 />
             );
         case Questionnaire_ItemTypeKind._date:
             return (
-                <div className={style.dateInput}>
+                <div className={style.dateInput} key={question.linkId}>
                     <Element>{question.text}</Element>
                     <Datepicker
-                        value={value.find((v) => v.valueDate)?.valueDate || ""}
-                        onChange={(value) => setValue({ valueDate: value })}
+                        value={v?.valueDate || ""}
+                        onChange={(value) => setValue([{ valueDate: value }])}
+                        inputProps={{
+                            "aria-invalid":
+                                v?.valueDate === "" && isISODateString(v?.valueDate) === false,
+                        }}
                     />
                 </div>
             );
@@ -63,9 +71,10 @@ export const generateFHIRForm = (
             return (
                 <Select
                     label={question.text}
+                    required={question.required || false}
                     key={question.linkId}
-                    value={value.find((v) => v.valueString)?.valueString || ""}
-                    onChange={(e) => setValue({ valueString: e.target.value })}>
+                    value={v?.valueString || ""}
+                    onChange={(e) => setValue([{ valueString: e.target.value }])}>
                     <option value="">Velg</option>
                     {question.answerOption?.map((option, index) => {
                         return (
@@ -81,12 +90,13 @@ export const generateFHIRForm = (
                 <Checkbox
                     label={question.text}
                     key={question.linkId}
-                    checked={value.find((v) => v.valueBoolean)?.valueBoolean || false}
-                    onChange={(e) => setValue({ valueBoolean: e.target.checked })}
+                    required={question.required || false}
+                    checked={v?.valueBoolean || false}
+                    onChange={(e) => setValue([{ valueBoolean: e.target.checked }])}
                 />
             );
         case Questionnaire_ItemTypeKind._reference:
-            return <Entry key={question.linkId} />;
+            return <Entry values={value} onChange={setValue} key={question.linkId} />;
         default:
             return null;
     }

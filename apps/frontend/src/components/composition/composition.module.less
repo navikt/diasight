@@ -66,7 +66,7 @@
 .tableWrapper {
     z-index: 2;
     width: 100%;
-    table-layout: auto;
+    border-spacing: 4px;
 }
 
 .tableWrapper thead tr {
@@ -77,6 +77,30 @@
 .tableWrapper tbody tr {
     width: inherit;
     text-align: left;
+}
+
+.tableWrapper tr > td:first-child,
+.tableWrapper tr > th:first-child {
+    max-width: 10ch;
+    width: 10ch;
+}
+
+.tableWrapper tr > td:nth-child(2),
+.tableWrapper tr > th:nth-child(2) {
+    max-width: 20px;
+    width: 20px;
+}
+
+.tableWrapper tr > td:nth-child(3),
+.tableWrapper tr > th:nth-child(3) {
+    max-width: 40ch;
+    width: 40ch;
+}
+
+.tableWrapper tr > td:nth-child(4),
+.tableWrapper tr > th:nth-child(4) {
+    max-width: 10ch;
+    width: 10ch;
 }
 
 .tableWrapper td > p {
@@ -103,9 +127,9 @@
 .selected::before {
     content: " ";
     position: absolute;
-    height: 12px;
-    width: 12px;
-    margin: 2px 2px;
+    height: 10px;
+    width: 10px;
+    margin: 1px 1px;
     background-color: #0067c5;
     border-radius: 100%;
     z-index: 4;
@@ -114,12 +138,10 @@
 tr:not(:nth-child(1)) .timestamp::after {
     content: " ";
     position: absolute;
-    height: 32px;
-    width: 16px;
+    height: 28px;
+    width: 12px;
     clip-path: inset(0 40% 0 40%);
     background-color: #ffffff;
-
-    z-index: 1;
 }
 
 tr:last-child .timestamp::after {
@@ -127,7 +149,8 @@ tr:last-child .timestamp::after {
 }
 
 .addEntry svg {
-    font-size: 20px;
+    margin: 1px 1px;
+    font-size: 16px;
     vertical-align: middle;
     color: #6a6a6a;
     cursor: pointer;
