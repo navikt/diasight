@@ -17,6 +17,7 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
     const { entry, isLoading, isError } = usePatientEntry(reference);
     const { toggleEntry } = useContext(SelectionContext);
     const [selected, setSelected] = useState<boolean>(false);
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     useEffect(() => {
         setSelected(false);
@@ -41,8 +42,13 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
                             setSelected(!selected);
                         }}></div>
                 </td>
-                <td>
+                <td className={style.resourceLink}
+                    onClick={() => {
+                        setExpanded(!expanded)
+                        console.log(expanded)
+                    }}>
                     <Normaltekst>{resource.text}</Normaltekst>
+                    {expanded ? <h3>Expanded</h3> : <h3>Unexpanded</h3>}
                 </td>
                 <td>
                     <Normaltekst>{resource.type}</Normaltekst>
