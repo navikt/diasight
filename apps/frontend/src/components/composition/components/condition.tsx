@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FC } from "react";
 import style from "../composition.module.less";
 import { Expand, Collapse } from "@navikt/ds-icons/cjs";
@@ -18,17 +18,26 @@ interface IProps {
 
 export const Condition: FC<IProps> = ({ title, composition, focus, entries }) => {
     const { condition, isLoading, isError } = usePatientCondition(focus);
-    const { toggleCondition } = useContext(SelectionContext);
+    const { toggleCondition, findSelection } = useContext(SelectionContext);
     const [expanded, setExpanded] = useState(false);
+
+    useEffect(() => {
+        if (!condition) return;
+
+        const selection = findSelection(condition, composition);
+
+        if (selection) setExpanded(true);
+    }, [condition]);
 
     const toggle = () => {
         if (!condition) return;
+
         setExpanded(!expanded);
         toggleCondition(condition, composition);
     };
 
     if (isLoading) return <div>Loading</div>;
-    if (isError) return <div>Error</div>;
+    if (isError) return <div>Error</div>
 
     if (condition) {
         return (

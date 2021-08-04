@@ -16,12 +16,14 @@ type SelectionContextState = {
     selections: EntrySelection[];
     toggleCondition: (condition: ICondition, composition: IComposition) => void;
     toggleEntry: (entry: IResourceList, condition: ICondition, composition: IComposition) => void;
+    findSelection: (condition: ICondition, composition: IComposition) => IResourceList[] | undefined;
 };
 
 const contextDefaultValues: SelectionContextState = {
     selections: [],
     toggleCondition: () => null,
     toggleEntry: () => null,
+    findSelection: () => [],
 };
 
 export const SelectionContext = createContext<SelectionContextState>(contextDefaultValues);
@@ -29,7 +31,7 @@ export const SelectionContext = createContext<SelectionContextState>(contextDefa
 const SelectionProvider: FC = ({ children }) => {
     const [selections, setSelections] = useState<EntrySelection[]>(contextDefaultValues.selections);
 
-    const toggleCondition = (condition: ICondition, composition: IComposition) => {
+    const toggleCondition = async (condition: ICondition, composition: IComposition) => {
         const selection = selections.find(
             (s) => s.composition === composition && s.condition === condition
         );
@@ -74,8 +76,16 @@ const SelectionProvider: FC = ({ children }) => {
         }
     };
 
+    const findSelection = (condition: ICondition, composition: IComposition) => {
+        const selection = selections.find(
+            (s) => s.composition === composition && s.condition === condition
+        );
+
+        return selection?.resources;
+    }
+
     return (
-        <SelectionContext.Provider value={{ selections, toggleCondition, toggleEntry }}>
+        <SelectionContext.Provider value={{ selections, toggleCondition, toggleEntry, findSelection }}>
             {children}
         </SelectionContext.Provider>
     );

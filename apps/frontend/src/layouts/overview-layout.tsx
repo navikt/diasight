@@ -26,10 +26,12 @@ export const OverviewLayout: FC = () => {
         <div className={style.overviewWrapper}>
             <div className={style.dailyMessage}>
                 <Sidetittel>
-                    Geir Nystøl, i dag har du <span className={style.dynamicField}>6 pasienter</span>.
+                    Geir Nystøl, i dag har du <span className={style.dynamicField}>4 pasienter</span>.
+                    <br />
                     <br />
                     Du har mottat <span className={style.dynamicField}>1 svar på blodprøve </span>
                     og <span className={style.dynamicField}>1 svar på henvisning</span> fra sykehuset.
+                    <br />
                     <br />
                     Du må skrive <span className={style.dynamicField}>1 utfyllende sykemelding </span>
                     og <span className={style.dynamicField}>1 utfyllende arbeidsavklaringsskjema</span> til NAV.
