@@ -53,6 +53,7 @@ const questionnaireResponseToSummaryEntry = (
             } else if (!answer.valueReference) {
                 return answer;
             }
+            return false;
         });
         if (!answer) return;
         const text = `${item.text}: ${answerToString(answer)}`;
