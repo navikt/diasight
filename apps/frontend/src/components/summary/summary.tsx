@@ -1,3 +1,4 @@
+import { IResourceList } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Element, Sidetittel } from "nav-frontend-typografi";
 import React, { FC, useContext } from "react";
 import { SummaryContext } from "../../layouts/contexts/summary-context";
@@ -7,7 +8,12 @@ import style from "./summary.module.less";
 export const Summary: FC = () => {
     const { changes } = useContext(SummaryContext);
 
-    // TODO: Handle observation when returning to composition view
+    const uniqueResources: IResourceList[] = [];
+    changes.map((c) => {
+        c.resources.map((r) => {
+            if (!uniqueResources.includes(r)) uniqueResources.push(r);
+        });
+    });
 
     return (
         <div className={style.summaryWrapper}>
@@ -17,7 +23,7 @@ export const Summary: FC = () => {
                 <span>1 sykemelding</span>.
             </Sidetittel>
             {changes.map((c, index) => {
-                return <SummaryEntry key={index} resources={c.resources} condition={c.condition} />;
+                return <SummaryEntry key={index} resources={c.resources} />;
             })}
             <SummarySubmitButton />
         </div>

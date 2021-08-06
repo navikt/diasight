@@ -115,7 +115,7 @@ const SummaryProvider: FC = ({ children }) => {
         }
     };
 
-    // Find resource by ID or ResourceType, what if there are several?
+    // Update resource or add new summary-change if it doesn't exist.
     const updateResource = (
         composition: IComposition,
         condition: ICondition,

@@ -3,6 +3,7 @@ import {
     IMedicationRequest,
     IObservation,
     IPractitioner,
+    IQuestionnaireResponse,
     IServiceRequest,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { filterHumanNameOnUse, humanNameToString } from "../../../utils";
@@ -27,6 +28,8 @@ export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
             return medicationRequestToEntry(bundle as [IMedicationRequest, IPractitioner]);
         case "ServiceRequest":
             return serviceRequestToEntry(bundle as [IServiceRequest, IPractitioner]);
+        case "QuestionnaireResponse":
+            return questionnaireResponseToEntry(bundle as [IQuestionnaireResponse, IPractitioner]);
         default:
             return {
                 date: "0000-00-00",
@@ -77,6 +80,23 @@ const medicationRequestToEntry = (entry: [IMedicationRequest, IPractitioner]): I
         date: medicationRequest.authoredOn,
         text: medicationRequest.medicationCodeableConcept?.text,
         type: "Resept",
+        author: author ? humanNameToString(author) : "Ukjent",
+        department: "Midlertidig",
+    } as IEntryLine;
+};
+
+const questionnaireResponseToEntry = (
+    entry: [IQuestionnaireResponse, IPractitioner]
+): IEntryLine => {
+    const questionnaireResponse = entry[0];
+    const author = entry[1].name
+        ? filterHumanNameOnUse(entry[1].name, HumanNameUseKind._usual)
+        : null;
+
+    return {
+        date: questionnaireResponse.authored,
+        text: questionnaireResponse.subject?.display,
+        type: "Skjema",
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
     } as IEntryLine;

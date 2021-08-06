@@ -6,7 +6,7 @@ import {
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React, { createContext, FC, useState } from "react";
 
-type EntrySelection = {
+export type EntrySelection = {
     composition: IComposition;
     condition: ICondition;
     resources: IResourceList[];

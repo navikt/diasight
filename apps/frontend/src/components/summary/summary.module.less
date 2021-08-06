@@ -20,13 +20,22 @@
     padding: 0 0 2ch;
 }
 
-.summaryEntryWrapper:not(:last-child) {
-    border-bottom: 1px solid #0067c5;
-    margin: 0 0 4ch;
-}
-
 .summaryEntryWrapper > h2 {
     margin: 0 0 1ch;
+}
+
+.summaryEntry {
+    display: flex;
+    flex-direction: row;
+}
+
+.summaryEntry > h2 {
+    width: 30%;
+    text-align: right;
+    margin-right: 2ch;
+}
+
+.summaryDescription {
 }
 
 .summaryButton {
