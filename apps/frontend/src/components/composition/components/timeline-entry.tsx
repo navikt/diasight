@@ -30,33 +30,49 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
         const resource = bundleToEntry(entry);
 
         return (
-            <tr>
-                <td>
-                    <Normaltekst>{resource.date}</Normaltekst>
-                </td>
-                <td>
-                    <div
-                        className={`${style.timestamp} ${selected ? style.selected : ""}`}
+            <>
+                <tr>
+                    <td>
+                        <Normaltekst>{resource.date}</Normaltekst>
+                    </td>
+                    <td>
+                        <div
+                            className={`${style.timestamp} ${selected ? style.selected : ""}`}
+                            onClick={() => {
+                                toggleEntry(entry[0], condition, composition);
+                                setSelected(!selected);
+                            }}></div>
+                    </td>
+                    <td className={style.resourceLink}
                         onClick={() => {
-                            toggleEntry(entry[0], condition, composition);
-                            setSelected(!selected);
-                        }}></div>
-                </td>
-                <td className={style.resourceLink}
-                    onClick={() => {
-                        setExpanded(!expanded)
-                        console.log(expanded)
-                    }}>
-                    <Normaltekst>{resource.text}</Normaltekst>
-                    {expanded ? <h3>Expanded</h3> : <h3>Unexpanded</h3>}
-                </td>
-                <td>
-                    <Normaltekst>{resource.type}</Normaltekst>
-                </td>
-                <td>
-                    <Normaltekst>{resource.author}</Normaltekst>
-                </td>
-            </tr>
+                            setExpanded(!expanded)
+                            console.log(expanded)
+                        }}>
+                        <Normaltekst>{resource.text}</Normaltekst>
+                    </td>
+                    <td>
+                        <Normaltekst>{resource.type}</Normaltekst>
+                    </td>
+                    <td>
+                        <Normaltekst>{resource.author}</Normaltekst>
+                    </td>
+                </tr>
+                {
+                    expanded ? (
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <div className={style.resourceDetailWrapper}>
+                                    {resource.details.map((detail) => <Normaltekst>{detail}</Normaltekst>)}
+                                </div>
+                            </td>
+                        </tr>
+                    ) : (
+                        <div></div>
+                    )
+                }
+            </>
         );
     }
 
