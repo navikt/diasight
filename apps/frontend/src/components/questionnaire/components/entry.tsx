@@ -8,9 +8,10 @@ import { selectionsToReferences } from "../utils/selections-to-references";
 interface IProps {
     onChange: (answer: IQuestionnaireResponse_Answer[]) => void;
     values: IQuestionnaireResponse_Answer[];
+    required?: boolean;
 }
 
-export const Entry: FC<IProps> = ({ onChange, values }) => {
+export const Entry: FC<IProps> = ({ onChange, values, required = false }) => {
     const { selections } = useContext(SelectionContext);
 
     useEffect(() => {
@@ -27,7 +28,7 @@ export const Entry: FC<IProps> = ({ onChange, values }) => {
     if (selections) {
         return (
             <div>
-                <Element>Vedlegg:</Element>
+                <Element>{`Vedlegg${required ? "*" : ""}:`}</Element>
                 {selections.length > 0 ? (
                     <>
                         {selections.map((s, i) => {

@@ -23,7 +23,7 @@ export const generateFHIRForm = (
             return (
                 <Input
                     type="text"
-                    label={question.text}
+                    label={`${question.text}${question.required ? "*" : ""}`}
                     required={question.required || false}
                     key={question.linkId}
                     value={v?.valueString || ""}
@@ -35,7 +35,7 @@ export const generateFHIRForm = (
                 <Textarea
                     value={v?.valueString || ""}
                     onChange={(e) => setValue([{ valueString: e.target.value }])}
-                    label={question.text}
+                    label={`${question.text}${question.required ? "*" : ""}`}
                     required={question.required || false}
                     maxLength={0}
                     key={question.linkId}
@@ -48,7 +48,7 @@ export const generateFHIRForm = (
                     type="text"
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    label={question.text}
+                    label={`${question.text}${question.required ? "*" : ""}`}
                     required={question.required || false}
                     key={question.linkId}
                 />
@@ -56,7 +56,7 @@ export const generateFHIRForm = (
         case Questionnaire_ItemTypeKind._date:
             return (
                 <div className={style.dateInput} key={question.linkId}>
-                    <Element>{question.text}</Element>
+                    <Element>{`${question.text}${question.required ? "*" : ""}`}</Element>
                     <Datepicker
                         value={v?.valueDate || ""}
                         onChange={(value) => setValue([{ valueDate: value }])}
@@ -70,7 +70,7 @@ export const generateFHIRForm = (
         case Questionnaire_ItemTypeKind._choice:
             return (
                 <Select
-                    label={question.text}
+                    label={`${question.text}${question.required ? "*" : ""}`}
                     required={question.required || false}
                     key={question.linkId}
                     value={v?.valueString || ""}
@@ -88,7 +88,7 @@ export const generateFHIRForm = (
         case Questionnaire_ItemTypeKind._boolean:
             return (
                 <Checkbox
-                    label={question.text}
+                    label={`${question.text}${question.required ? "*" : ""}`}
                     key={question.linkId}
                     required={question.required || false}
                     checked={v?.valueBoolean || false}
@@ -96,7 +96,14 @@ export const generateFHIRForm = (
                 />
             );
         case Questionnaire_ItemTypeKind._reference:
-            return <Entry values={value} onChange={setValue} key={question.linkId} />;
+            return (
+                <Entry
+                    values={value}
+                    onChange={setValue}
+                    required={question.required || false}
+                    key={question.linkId}
+                />
+            );
         default:
             return null;
     }

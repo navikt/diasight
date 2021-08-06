@@ -12,6 +12,10 @@ import { useQuestionnaire } from "./hooks/use-questionnaire";
 import style from "./questionnaire.module.less";
 import { generateFHIRForm } from "./utils/generate-form";
 import { getInvalidQuestionnaireResponseItems } from "./utils/validate-questionnaire-response";
+import { AlertStripeFeil } from "nav-frontend-alertstriper";
+import { SummaryContext } from "../../layouts/contexts/summary-context";
+import { v4 } from "uuid";
+import { SelectionContext } from "../../layouts/contexts/selection-context";
 
 interface IProps {
     id: number;
@@ -20,23 +24,33 @@ interface IProps {
 
 const initialQuestionnaireResponse: IQuestionnaireResponse = {
     resourceType: "QuestionnaireResponse",
+    id: v4(),
     authored: new Date().toISOString(),
     item: [],
 };
 
 export const Questionnaire: FC<IProps> = ({ id, patient }) => {
-    const [hasChanged, setHasChanged] = useState(false);
-    const [answers, setAnswers] = useState<IQuestionnaireResponse>(initialQuestionnaireResponse);
     const { questionnaire, isLoading, isError } = useQuestionnaire(id);
 
-    const handleAnswer = (answer: IQuestionnaireResponse_Answer[], linkId: string) => {
+    const { addResource, updateResource, findResourceByType } = useContext(SummaryContext);
+    const { selections } = useContext(SelectionContext);
+
+    const [answers, setAnswers] = useState<IQuestionnaireResponse>(initialQuestionnaireResponse);
+    const [hasChanged, setHasChanged] = useState(false);
+    const [error, setError] = useState(false);
+
+    const handleAnswer = (
+        answer: IQuestionnaireResponse_Answer[],
+        linkId: string,
+        text: string
+    ) => {
         setHasChanged(true);
 
         const updatedResponse = { ...answers };
         const responseItem = updatedResponse.item?.find((i) => i.linkId === linkId);
 
         if (!responseItem) {
-            updatedResponse.item?.push({ linkId: linkId, answer: answer });
+            updatedResponse.item?.push({ linkId, answer, text });
             setAnswers(updatedResponse);
             return;
         }
@@ -62,11 +76,19 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
         if (invalidItems.length > 0) {
             console.log(invalidItems);
             console.log(answers);
-
+            setError(true);
             return;
         } else {
+            setError(false);
             setHasChanged(false);
             console.log(answers);
+            selections.map(({ composition, condition }) => {
+                if (findResourceByType(composition, condition, "QuestionnaireResponse")) {
+                    updateResource(composition, condition, answers);
+                } else {
+                    addResource(composition, condition, answers);
+                }
+            });
         }
     };
 
@@ -89,13 +111,19 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
                     {questionnaire.item?.map((question) => {
                         if (!question.linkId) return null;
                         const linkId = question.linkId;
+                        const text = question.text || "";
                         const value = getAnswer(linkId) || [];
                         const change = (answer: IQuestionnaireResponse_Answer[]) => {
-                            handleAnswer(answer, linkId);
+                            handleAnswer(answer, linkId, text);
                         };
 
                         return generateFHIRForm(question, value, change);
                     })}
+                    {error ? (
+                        <AlertStripeFeil>
+                            Vennligst fyll ut alle feltene med stjerne (*) før du fortsetter.
+                        </AlertStripeFeil>
+                    ) : null}
                     <div className={style.formFooter}>
                         <Knapp disabled={!hasChanged} htmlType="submit">
                             Lagre
