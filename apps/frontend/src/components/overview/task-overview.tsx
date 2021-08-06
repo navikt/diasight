@@ -7,7 +7,6 @@ import style from "./task-overview.module.less"
 interface IProps {
     tasks: ITask[],
     practitionerId: string,
-    type: string;
 }
 
 export const TaskOverview: FC<IProps> = ({ tasks, practitionerId }) => {
