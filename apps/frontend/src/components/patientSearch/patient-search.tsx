@@ -21,7 +21,7 @@ export const PatientSearch: FC = () => {
         <div className={style.searchWrapper}>
             <form className={style.searchForm} autoComplete="off" onSubmit={handleSubmit(search)}>
                 <input className={style.searchInput}
-                    placeholder="Søk etter pasient basert på personnumer eller navn"
+                    placeholder="Søk etter pasient basert på navn, fødselsdato, eller personnummer"
                     {...register("searchKeyword")}
                     id="searchKeyword" />
                 <Search className={style.searchIcon} onClick={handleSubmit(search)} />
