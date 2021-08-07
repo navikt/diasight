@@ -1,28 +1,38 @@
-import { IQuestionnaire, IQuestionnaireResponse, IQuestionnaireResponse_Answer, IQuestionnaireResponse_Item, IQuestionnaire_Item, Questionnaire_ItemTypeKind } from "@ahryman40k/ts-fhir-types/lib/R4";
+import {
+    IQuestionnaire,
+    IQuestionnaireResponse,
+    IQuestionnaireResponse_Answer,
+    IQuestionnaireResponse_Item,
+    IQuestionnaire_Item,
+    Questionnaire_ItemTypeKind,
+} from "@ahryman40k/ts-fhir-types/lib/R4";
 import { isISODateString } from "nav-datovelger";
 
-
-export const getInvalidQuestionnaireResponseItems = (response: IQuestionnaireResponse, questionnaire: IQuestionnaire) => {
-
+export const getInvalidQuestionnaireResponseItems = (
+    response: IQuestionnaireResponse,
+    questionnaire: IQuestionnaire
+) => {
     const invalidResponses: IQuestionnaire_Item[] = [];
 
     questionnaire.item?.map((item) => {
         if (item.required && item.type) {
             const responseItem = response.item?.find((i) => i.linkId === item.linkId);
             const answer = responseItem?.answer?.find((a) => a);
-            if(!validateResponseItemNotEmpty(item.type, answer)) {
+            if (!validateResponseItemNotEmpty(item.type, answer)) {
                 invalidResponses.push(item);
             }
         }
-    })
+    });
 
-    return invalidResponses; 
-}
+    return invalidResponses;
+};
 
-
-const validateResponseItemNotEmpty = (type: Questionnaire_ItemTypeKind, answer: IQuestionnaireResponse_Answer | undefined) => {
-    if(!answer) return false;
-    switch(type) {
+const validateResponseItemNotEmpty = (
+    type: Questionnaire_ItemTypeKind,
+    answer: IQuestionnaireResponse_Answer | undefined
+) => {
+    if (!answer) return false;
+    switch (type) {
         case Questionnaire_ItemTypeKind._boolean:
             return answer.valueBoolean !== undefined;
         case Questionnaire_ItemTypeKind._choice:
@@ -40,4 +50,4 @@ const validateResponseItemNotEmpty = (type: Questionnaire_ItemTypeKind, answer: 
         default:
             return false;
     }
-}
+};
