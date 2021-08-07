@@ -7,9 +7,10 @@ import {
     IReference,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { TimelineEntry } from "./timeline-entry";
-import { Element } from "nav-frontend-typografi";
+import { Element, Normaltekst } from "nav-frontend-typografi";
 import { SummaryContext } from "../../../layouts/contexts/summary-context";
 import { TimelineAddition } from "./timeline-addition";
+import { AddCircle } from "@navikt/ds-icons/cjs";
 
 interface IProps {
     entries: IReference[] | undefined;
@@ -46,6 +47,17 @@ export const Timeline: FC<IProps> = ({ entries, composition, condition, isActive
                     </tr>
                 </thead>
                 <tbody>
+                    <tr className={style.addEntry}>
+                        <th></th>
+                        <th>
+                            <AddCircle />
+                        </th>
+                        <th>
+                            <Normaltekst>Legg til ny</Normaltekst>
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                     {additions
                         ? additions.map((resource, index) => {
                             return resource ? (

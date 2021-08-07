@@ -4,28 +4,36 @@ import {
     IReference,
     IResourceList,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
-import { Normaltekst, Systemtittel } from "nav-frontend-typografi";
+import { Element, Normaltekst, Systemtittel, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
 import style from "../summary.module.less";
+import { resourceToSummaryEntry } from "../utils/resource-to-summary-entry";
 
 interface IProps {
     resources: IResourceList[];
-    condition: ICondition;
 }
 
 // TODO: create resourceToSummaryEntry functions for unpackaging resources.
 
-export const SummaryEntry: FC<IProps> = ({ resources, condition }) => {
-    const observation: IObservation = resources.find(
-        (r) => r.resourceType === "Observation"
-    ) as IObservation;
-
-    const note: string = observation.note?.find((n) => n)?.text || "";
-
+export const SummaryEntry: FC<IProps> = ({ resources }) => {
     return (
         <div className={style.summaryEntryWrapper}>
-            <Systemtittel>{condition.code?.text}</Systemtittel>
-            <Normaltekst>{note}</Normaltekst>
+            <div className={style.resourceList}>
+                {resources.map((resource) => {
+                    const entry = resourceToSummaryEntry(resource);
+                    return (
+                        <div className={style.summaryEntry}>
+                            <Undertittel>Ny {entry.title}</Undertittel>
+                            <div className={style.summaryDescription}>
+                                {entry.subject !== "" ? <Element>{entry.subject}</Element> : null}
+                                {entry.descriptors.map((d) => {
+                                    return <Normaltekst>{d}</Normaltekst>;
+                                })}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };
