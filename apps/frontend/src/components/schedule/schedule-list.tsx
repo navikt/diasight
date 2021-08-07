@@ -7,7 +7,7 @@ export const ScheduleList: FC = () => {
         <div className={style.wrapper}>
             <Element>Fredag 11. juli 2021</Element>
             <div className={style.currentTimeWrapper}>
-                <Undertekst className={style.currentTimeClock}>12:12</Undertekst>
+                <Undertekst className={style.currentTimeClock}>12:18</Undertekst>
                 <div className={style.currentTimeMarker} />
             </div>
             <div className={style.timeBlock}>

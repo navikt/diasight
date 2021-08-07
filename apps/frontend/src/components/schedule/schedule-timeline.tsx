@@ -6,7 +6,7 @@ export const ScheduleTimeline: FC = () => {
     return (
         <div className={style.wrapper}>
             <div className={style.currentTimeWrapper}>
-                <Normaltekst className={style.currentTimeClock}>12:12</Normaltekst>
+                <Normaltekst className={style.currentTimeClock}>12:18</Normaltekst>
                 <div className={style.currentTimeMarker} />
             </div>
             <div className={style.timelineWrapper}>
