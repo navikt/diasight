@@ -59,12 +59,13 @@ export const Observation: FC = () => {
                 if (!alreadyExists) {
                     const observation: IObservation = {
                         resourceType: "Observation",
-                        id: v4(),
+                        id: "urn:uuid:" + v4(),
+                        performer: [{ reference: "Practitioner/2" }],
                         status: ObservationStatusKind._unknown,
                         code: { text: "Notat" },
                         focus: [
                             {
-                                reference: "Observation/" + selection.condition.id,
+                                reference: "Condition/" + selection.condition.id,
                                 id: selection.condition.id,
                             },
                         ],

@@ -10,31 +10,38 @@ export const OverviewLayout: FC = () => {
 
     const { tasks, isLoading, isError } = useTask(practitionerId);
 
-    if (isLoading) return <div>Loading</div>
-    if (isError) return <div>Error</div>
-    if (!tasks) return <div>No data</div>
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
+    if (!tasks) return <div>No data</div>;
 
-    const hospitalTasks = tasks ? tasks.filter(
-        (task) => task?.focus?.type === "DiagnosticReport"
-    ) : tasks;
+    const hospitalTasks = tasks
+        ? tasks.filter((task) => task?.focus?.type === "DiagnosticReport")
+        : tasks;
 
-    const navTasks = tasks ? tasks.filter(
-        (task) => task?.requester?.reference === "Organization/12"
-    ) : tasks;
+    const navTasks = tasks
+        ? tasks.filter((task) => task?.requester?.reference === "Organization/12")
+        : tasks;
 
     return (
         <div className={style.overviewWrapper}>
             <div className={style.dailyMessage}>
                 <Sidetittel>
-                    Geir Nystøl, i dag har du <span className={style.dynamicField}>4 pasienter</span>.
+                    Geir Nystøl, i dag har du{" "}
+                    <span className={style.dynamicField}>4 pasienter</span>.
                     <br />
                     <br />
                     Du har mottat <span className={style.dynamicField}>1 svar på blodprøve </span>
-                    og <span className={style.dynamicField}>1 svar på henvisning</span> fra sykehuset.
+                    og <span className={style.dynamicField}>1 svar på henvisning</span> fra
+                    sykehuset.
                     <br />
                     <br />
-                    Du må skrive <span className={style.dynamicField}>1 utfyllende sykemelding </span>
-                    og <span className={style.dynamicField}>1 utfyllende arbeidsavklaringsskjema</span> til NAV.
+                    Du må skrive{" "}
+                    <span className={style.dynamicField}>1 utfyllende sykemelding </span>
+                    og{" "}
+                    <span className={style.dynamicField}>
+                        1 utfyllende arbeidsavklaringsskjema
+                    </span>{" "}
+                    til NAV.
                 </Sidetittel>
             </div>
             <div className={style.notifications}>
@@ -50,4 +57,4 @@ export const OverviewLayout: FC = () => {
             </div>
         </div>
     );
-}
+};

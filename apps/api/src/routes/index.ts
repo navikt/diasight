@@ -10,3 +10,4 @@ export * from "./diagnostic-report";
 export * from "./service-request";
 export * from "./medication";
 export * from "./medication-request";
+export * from "./base";

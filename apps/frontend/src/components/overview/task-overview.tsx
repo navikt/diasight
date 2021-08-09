@@ -3,11 +3,11 @@ import React from "react";
 import { FC } from "react";
 import { Link } from "wouter";
 import { TaskCard } from "./task-card";
-import style from "./task-overview.module.less"
+import style from "./task-overview.module.less";
 
 interface IProps {
-    tasks: ITask[],
-    practitionerId: string,
+    tasks: ITask[];
+    practitionerId: string;
 }
 
 export const TaskOverview: FC<IProps> = ({ tasks, practitionerId }) => {
@@ -15,12 +15,9 @@ export const TaskOverview: FC<IProps> = ({ tasks, practitionerId }) => {
         <div className={style.wrapper}>
             {tasks?.map((task, index) => {
                 return task.id ? (
-                    <TaskCard
-                        key={index}
-                        taskId={task.id}
-                        ownerId={practitionerId} />
+                    <TaskCard key={index} taskId={task.id} ownerId={practitionerId} />
                 ) : null;
             })}
         </div>
-    )
-}
+    );
+};

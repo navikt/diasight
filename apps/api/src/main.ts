@@ -2,6 +2,7 @@ import * as express from "express";
 import * as session from "express-session";
 import {
     appointmentRouter,
+    baseRouter,
     compositionRouter,
     conditionRouter,
     diagnosticReportRouter,
@@ -30,6 +31,7 @@ app.use(
     })
 );
 configureAuth(app);
+app.use("/api", baseRouter);
 app.use("/api/Patient", patientRouter);
 app.use("/api/Composition", compositionRouter);
 app.use("/api/Questionnaire", questionnaireRouter);

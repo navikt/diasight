@@ -31,7 +31,7 @@ const observationToSummaryEntry = (observation: IObservation): SummaryEntry => {
     //const actor = observation.performer?.find((performer) => performer)?.display || "Ukjent";
 
     return {
-        title: "observasjon",
+        title: "Ny observasjon",
         subject: "",
         descriptors: [note],
     };
@@ -41,7 +41,7 @@ const questionnaireResponseToSummaryEntry = (
     questionnaireResponse: IQuestionnaireResponse
 ): SummaryEntry => {
     const summaryEntry: SummaryEntry = {
-        title: questionnaireResponse.subject?.display || "skjema",
+        title: questionnaireResponse.subject?.display || "Nytt skjema",
         subject: "",
         descriptors: [],
     };

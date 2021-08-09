@@ -1,8 +1,4 @@
-import {
-    IComposition,
-    ICondition,
-    IResourceList,
-} from "@ahryman40k/ts-fhir-types/lib/R4";
+import { IComposition, ICondition, IResourceList } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React, { createContext, FC, useState } from "react";
 
 export type EntrySelection = {
@@ -15,7 +11,10 @@ type SelectionContextState = {
     selections: EntrySelection[];
     toggleCondition: (condition: ICondition, composition: IComposition) => void;
     toggleEntry: (entry: IResourceList, condition: ICondition, composition: IComposition) => void;
-    findSelection: (condition: ICondition, composition: IComposition) => IResourceList[] | undefined;
+    findSelection: (
+        condition: ICondition,
+        composition: IComposition
+    ) => IResourceList[] | undefined;
 };
 
 const contextDefaultValues: SelectionContextState = {
@@ -81,10 +80,11 @@ const SelectionProvider: FC = ({ children }) => {
         );
 
         return selection?.resources;
-    }
+    };
 
     return (
-        <SelectionContext.Provider value={{ selections, toggleCondition, toggleEntry, findSelection }}>
+        <SelectionContext.Provider
+            value={{ selections, toggleCondition, toggleEntry, findSelection }}>
             {children}
         </SelectionContext.Provider>
     );

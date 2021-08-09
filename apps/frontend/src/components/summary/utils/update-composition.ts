@@ -1,15 +1,21 @@
 import {
     BundleTypeKind,
+    Bundle_RequestMethodKind,
     IBundle,
     IComposition,
     ICondition,
+    IReference,
     IResourceList,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { SummaryChange } from "../../../layouts/contexts/summary-context";
 
 export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
     const resources: IResourceList[] = [];
-    summary.map((s) => s.resources.map((r) => resources.push(r)));
+    summary.map((s) =>
+        s.resources.map((r) => {
+            if (!resources.includes(r)) resources.push(r);
+        })
+    );
 
     const compositions: IComposition[] = [];
 
@@ -28,9 +34,6 @@ export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
         }
     }
 
-    console.log(compositions);
-    console.log(resources);
-
     const transactionBundle: IBundle = {
         resourceType: "Bundle",
         id: "bundle-transaction",
@@ -38,7 +41,23 @@ export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
         entry: [],
     };
 
-    return;
+    resources.map((r) => {
+        transactionBundle.entry?.push({
+            fullUrl: r.id,
+            resource: r,
+            request: { method: Bundle_RequestMethodKind._post, url: r.resourceType },
+        });
+    });
+
+    compositions.map((c) => {
+        transactionBundle.entry?.push({
+            fullUrl: c.resourceType + "/" + c.id,
+            resource: c,
+            request: { method: Bundle_RequestMethodKind._put, url: `${c.resourceType}/${c.id}` },
+        });
+    });
+
+    return transactionBundle;
 };
 
 const addResourceToComposition = (
@@ -52,11 +71,9 @@ const addResourceToComposition = (
         const index = composition.section?.indexOf(conditionSection);
 
         resources.map((r) => {
+            const reference: IReference = { reference: r.id };
             if (!conditionSection.entry) conditionSection.entry = [];
-            conditionSection.entry = [
-                ...conditionSection.entry,
-                { reference: r.resourceType + "/" + r.id },
-            ];
+            conditionSection.entry = [...conditionSection.entry, reference];
         });
 
         composition.section[index] = conditionSection;

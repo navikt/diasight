@@ -8,15 +8,15 @@ import { Link } from "wouter";
 import { referenceToUrl } from "./hooks/reference-to-url";
 
 interface IProps {
-    taskId: string,
-    ownerId: string,
+    taskId: string;
+    ownerId: string;
 }
 
 export const TaskCard: FC<IProps> = ({ taskId, ownerId }) => {
     const { card, isLoading, isError } = useTaskCard(taskId, ownerId);
 
-    if (isLoading) return <div>Loading</div>
-    if (isError) return <div>Error</div>
+    if (isLoading) return <div>Loading</div>;
+    if (isError) return <div>Error</div>;
 
     if (card) {
         const resource = bundleToCard(card);
@@ -30,7 +30,7 @@ export const TaskCard: FC<IProps> = ({ taskId, ownerId }) => {
                 </Link>
                 <Undertekst>{resource.details}</Undertekst>
             </div>
-        )
+        );
     }
     return null;
-}
+};

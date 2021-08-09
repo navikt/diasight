@@ -43,10 +43,11 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
                                 setSelected(!selected);
                             }}></div>
                     </td>
-                    <td className={style.resourceLink}
+                    <td
+                        className={style.resourceLink}
                         onClick={() => {
-                            setExpanded(!expanded)
-                            console.log(expanded)
+                            setExpanded(!expanded);
+                            console.log(expanded);
                         }}>
                         <Normaltekst>{resource.text}</Normaltekst>
                     </td>
@@ -57,21 +58,21 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
                         <Normaltekst>{resource.author}</Normaltekst>
                     </td>
                 </tr>
-                {
-                    expanded ? (
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <div className={style.resourceDetailWrapper}>
-                                    {resource.details.map((detail) => <Normaltekst>{detail}</Normaltekst>)}
-                                </div>
-                            </td>
-                        </tr>
-                    ) : (
-                        <div></div>
-                    )
-                }
+                {expanded ? (
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div className={style.resourceDetailWrapper}>
+                                {resource.details.map((detail) => (
+                                    <Normaltekst>{detail}</Normaltekst>
+                                ))}
+                            </div>
+                        </td>
+                    </tr>
+                ) : (
+                    <div></div>
+                )}
             </>
         );
     }
