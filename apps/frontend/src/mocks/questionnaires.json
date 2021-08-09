@@ -103,5 +103,86 @@
                 "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
             }
         ]
+    },
+    {
+        "resourceType": "Questionnaire",
+        "id": "20",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2021-08-09T07:56:19.136+00:00"
+        },
+        "language": "no",
+        "version": "1.0.0",
+        "name": "sykemelding",
+        "title": "Sykemelding",
+        "status": "active",
+        "subjectType": ["Patient"],
+        "publisher": "NAV",
+        "description": "Dette er et skjema for sykemelding",
+        "item": [
+            {
+                "linkId": "1",
+                "text": "Gjeldende hendelser",
+                "type": "reference",
+                "repeats": true
+            },
+            {
+                "linkId": "2",
+                "text": "Behov for dialogmøte?",
+                "type": "boolean"
+            },
+            {
+                "linkId": "3",
+                "text": "Pasienten sykemeldes",
+                "type": "choice",
+                "answerOption": [
+                    {
+                        "valueString": "10%"
+                    },
+                    {
+                        "valueString": "20%"
+                    },
+                    {
+                        "valueString": "30%"
+                    },
+                    {
+                        "valueString": "40%"
+                    },
+                    {
+                        "valueString": "50%"
+                    },
+                    {
+                        "valueString": "60%"
+                    },
+                    {
+                        "valueString": "70%"
+                    },
+                    {
+                        "valueString": "80%"
+                    },
+                    {
+                        "valueString": "90%"
+                    },
+                    {
+                        "valueString": "100%"
+                    }
+                ]
+            },
+            {
+                "linkId": "4",
+                "text": "Fra",
+                "type": "date"
+            },
+            {
+                "linkId": "5",
+                "text": "Til",
+                "type": "date"
+            },
+            {
+                "linkId": "6",
+                "text": "Kommentarer",
+                "type": "text"
+            }
+        ]
     }
 ]
