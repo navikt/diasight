@@ -19,7 +19,8 @@
         },
         "performer": [
             {
-                "reference": "Practitioner/3"
+                "reference": "Practitioner/3",
+                "display": "Atle Antonsen"
             }
         ],
         "occurrenceDateTime": "2021-07-21",

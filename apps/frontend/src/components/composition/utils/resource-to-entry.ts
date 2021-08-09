@@ -8,6 +8,7 @@ import {
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { filterHumanNameOnUse, humanNameToString } from "../../../utils";
 import { IEntryWithAuthor } from "../hooks/use-patient-entry";
+import { medicationRequestToDetails } from "./medication-request-to-details";
 
 interface IEntryLine {
     date: string;
@@ -15,6 +16,7 @@ interface IEntryLine {
     type: string;
     author: string;
     department: string;
+    details: string[];
 }
 
 // Add DiagnosticReport, QuestionnaireResponse and Appointment in the future.
@@ -37,6 +39,7 @@ export const bundleToEntry = (bundle: IEntryWithAuthor): IEntryLine => {
                 type: "Ukjent",
                 author: "Ukjent",
                 department: "Ukjent",
+                details: ["Ukjent"],
             };
     }
 };
@@ -48,10 +51,11 @@ const observationToEntry = (entry: [IObservation, IPractitioner]): IEntryLine =>
         : null;
     return {
         date: observation.issued?.slice(0, 10),
-        text: "Notat", //observation.code.text,
+        text: observation.code.text, //"Notat"
         type: "Observasjon",
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
+        details: ["Notat: " + (observation?.note ?? [])[0]?.text ?? ""],
     } as IEntryLine;
 };
 
@@ -67,6 +71,7 @@ const serviceRequestToEntry = (entry: [IServiceRequest, IPractitioner]): IEntryL
         type: "Henvisning",
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
+        details: ["Henvisning til " + (serviceRequest?.performer ?? [])[0]?.display ?? "Ukjent"],
     } as IEntryLine;
 };
 
@@ -82,6 +87,7 @@ const medicationRequestToEntry = (entry: [IMedicationRequest, IPractitioner]): I
         type: "Resept",
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
+        details: medicationRequestToDetails(medicationRequest),
     } as IEntryLine;
 };
 

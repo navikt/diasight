@@ -22,7 +22,7 @@
                         "value": 4,
                         "unit": "piller"
                     },
-                    "denonimator": {
+                    "denominator": {
                         "value": 1,
                         "unit": "dag"
                     }

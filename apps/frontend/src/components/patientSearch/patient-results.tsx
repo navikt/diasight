@@ -15,7 +15,7 @@ export const PatientResults: FC<IProps> = ({ searchValue }) => {
     const { patientResults, isLoading, isError } = usePatientResults(searchValue);
 
     if (isLoading) return <NavFrontendSpinner />;
-    if (isError) return <AlertStripeFeil>{JSON.stringify(isError)}</AlertStripeFeil>;
+    if (isError) return <AlertStripeFeil>Ingen resultater. Prøv å søke enten på fornavn eller etternavn, eller enten fødselsnummer eller personnummer.</AlertStripeFeil>;
 
     if (patientResults) {
         return <>

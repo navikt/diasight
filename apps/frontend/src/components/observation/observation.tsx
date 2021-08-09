@@ -99,9 +99,7 @@ export const Observation: FC = () => {
                                 </Undertekst>
                                 <Delete
                                     className={style.delete}
-                                    onClick={() =>
-                                        removeResource(c.composition, c.condition, observation)
-                                    }
+                                    onClick={() => removeResource(c.composition, c.condition, observation)}
                                 />
                                 {
                                     <div className={style.inputField}>

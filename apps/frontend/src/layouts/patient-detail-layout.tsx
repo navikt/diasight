@@ -61,10 +61,11 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                                     <CompositionList patientRef={id} />
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </SummaryProvider>
-            </SelectionProvider>
+                        </div >
+                    )
+                    }
+                </SummaryProvider >
+            </SelectionProvider >
         );
     }
 

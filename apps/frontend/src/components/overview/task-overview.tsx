@@ -1,27 +1,22 @@
+import { ITask } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React from "react";
 import { FC } from "react";
-import { useTask } from "./hooks/use-task";
 import { TaskCard } from "./task-card";
 import style from "./task-overview.module.less"
 
 interface IProps {
+    tasks: ITask[],
     practitionerId: string,
-    type: string;
 }
 
-export const TaskOverview: FC<IProps> = ({ practitionerId, type }) => {
-    const { tasks, isLoading, isError } = useTask(practitionerId, type);
-
-    if (isLoading) return <div>Loading</div>
-    if (isError) return <div>Error</div>
-
+export const TaskOverview: FC<IProps> = ({ tasks, practitionerId }) => {
     return (
         <div className={style.wrapper}>
             {tasks?.map((task, index) => {
-                return task.resource?.id ? (
+                return task.id ? (
                     <TaskCard
                         key={index}
-                        taskId={task.resource?.id}
+                        taskId={task.id}
                         ownerId={practitionerId} />
                 ) : null;
             })}
