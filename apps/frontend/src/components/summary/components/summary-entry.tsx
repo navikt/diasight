@@ -19,15 +19,17 @@ export const SummaryEntry: FC<IProps> = ({ resources }) => {
     return (
         <div className={style.summaryEntryWrapper}>
             <div className={style.resourceList}>
-                {resources.map((resource) => {
+                {resources.map((resource, i) => {
                     const entry = resourceToSummaryEntry(resource);
                     return (
-                        <div className={style.summaryEntry}>
-                            <Undertittel>Ny {entry.title}</Undertittel>
-                            <div className={style.summaryDescription}>
-                                {entry.subject !== "" ? <Element>{entry.subject}</Element> : null}
-                                {entry.descriptors.map((d) => {
-                                    return <Normaltekst>{d}</Normaltekst>;
+                        <div className={style.summaryEntry} key={i}>
+                            <Undertittel key={i}>{entry.title}</Undertittel>
+                            <div key={"div" + i} className={style.summaryDescription}>
+                                {entry.subject !== "" ? (
+                                    <Element key={i}>{entry.subject}</Element>
+                                ) : null}
+                                {entry.descriptors.map((d, j) => {
+                                    return <Normaltekst key={j}>{d}</Normaltekst>;
                                 })}
                             </div>
                         </div>

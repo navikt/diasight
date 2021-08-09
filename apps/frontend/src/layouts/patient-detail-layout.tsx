@@ -49,7 +49,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                                         telecom={patient.telecom}
                                     />
                                 </div>
-                                <Questionnaire id={16} patient={patient} />
+                                <Questionnaire id={10} patient={patient} />
                                 <Observation />
                             </div>
                             <div className={style.column}>

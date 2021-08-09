@@ -17,7 +17,7 @@ questionnaireResponseRouter.get("/", async (req, res) => {
 questionnaireResponseRouter.get("/:id", async (req, res) => {
     const { id } = req.params;
     await fhirClient
-        .get("/QuestionnaireResponse/" + id)
+        .get("/QuestionnaireResponse?_include=QuestionnaireResponse:author&_id=" + id)
         .then((response) => {
             res.send(JSON.stringify(response.data));
         })

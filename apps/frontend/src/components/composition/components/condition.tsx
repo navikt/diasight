@@ -37,7 +37,7 @@ export const Condition: FC<IProps> = ({ title, composition, focus, entries }) =>
     };
 
     if (isLoading) return <div>Loading</div>;
-    if (isError) return <div>Error</div>
+    if (isError) return <div>Error</div>;
 
     if (condition) {
         return (
