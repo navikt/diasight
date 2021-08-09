@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useContext, useEffect } from "react";
 import { Element, Normaltekst, Undertekst, UndertekstBold } from "nav-frontend-typografi";
 import { SelectionContext } from "../../../layouts/contexts/selection-context";
@@ -37,7 +38,9 @@ export const Entry: FC<IProps> = ({ onChange, values, required = false }) => {
                                     <Normaltekst key={i}>{s.condition.code?.text}</Normaltekst>
                                     {s.resources.map((e, j) => {
                                         return (
-                                            <Undertekst key={j}>{e.resourceType || ""}</Undertekst>
+                                            <Undertekst key={j}>
+                                                {e.resourceType || "Sykemelding"}
+                                            </Undertekst>
                                         );
                                     })}
                                 </div>

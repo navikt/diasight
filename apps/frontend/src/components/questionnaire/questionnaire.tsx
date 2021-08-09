@@ -24,8 +24,9 @@ interface IProps {
 
 const initialQuestionnaireResponse: IQuestionnaireResponse = {
     resourceType: "QuestionnaireResponse",
-    id: v4(),
+    id: "urn:uuid:" + v4(),
     authored: new Date().toISOString(),
+    author: { reference: "Practitioner/2" },
     item: [],
 };
 
@@ -74,14 +75,11 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
         const invalidItems = getInvalidQuestionnaireResponseItems(answers, questionnaire);
 
         if (invalidItems.length > 0) {
-            console.log(invalidItems);
-            console.log(answers);
             setError(true);
             return;
         } else {
             setError(false);
             setHasChanged(false);
-            console.log(answers);
             selections.map(({ composition, condition }) => {
                 if (findResourceByType(composition, condition, "QuestionnaireResponse")) {
                     updateResource(composition, condition, answers);
