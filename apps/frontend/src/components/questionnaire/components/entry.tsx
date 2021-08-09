@@ -38,9 +38,7 @@ export const Entry: FC<IProps> = ({ onChange, values, required = false }) => {
                                     <Normaltekst key={i}>{s.condition.code?.text}</Normaltekst>
                                     {s.resources.map((e, j) => {
                                         return (
-                                            <Undertekst key={j}>
-                                                {e.resourceType || "Sykemelding"}
-                                            </Undertekst>
+                                            <Undertekst key={j}>{e.resourceType || ""}</Undertekst>
                                         );
                                     })}
                                 </div>
