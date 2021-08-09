@@ -16,6 +16,7 @@ interface ICard {
     title: string;
     subject: string;
     details: string;
+    link: string;
 }
 
 export const bundleToCard = (bundle: ICardWithOwner): ICard => {
@@ -50,6 +51,7 @@ export const bundleToCard = (bundle: ICardWithOwner): ICard => {
                 title: "Ukjent",
                 subject: "Ukjent",
                 details: "Ukjent",
+                link: "Ukjent",
             };
     }
 };
@@ -66,6 +68,7 @@ const hospitalTaskToEntry = (
         title: task.description ? task.description : "Ukjent",
         subject: patient.name ? humanNameToString(patient.name[0]) : "Ukjent",
         details: practitioner.name ? humanNameToString(practitioner.name[0]) : "Ukjent",
+        link: task.for?.reference ? task.for?.reference : "Ukjent",
     };
 };
 
@@ -81,5 +84,6 @@ const navTaskToEntry = (
         title: task.description ? task.description : "Ukjent",
         subject: patient.name ? humanNameToString(patient.name[0]) : "Ukjent",
         details: (condition?.code?.coding ?? [])[0]?.display ?? "Ukjent",
+        link: task.for?.reference ? task.for?.reference : "Ukjent",
     };
 };
