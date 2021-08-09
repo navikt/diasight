@@ -84,6 +84,7 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
                 if (findResourceByType(composition, condition, "QuestionnaireResponse")) {
                     updateResource(composition, condition, answers);
                 } else {
+                    answers.subject = { display: questionnaire.title || "" };
                     addResource(composition, condition, answers);
                 }
             });

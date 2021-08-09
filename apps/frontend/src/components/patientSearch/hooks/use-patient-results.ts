@@ -6,8 +6,6 @@ import { findQueryString } from "../utils/patient-search-keyword";
 export const usePatientResults = (searchValue: string) => {
     const queryString = findQueryString(searchValue);
 
-    console.log(queryString);
-
     const { data, error } = useSWR<IBundle_Entry[]>(`api/Patient${queryString}`, fetcher);
 
     return {

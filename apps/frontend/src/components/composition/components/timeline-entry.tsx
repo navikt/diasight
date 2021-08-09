@@ -47,7 +47,6 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
                         className={style.resourceLink}
                         onClick={() => {
                             setExpanded(!expanded);
-                            console.log(expanded);
                         }}>
                         <Normaltekst>{resource.text}</Normaltekst>
                     </td>
