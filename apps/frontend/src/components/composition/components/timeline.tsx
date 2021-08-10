@@ -60,30 +60,29 @@ export const Timeline: FC<IProps> = ({ entries, composition, condition, isActive
                     </tr>
                     {additions
                         ? additions.map((resource, index) => {
-                            return resource ? (
-                                <TimelineAddition
-                                    key={index}
-                                    resource={resource as IObservation}
-                                    condition={condition}
-                                    composition={composition}
-                                    visible={isActive}
-                                />
-                            ) : null;
-                        })
+                              return resource ? (
+                                  <TimelineAddition
+                                      key={index}
+                                      resource={resource as IObservation}
+                                      condition={condition}
+                                      composition={composition}
+                                      visible={isActive}
+                                  />
+                              ) : null;
+                          })
                         : null}
                     {entries
                         ? entries.map((ref, index) => {
-                            console.log(ref)
-                            return ref ? (
-                                <TimelineEntry
-                                    key={index}
-                                    reference={ref}
-                                    composition={composition}
-                                    condition={condition}
-                                    visible={isActive}
-                                />
-                            ) : null;
-                        })
+                              return ref ? (
+                                  <TimelineEntry
+                                      key={index}
+                                      reference={ref}
+                                      composition={composition}
+                                      condition={condition}
+                                      visible={isActive}
+                                  />
+                              ) : null;
+                          })
                         : null}
                 </tbody>
             </table>

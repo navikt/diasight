@@ -72,7 +72,5 @@ const answerToString = (answer: IQuestionnaireResponse_Answer) => {
     text += answer.valueReference?.display || "";
     text += answer.valueString || "";
 
-    console.log(answer);
-
     return text;
 };
