@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 import { Element, Undertekst } from "nav-frontend-typografi"
 import style from "./schedule-list.module.less"
+import { Link } from "wouter"
 
 export const ScheduleList: FC = () => {
     // For now, all of the appointments are hardcoded
@@ -35,7 +36,11 @@ export const ScheduleList: FC = () => {
             <div className={style.timeBlock}>
                 <Undertekst className={style.timeHour}>12:15</Undertekst>
                 <div className={style.patient}>
-                    <Element className={style.patientName}>Ola Normann</Element>
+                    <Link href={"/pasient/1"}>
+                        <Element className={style.patientName}>
+                            <span style={{ cursor: "pointer" }}>Ola Normann</span>
+                        </Element>
+                    </Link>
                     <Undertekst className={style.patientAge}>72 år</Undertekst>
                 </div>
             </div>

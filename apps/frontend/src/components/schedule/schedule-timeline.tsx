@@ -1,5 +1,6 @@
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
+import { Link } from "wouter";
 import style from "./schedule-timeline.module.less"
 
 export const ScheduleTimeline: FC = () => {
@@ -26,7 +27,11 @@ export const ScheduleTimeline: FC = () => {
                     <Normaltekst className={style.patientAge}>48 år</Normaltekst>
                 </div>
                 <div className={style.timelineEntry}>
-                    <Undertittel className={style.patientName}>Ola Normann</Undertittel>
+                    <Link href={"/pasient/1"}>
+                        <Undertittel className={style.patientName}>
+                            <span style={{ cursor: "pointer" }}>Ola Normann</span>
+                        </Undertittel>
+                    </Link>
                     <Undertittel className={style.patientAppointment}>12:15</Undertittel>
                     <Normaltekst className={style.patientAge}>72 år</Normaltekst>
                 </div>
