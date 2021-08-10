@@ -3,6 +3,11 @@ import React, { FC } from "react";
 import style from "./schedule-timeline.module.less"
 
 export const ScheduleTimeline: FC = () => {
+    // For now, all of the appointments are hardcoded
+    // The developers and designers should communicate here
+    // Find out how many pixels each appointment should be
+    // And calculate where the current time marker should be 
+
     return (
         <div className={style.wrapper}>
             <div className={style.currentTimeWrapper}>

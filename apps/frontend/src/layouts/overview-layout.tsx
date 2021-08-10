@@ -6,14 +6,20 @@ import { useTask } from "./hooks/use-task";
 import style from "./overview-layout.module.less";
 
 export const OverviewLayout: FC = () => {
+    // Temporary constant for the id of the practitioner that is currently logged in
     const practitionerId = "2";
 
+    // This hook fetches all of the tasks that belong to this practitioner
     const { tasks, isLoading, isError } = useTask(practitionerId);
 
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;
     if (!tasks) return <div>No data</div>;
 
+    // Tasks are separated into the "hopsital" and "nav" categories
+    // They are used to generate TaskOverview and later TaskCard
+    // They were supposed to generate the "daily message" dynamically
+    // However, each unique task "description" must be counted first
     const hospitalTasks = tasks
         ? tasks.filter((task) => task?.focus?.type === "DiagnosticReport")
         : tasks;
@@ -25,34 +31,33 @@ export const OverviewLayout: FC = () => {
     return (
         <div className={style.overviewWrapper}>
             <div className={style.dailyMessage}>
+                {/* Should probably ble refactored into task-overview.tsx */}
+                {/* Has not happened yet because of css layout problems */}
                 <Sidetittel>
-                    Geir Nystøl, i dag har du{" "}
-                    <span className={style.dynamicField}>4 pasienter</span>.
-                    <br />
-                    <br />
-                    Du har mottat <span className={style.dynamicField}>1 svar på blodprøve </span>
-                    og <span className={style.dynamicField}>1 svar på henvisning</span> fra
-                    sykehuset.
-                    <br />
-                    <br />
-                    Du må skrive{" "}
-                    <span className={style.dynamicField}>1 utfyllende sykemelding </span>
-                    og{" "}
-                    <span className={style.dynamicField}>
-                        1 utfyllende arbeidsavklaringsskjema
-                    </span>{" "}
-                    til NAV.
+                    {/* Number of patients is hardcoded for now */}
+                    Geir Nystøl, i dag har du <span className={style.dynamicField}>4 pasienter</span>.<br /><br />
+
+                    {/* Hospital task descriptions are hardcoded for now */}
+                    Du har mottat <span className={style.dynamicField}>1 svar på blodprøve </span> og{" "}
+                    <span className={style.dynamicField}>1 svar på henvisning</span> fra sykehuset.<br /><br />
+
+                    {/* NAV task descriptions are hardcoded for now */}
+                    Du må skrive <span className={style.dynamicField}>1 utfyllende sykemelding </span> og{" "}
+                    <span className={style.dynamicField}>1 utfyllende arbeidsavklaringsskjema</span> til NAV.
                 </Sidetittel>
             </div>
             <div className={style.notifications}>
                 <Element>Fra sykehus</Element>
+                {/* TaskOverview can be found in the overview components folder */}
                 <TaskOverview tasks={hospitalTasks} practitionerId={practitionerId} />
             </div>
             <div className={style.calendar}>
+                {/* ScheduleList can be found in the schedule components folder */}
                 <ScheduleList />
             </div>
             <div className={style.notifications}>
                 <Element>Fra NAV</Element>
+                {/* TaskOverview can be found in the overview components folder */}
                 <TaskOverview tasks={navTasks} practitionerId={practitionerId} />
             </div>
         </div>

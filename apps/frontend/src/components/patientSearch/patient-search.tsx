@@ -17,6 +17,12 @@ export const PatientSearch: FC = () => {
         setSearchValue(data.searchKeyword)
     }
 
+    // The practitioner can look up patients using either...
+    //      The given name of the patient OR
+    //      The family name of the patient OR
+    //      The complete person number of the patient OR
+    //      The birthdate of the patient (in any order and separated by .-/)
+
     return <div className={style.wrapper}>
         <div className={style.searchWrapper}>
             <form className={style.searchForm} autoComplete="off" onSubmit={handleSubmit(search)}>

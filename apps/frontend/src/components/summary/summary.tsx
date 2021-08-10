@@ -15,6 +15,8 @@ export const Summary: FC = () => {
         });
     });
 
+    console.log(changes)
+
     return (
         <div className={style.summaryWrapper}>
             <Element>Oppsummering</Element>

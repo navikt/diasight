@@ -11,6 +11,8 @@ import {
 import { fetcher } from "../../../utils";
 import useSWR from "swr";
 
+// Although "hosptial" and "nav" tasks reference many of the same
+// resource types, they tend to come in completely different orders
 export type ICardWithOwner = [
     ITask,
     IPatient | IPractitioner,
