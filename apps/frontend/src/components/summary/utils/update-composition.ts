@@ -8,29 +8,35 @@ import {
     IResourceList,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { SummaryChange } from "../../../layouts/contexts/summary-context";
+import clonedeep from "lodash.clonedeep";
 
 export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
+    const compositions: IComposition[] = [];
     const resources: IResourceList[] = [];
-    summary.map((s) =>
+
+    const sum: SummaryChange[] = clonedeep(summary);
+
+    sum.map((s) =>
         s.resources.map((r) => {
             if (!resources.includes(r)) resources.push(r);
         })
     );
 
-    const compositions: IComposition[] = [];
-
-    for (const s of summary) {
+    for (const s of sum) {
         const index = compositions.indexOf(s.composition);
-        const updatedComposition = addResourceToComposition(
+
+        const updatedComposition = addResourcesToComposition(
             s.composition,
             s.condition,
             s.resources
         );
 
+        console.log(index);
+
         if (index !== -1) {
-            compositions[index] = updatedComposition;
+            compositions[index] = { ...updatedComposition };
         } else {
-            compositions.push(updatedComposition);
+            compositions.push({ ...updatedComposition });
         }
     }
 
@@ -60,7 +66,7 @@ export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
     return transactionBundle;
 };
 
-const addResourceToComposition = (
+const addResourcesToComposition = (
     composition: IComposition,
     condition: ICondition,
     resources: IResourceList[]
@@ -68,7 +74,9 @@ const addResourceToComposition = (
     const conditionSection = findCompositionSection(composition, condition);
 
     if (conditionSection && composition.section) {
-        const index = composition.section?.indexOf(conditionSection);
+        const index = composition.section.indexOf(conditionSection);
+
+        console.log(index);
 
         resources.map((r) => {
             const reference: IReference = { reference: r.id };
@@ -76,7 +84,7 @@ const addResourceToComposition = (
             conditionSection.entry = [...conditionSection.entry, reference];
         });
 
-        composition.section[index] = conditionSection;
+        composition.section[index] = { ...conditionSection };
     }
 
     return composition;
