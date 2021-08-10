@@ -1,5 +1,5 @@
 .wrapper {
-    background-color: #efefef;
+    background-color: #00459c;
     display: grid;
     grid-template-rows: 10% auto auto auto;
     grid-template-columns: 100%;
@@ -10,8 +10,8 @@
     top: 0;
 }
 
-.wrapper div {
-    margin-left: 3ch;
+.wrapper > div {
+    margin-left: 2ch;
 }
 
 .wrapper > img {
@@ -19,33 +19,57 @@
 }
 
 .identifier {
-    text-transform: uppercase;
+    color: #ffffff;
+    margin-left: 3ch !important;
+}
+
+.identifier > img {
+    margin-bottom: 2ch;
+}
+
+.identifier > p {
+    color: #99c3ff;
 }
 
 .options {
     margin: auto 0;
 }
 
-.options > .active {
-    color: #0067c5;
+.options > div {
+    display: flex;
+    flex-direction: row;
+    padding: 2ch;
+    color: #99c3ff;
 }
 
-.options p {
-    text-decoration: underline;
+.options > div > svg {
+    vertical-align: middle;
+    margin: auto 1ch auto 0;
+    font-size: 24px;
+}
+
+.options > div:not(:last-child) {
+    margin-bottom: 4ch;
+}
+
+.options > .active {
+    background-color: #ffffff;
+    color: #00459c;
+    border-radius: 4ch 0 0 4ch;
 }
 
 .options p:hover {
-    text-decoration: none;
     cursor: pointer;
 }
 
-.options p + p {
-    margin-top: 2ch;
-}
-
 .session {
-    margin: auto 3ch 3ch 0;
+    margin: auto 3ch 3ch 3ch !important;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: #99c3ff;
+}
+
+.session > svg {
+    color: #ffffff;
 }

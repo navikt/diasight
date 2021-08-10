@@ -31,6 +31,7 @@ export const SummarySubmitButton: FC = () => {
             })
             .catch((error) => {
                 setSubmitState(SubmitState.error);
+                console.log(error);
                 return error;
             });
     };
