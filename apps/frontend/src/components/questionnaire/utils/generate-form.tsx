@@ -58,7 +58,7 @@ export const generateFHIRForm = (
                 <div className={style.dateInput} key={question.linkId}>
                     <Element>{`${question.text}${question.required ? "*" : ""}`}</Element>
                     <Datepicker
-                        value={v?.valueDate || ""}
+                        value={v?.valueDate || "DD-MM-ÅÅÅÅ"}
                         onChange={(value) => setValue([{ valueDate: value }])}
                         inputProps={{
                             "aria-invalid":

@@ -4,7 +4,13 @@ import {
     IQuestionnaireResponse_Answer,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { Close } from "@navikt/ds-icons/cjs";
-import { Normaltekst, Systemtittel, Undertekst, Undertittel } from "nav-frontend-typografi";
+import {
+    Element,
+    Normaltekst,
+    Systemtittel,
+    Undertekst,
+    Undertittel,
+} from "nav-frontend-typografi";
 import { Knapp } from "nav-frontend-knapper";
 import React, { FormEvent, useContext, useState } from "react";
 import { FC } from "react";
@@ -98,14 +104,19 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
         return (
             <div className={style.wrapper}>
                 <div className={style.header}>
-                    <Undertittel>{questionnaire.title}</Undertittel>
+                    <Element>{questionnaire.title}</Element>
                     <Close />
                 </div>
                 <form onSubmit={(e) => saveForm(e)}>
-                    <Systemtittel>{questionnaire.title}</Systemtittel>
-                    <Normaltekst>Dato {answers.authored?.slice(0, 10)}</Normaltekst>
+                    <div className={style.formHeader}>
+                        <Systemtittel>{questionnaire.title}</Systemtittel>
+                        <Normaltekst>
+                            Dato <span>{answers.authored?.slice(0, 10)}</span>
+                        </Normaltekst>
+                    </div>
                     <Normaltekst>
-                        {questionnaire.title} gjelder for Ola Normann født {patient.birthDate}.
+                        {questionnaire.title} gjelder for <span>Ola Normann</span> født{" "}
+                        <span>{patient.birthDate}</span>.
                     </Normaltekst>
                     {questionnaire.item?.map((question) => {
                         if (!question.linkId) return null;

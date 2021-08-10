@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import style from "../composition.module.less";
 import { v4 } from "uuid";
-import { Normaltekst } from "nav-frontend-typografi";
+import { Normaltekst, Undertekst } from "nav-frontend-typografi";
 import { bundleToEntry } from "../utils/resource-to-entry";
 import {
     HumanNameUseKind,
@@ -11,6 +11,7 @@ import {
     IReference,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { SelectionContext } from "../../../layouts/contexts/selection-context";
+import { EditFilled } from "@navikt/ds-icons/cjs";
 
 interface IProps {
     resource: IObservation;
@@ -49,24 +50,28 @@ export const TimelineAddition: FC<IProps> = ({ resource, condition, composition,
         return (
             <tr>
                 <td>
-                    <Normaltekst>{entry.date}</Normaltekst>
+                    <Undertekst>{entry.date.slice(0, 10)}</Undertekst>
                 </td>
                 <td>
                     <div
-                        className={`${style.timestamp} ${selected ? style.selected : ""}`}
+                        className={`${style.timestamp} ${style.timestampAddition} ${
+                            selected ? style.selected : ""
+                        }`}
                         onClick={() => {
                             toggleEntry(resource, condition, composition);
                             setSelected(!selected);
-                        }}></div>
+                        }}>
+                        <EditFilled />
+                    </div>
                 </td>
                 <td>
                     <Normaltekst>{entry.text}</Normaltekst>
                 </td>
                 <td>
-                    <Normaltekst>{entry.type}</Normaltekst>
+                    <Undertekst>{entry.type}</Undertekst>
                 </td>
                 <td>
-                    <Normaltekst>{entry.author}</Normaltekst>
+                    <Undertekst>{entry.author}</Undertekst>
                 </td>
             </tr>
         );

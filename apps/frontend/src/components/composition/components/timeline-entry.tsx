@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import { usePatientEntry } from "../hooks/use-patient-entry";
 import style from "../composition.module.less";
-import { Normaltekst } from "nav-frontend-typografi";
+import { Normaltekst, Undertekst } from "nav-frontend-typografi";
 import { bundleToEntry } from "../utils/resource-to-entry";
 import { IComposition, ICondition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { SelectionContext } from "../../../layouts/contexts/selection-context";
@@ -33,7 +33,7 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
             <>
                 <tr>
                     <td>
-                        <Normaltekst>{resource.date}</Normaltekst>
+                        <Undertekst>{resource.date.slice(0, 10)}</Undertekst>
                     </td>
                     <td>
                         <div
@@ -51,10 +51,10 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
                         <Normaltekst>{resource.text}</Normaltekst>
                     </td>
                     <td>
-                        <Normaltekst>{resource.type}</Normaltekst>
+                        <Undertekst>{resource.type}</Undertekst>
                     </td>
                     <td>
-                        <Normaltekst>{resource.author}</Normaltekst>
+                        <Undertekst>{resource.author}</Undertekst>
                     </td>
                 </tr>
                 {expanded ? (
