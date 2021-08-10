@@ -80,10 +80,7 @@
                         "main": "apps/frontend/src/main.tsx",
                         "polyfills": "apps/frontend/src/polyfills.ts",
                         "tsConfig": "apps/frontend/tsconfig.app.json",
-                        "assets": [
-                            "apps/frontend/src/favicon.ico",
-                            "apps/frontend/src/assets"
-                        ],
+                        "assets": ["apps/frontend/src/favicon.ico", "apps/frontend/src/assets"],
                         "styles": ["apps/frontend/src/styles.less"],
                         "scripts": [],
                         "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -130,9 +127,7 @@
                 "lint": {
                     "executor": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": [
-                            "apps/frontend/**/*.{ts,tsx,js,jsx}"
-                        ]
+                        "lintFilePatterns": ["apps/frontend/**/*.{ts,tsx,js,jsx}"]
                     }
                 },
                 "test": {
@@ -167,6 +162,56 @@
                     "executor": "@nrwl/linter:eslint",
                     "options": {
                         "lintFilePatterns": ["apps/frontend-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "testdata": {
+            "root": "apps/testdata",
+            "sourceRoot": "apps/testdata/src",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/node:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/testdata",
+                        "main": "apps/testdata/src/main.ts",
+                        "tsConfig": "apps/testdata/tsconfig.app.json",
+                        "assets": ["apps/testdata/src/assets"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "inspect": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/testdata/src/environments/environment.ts",
+                                    "with": "apps/testdata/src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/node:execute",
+                    "options": {
+                        "buildTarget": "testdata:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/testdata/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/testdata"],
+                    "options": {
+                        "jestConfig": "apps/testdata/jest.config.js",
+                        "passWithNoTests": true
                     }
                 }
             }

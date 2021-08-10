@@ -1,15 +1,15 @@
 version: "3.7"
 services:
-    web:
-        image: "hapiproject/hapi"
-        ports:
-            - "8888:8080"
-        volumes:
-            - hapi-data:/data/hapi
-    redis:
-        image: redis
-        ports:
-            - "6379:6379"
+  web:
+    image: "hapiproject/hapi"
+    ports:
+      - "8888:8080"
+    volumes:
+      - hapi-data:/data/hapi
+  redis:
+    image: redis
+    ports:
+      - "16379:6379"
 volumes:
-    hapi-data:
-        external: true
+  hapi-data:
+    external: true
