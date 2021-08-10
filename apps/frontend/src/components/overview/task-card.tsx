@@ -22,7 +22,7 @@ export const TaskCard: FC<IProps> = ({ taskId, ownerId }) => {
 
     if (card) {
         // Takes in various resources and returns the relevant data from each
-        const resource = bundleToCard(card);
+        const resource = bundleToCard(card, ownerId);
 
         return (
             <div className={style.card}>
