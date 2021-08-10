@@ -1,8 +1,8 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    background-color: #efefef;
-    border-radius: 3px;
+    background-color: #f1f1f1;
+    border-radius: 2ch;
     margin-top: 3ch;
 }
 
@@ -10,10 +10,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #6a6a6a;
-    padding: 1ch;
-    border-radius: 3px;
-    color: #fefefe;
+    background-color: #0067c5;
+    padding: 2ch;
+    border-radius: 2ch 2ch 0 0;
+    color: #ffffff;
 }
 
 .header > svg {
@@ -22,10 +22,26 @@
 }
 
 form {
-    padding: 3ch;
+    padding: 4ch;
     display: grid;
     grid-template-columns: auto;
     gap: 2ch;
+}
+
+.formHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 3ch;
+}
+
+.formHeader > h2 {
+    color: #0067c5;
+}
+
+form span {
+    color: #0067c5;
+    text-decoration: underline;
 }
 
 .signature {

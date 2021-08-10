@@ -4,7 +4,7 @@ import style from "../composition.module.less";
 import { Expand, Collapse } from "@navikt/ds-icons/cjs";
 import { IComposition, IReference } from "@ahryman40k/ts-fhir-types/lib/R4";
 import { usePatientCondition } from "../hooks/use-patient-condition";
-import { Normaltekst, Element } from "nav-frontend-typografi";
+import { Normaltekst, Element, Undertekst } from "nav-frontend-typografi";
 import { Timeline } from "./timeline";
 import { findICPCCode } from "../utils/find-ICPC";
 import { SelectionContext } from "../../../layouts/contexts/selection-context";
@@ -43,9 +43,9 @@ export const Condition: FC<IProps> = ({ title, composition, focus, entries }) =>
         return (
             <>
                 <div className={`${style.condition} ${expanded ? style.active : ""}`}>
-                    <Normaltekst>
+                    <Undertekst className={style.conditionCode}>
                         {condition.code ? findICPCCode(condition.code)?.code : "????"}
-                    </Normaltekst>
+                    </Undertekst>
                     <Element className={style.name}>{title}</Element>
                     <div className={style.expand} onClick={() => toggle()}>
                         {expanded ? <Expand /> : <Collapse />}
