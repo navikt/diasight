@@ -20,7 +20,9 @@ export const SummarySubmitButton: FC = () => {
 
     const handleSubmit = async () => {
         setSubmitState(SubmitState.loading);
+
         const bundle = summaryToTransactionBundle(changes);
+
         const result = await axios
             .post("/api/", bundle)
             .then((r) => {
@@ -33,12 +35,30 @@ export const SummarySubmitButton: FC = () => {
             });
     };
 
-    return (
-        <div className={style.summarySubmitButton} onClick={() => handleSubmit()}>
-            {submitState === SubmitState.ready ? <Innholdstittel>Lagre</Innholdstittel> : null}
-            {submitState === SubmitState.loading ? <NavFrontendSpinner /> : null}
-            {submitState === SubmitState.error ? <Error /> : null}
-            {submitState === SubmitState.success ? <SuccessStroke /> : null}
-        </div>
-    );
+    switch (submitState) {
+        case SubmitState.loading:
+            return (
+                <div className={`${style.summarySubmitButton} ${style.loading}`}>
+                    <NavFrontendSpinner />
+                </div>
+            );
+        case SubmitState.error:
+            return (
+                <div className={`${style.summarySubmitButton} ${style.error}`}>
+                    <Error />
+                </div>
+            );
+        case SubmitState.success:
+            return (
+                <div className={`${style.summarySubmitButton} ${style.success}`}>
+                    <SuccessStroke />
+                </div>
+            );
+        default:
+            return (
+                <div className={style.summarySubmitButton} onClick={() => handleSubmit()}>
+                    <Innholdstittel>Lagre</Innholdstittel>
+                </div>
+            );
+    }
 };
