@@ -53,15 +53,10 @@ export const OverviewLayout: FC = () => {
                 {/* Has not happened yet because of css layout problems */}
                 <Sidetittel>
                     {/* Number of patients is hardcoded for now */}
-                    Geir Nystøl, i dag har du <span className={style.dynamicField}>4 pasienter</span>.<br /><br />
-
-                    {/* Hospital task descriptions are hardcoded for now */}
-                    Du har mottat <span className={style.dynamicField}>1 svar på blodprøve </span> og{" "}
-                    <span className={style.dynamicField}>1 svar på henvisning</span> fra sykehuset.<br /><br />
-
-                    {/* NAV task descriptions are hardcoded for now */}
-                    Du må skrive <span className={style.dynamicField}>1 utfyllende sykemelding </span> og{" "}
-                    <span className={style.dynamicField}>1 utfyllende arbeidsavklaringsskjema</span> til NAV.
+                    Geir Nystøl, i dag har du <span className={style.dynamicField}>6 pasienter</span>, <br />
+                    du har mottat <span className={style.dynamicField}>3 epikriser</span>,{" "}
+                    <span className={style.dynamicField}>1 labresultat</span>  <br />
+                    og må skrive {" "}<span className={style.dynamicField}>2 erklæringer </span>.
                 </Sidetittel>
             </div>
             <div className={style.notifications}>
