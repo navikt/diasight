@@ -65,8 +65,6 @@ const navTaskToEntry = (entry: IBundle_Entry[]): ICard => {
     const condition = entry.find((e) => e.resource?.resourceType === "Condition")
         ?.resource as ICondition;
 
-    console.log(patient);
-
     return {
         // The date at which the practitioner received the task
         date: task.lastModified ? dateReverser(task.lastModified) : "00.00.0000",

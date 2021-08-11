@@ -16,10 +16,6 @@ export const OverviewLayout: FC = () => {
     if (isError) return <div>Error</div>;
     if (!tasks) return <div>No data</div>;
 
-    // Tasks are separated into the "hopsital" and "nav" categories
-    // They are used to generate TaskOverview and later TaskCard
-    // They were supposed to generate the "daily message" dynamically
-    // However, each unique task "description" must be counted first
     const hospitalTasks = tasks
         ? tasks.filter((task) => task?.focus?.type === "DiagnosticReport")
         : tasks;
@@ -27,6 +23,28 @@ export const OverviewLayout: FC = () => {
     const navTasks = tasks
         ? tasks.filter((task) => task?.requester?.reference === "Organization/12")
         : tasks;
+
+    const hospitalCount = hospitalTasks.reduce((count, task) => {
+        const currentDescription = task.description;
+        if (!currentDescription) {
+            return count
+        }
+        const currentCount = (count as any)[currentDescription] || 0;
+        const newCount = currentCount + 1;
+
+        return { ...count, [currentDescription]: newCount };
+    }, {});
+
+    const navCount = hospitalTasks.reduce((count, task) => {
+        const currentDescription = task.description;
+        if (!currentDescription) {
+            return count
+        }
+        const currentCount = (count as any)[currentDescription] || 0;
+        const newCount = currentCount + 1;
+
+        return { ...count, [currentDescription]: newCount };
+    }, {});
 
     return (
         <div className={style.overviewWrapper}>
