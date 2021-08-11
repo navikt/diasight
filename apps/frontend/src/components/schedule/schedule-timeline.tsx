@@ -12,7 +12,7 @@ export const ScheduleTimeline: FC = () => {
     return (
         <div className={style.wrapper}>
             <div className={style.currentTimeWrapper}>
-                <Normaltekst className={style.currentTimeClock}>12:18</Normaltekst>
+                <div className={style.currentTimeCircle}></div>
                 <div className={style.currentTimeMarker} />
             </div>
             <div className={style.timelineWrapper}>
@@ -41,5 +41,6 @@ export const ScheduleTimeline: FC = () => {
                     <Normaltekst className={style.patientAge}>32 år</Normaltekst>
                 </div>
             </div>
-        </div>)
-}
+        </div>
+    );
+};

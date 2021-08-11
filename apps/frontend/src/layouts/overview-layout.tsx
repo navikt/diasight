@@ -52,16 +52,27 @@ export const OverviewLayout: FC = () => {
                 {/* Should probably ble refactored into task-overview.tsx */}
                 {/* Has not happened yet because of css layout problems */}
                 <Sidetittel>
-                    {/* Number of patients is hardcoded for now */}
-                    Geir Nystøl, i dag har du <span className={style.dynamicField}>6 pasienter</span>, <br />
-                    du har mottat <span className={style.dynamicField}>3 epikriser</span>,{" "}
-                    <span className={style.dynamicField}>1 labresultat</span>  <br />
-                    og må skrive {" "}<span className={style.dynamicField}>2 erklæringer </span>.
+                    Geir Nystøl, i dag har du
+                    <span className={style.dynamicField}> 4 pasienter</span>.
+                </Sidetittel>
+                <Sidetittel>
+                    Du har mottat <span className={style.dynamicField}> 1 svar på blodprøve </span>
+                    og <span className={style.dynamicField}> 1 svar på henvisning</span> fra
+                    sykehuset.
+                </Sidetittel>
+                <Sidetittel>
+                    Du må skrive
+                    <span className={style.dynamicField}> 1 utfyllende sykemelding </span>
+                    og
+                    <span className={style.dynamicField}>
+                        {" "}
+                        1 utfyllende arbeidsavklaringsskjema
+                    </span>
+                    til NAV.
                 </Sidetittel>
             </div>
             <div className={style.notifications}>
-                <Element>Fra sykehus</Element>
-                {/* TaskOverview can be found in the overview components folder */}
+                <Element>Fra sykehus og spesialist</Element>
                 <TaskOverview tasks={hospitalTasks} practitionerId={practitionerId} />
             </div>
             <div className={style.calendar}>
@@ -69,8 +80,7 @@ export const OverviewLayout: FC = () => {
                 <ScheduleList />
             </div>
             <div className={style.notifications}>
-                <Element>Fra NAV</Element>
-                {/* TaskOverview can be found in the overview components folder */}
+                <Element>Fra NAV og annet ikke medisinsk personell</Element>
                 <TaskOverview tasks={navTasks} practitionerId={practitionerId} />
             </div>
         </div>

@@ -23,6 +23,8 @@ export const SummarySubmitButton: FC = () => {
 
         const bundle = summaryToTransactionBundle(changes);
 
+        console.log(bundle);
+
         const result = await axios
             .post("/api/", bundle)
             .then((r) => {
