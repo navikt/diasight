@@ -23,7 +23,8 @@ export const summaryToTransactionBundle = (summary: SummaryChange[]) => {
     );
 
     for (const s of sum) {
-        const index = compositions.indexOf(s.composition);
+        const localComp = compositions.find((c) => c.id === s.composition.id);
+        const index = localComp ? compositions.indexOf(localComp) : -1;
 
         const updatedComposition = addResourcesToComposition(
             s.composition,
@@ -75,8 +76,6 @@ const addResourcesToComposition = (
 
     if (conditionSection && composition.section) {
         const index = composition.section.indexOf(conditionSection);
-
-        console.log(index);
 
         resources.map((r) => {
             const reference: IReference = { reference: r.id };
