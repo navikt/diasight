@@ -52,23 +52,10 @@ export const OverviewLayout: FC = () => {
                 {/* Should probably ble refactored into task-overview.tsx */}
                 {/* Has not happened yet because of css layout problems */}
                 <Sidetittel>
-                    Geir Nystøl, i dag har du
-                    <span className={style.dynamicField}> 4 pasienter</span>.
-                </Sidetittel>
-                <Sidetittel>
-                    Du har mottat <span className={style.dynamicField}> 1 svar på blodprøve </span>
-                    og <span className={style.dynamicField}> 1 svar på henvisning</span> fra
-                    sykehuset.
-                </Sidetittel>
-                <Sidetittel>
-                    Du må skrive
-                    <span className={style.dynamicField}> 1 utfyllende sykemelding </span>
-                    og
-                    <span className={style.dynamicField}>
-                        {" "}
-                        1 utfyllende arbeidsavklaringsskjema
-                    </span>
-                    til NAV.
+                    Geir Nystøl, i dag har du <span className={style.dynamicField}> 6 pasienter</span>, <br />
+                    du har mottat <span className={style.dynamicField}> 3 epikriser </span>,
+                    <span className={style.dynamicField}> 1 labresultat</span> <br />
+                    og må skrive <span className={style.dynamicField}> 2 erklæringer</span>.
                 </Sidetittel>
             </div>
             <div className={style.notifications}>
