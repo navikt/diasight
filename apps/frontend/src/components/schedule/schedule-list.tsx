@@ -1,8 +1,14 @@
-import React, { FC } from "react";
-import { Element, Systemtittel, Undertekst } from "nav-frontend-typografi";
-import style from "./schedule-list.module.less";
+import React, { FC } from "react"
+import { Element, Systemtittel, Undertekst } from "nav-frontend-typografi"
+import style from "./schedule-list.module.less"
+import { Link } from "wouter"
 
 export const ScheduleList: FC = () => {
+    // For now, all of the appointments are hardcoded
+    // The developers and designers should communicate here
+    // Find out how many pixels each appointment should be
+    // And calculate where the current time marker should be 
+
     return (
         <div className={style.wrapper}>
             <Systemtittel>9-13 august</Systemtittel>
@@ -27,8 +33,12 @@ export const ScheduleList: FC = () => {
             <div className={style.timeBlock}>
                 <Undertekst className={style.timeHour}>12:15</Undertekst>
                 <div className={style.patient}>
-                    <Element className={style.patientName}>Ola Normann</Element>
-                    <Undertekst className={style.patientAge}>Mann, 72 år</Undertekst>
+                    <Link href={"/pasient/1"}>
+                        <Element className={style.patientName}>
+                            <span style={{ cursor: "pointer" }}>Ola Normann</span>
+                        </Element>
+                    </Link>
+                    <Undertekst className={style.patientAge}>72 år</Undertekst>
                 </div>
             </div>
             <div className={style.timeBlock}>

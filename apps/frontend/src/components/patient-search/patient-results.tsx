@@ -22,6 +22,10 @@ export const PatientResults: FC<IProps> = ({ searchValue }) => {
             {patientResults.map((patient: IPatient, index: number) => {
                 return (
                     <Link href={"/pasient/" + patient?.id} key={"patient-results-table-row-" + index}>
+                        {/* The format of names etc in FHIR is somewhat cumbersome to use */}
+                        {/* The conversion from IBundle and IBundleEntry to IPatient */}
+                        {/* and the presence of undefined further complicates things */}
+                        {/* The nullish coalescing operator can be useful in these cases */}
                         <div className={style.patientWrapper}>
                             <Undertittel className={style.patientName}>
                                 {(patient?.name ?? [])[0]?.given ?? ""} {(patient?.name ?? [])[0]?.family ?? ""}
@@ -35,5 +39,5 @@ export const PatientResults: FC<IProps> = ({ searchValue }) => {
             })}
         </>;
     }
-    return <Undertittel>Ingen resultater</Undertittel>;
+    return <AlertStripeFeil>Ingen resultater. Prøv å søke enten på fornavn eller etternavn, eller enten fødselsnummer eller personnummer.</AlertStripeFeil>;
 };

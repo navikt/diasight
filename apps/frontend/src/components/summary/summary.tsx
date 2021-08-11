@@ -15,6 +15,8 @@ export const Summary: FC = () => {
         });
     });
 
+    console.log(changes)
+
     return (
         <div className={style.summaryWrapper}>
             <Element>Oppsummering</Element>
@@ -22,9 +24,7 @@ export const Summary: FC = () => {
                 I dagens konsultasjon har du opprettet <span>1 notat</span> og skrevet{" "}
                 <span>1 sykemelding</span>.
             </Sidetittel>
-            {changes.map((c, index) => {
-                return <SummaryEntry key={index} resources={c.resources} />;
-            })}
+            <SummaryEntry resources={uniqueResources} />
             <SummarySubmitButton />
         </div>
     );

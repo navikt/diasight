@@ -608,7 +608,8 @@
                 "intent": "order",
                 "description": "Svar på blodprøve",
                 "focus": {
-                    "reference": "DiagnosticReport/11"
+                    "reference": "DiagnosticReport/11",
+                    "type": "DiagnosticReport"
                 },
                 "for": {
                     "reference": "Patient/1"
@@ -644,7 +645,8 @@
                 "intent": "order",
                 "description": "Bestilt utfyllende sykemelding",
                 "focus": {
-                    "reference": "Questionnaire/10"
+                    "reference": "Questionnaire/10",
+                    "type": "Questionnaire"
                 },
                 "for": {
                     "reference": "Patient/1"
@@ -741,7 +743,8 @@
                 "intent": "order",
                 "description": "Bestilt utfyllende arbeidsavklaringsskjema",
                 "focus": {
-                    "reference": "Questionnaire/15"
+                    "reference": "Questionnaire/15",
+                    "type": "Questionnaire"
                 },
                 "for": {
                     "reference": "Patient/1"
@@ -876,7 +879,8 @@
                 "intent": "order",
                 "description": "Svar på henvisning",
                 "focus": {
-                    "reference": "DiagnosticReport/18"
+                    "reference": "DiagnosticReport/18",
+                    "type": "DiagnosticReport"
                 },
                 "for": {
                     "reference": "Patient/1"
