@@ -1,6 +1,6 @@
-import React from 'react';
-import { PatientSearch } from '../components/patientSearch/patient-search';
-import { ScheduleTimeline } from '../components/schedule/schedule-timeline';
+import React from "react";
+import { PatientSearch } from "../components/patient-search/patient-search";
+import { ScheduleTimeline } from "../components/schedule/schedule-timeline";
 import style from "./patient-list-layout.module.less";
 
 export const PatientListLayout = () => {
@@ -10,4 +10,4 @@ export const PatientListLayout = () => {
             <ScheduleTimeline />
         </div>
     );
-}
+};

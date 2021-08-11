@@ -26,33 +26,34 @@ export const OverviewLayout: FC = () => {
         <div className={style.overviewWrapper}>
             <div className={style.dailyMessage}>
                 <Sidetittel>
-                    Geir Nystøl, i dag har du{" "}
-                    <span className={style.dynamicField}>4 pasienter</span>.
-                    <br />
-                    <br />
-                    Du har mottat <span className={style.dynamicField}>1 svar på blodprøve </span>
-                    og <span className={style.dynamicField}>1 svar på henvisning</span> fra
+                    Geir Nystøl, i dag har du
+                    <span className={style.dynamicField}> 4 pasienter</span>.
+                </Sidetittel>
+                <Sidetittel>
+                    Du har mottat <span className={style.dynamicField}> 1 svar på blodprøve </span>
+                    og <span className={style.dynamicField}> 1 svar på henvisning</span> fra
                     sykehuset.
-                    <br />
-                    <br />
-                    Du må skrive{" "}
-                    <span className={style.dynamicField}>1 utfyllende sykemelding </span>
-                    og{" "}
+                </Sidetittel>
+                <Sidetittel>
+                    Du må skrive
+                    <span className={style.dynamicField}> 1 utfyllende sykemelding </span>
+                    og
                     <span className={style.dynamicField}>
+                        {" "}
                         1 utfyllende arbeidsavklaringsskjema
-                    </span>{" "}
+                    </span>
                     til NAV.
                 </Sidetittel>
             </div>
             <div className={style.notifications}>
-                <Element>Fra sykehus</Element>
+                <Element>Fra sykehus og spesialist</Element>
                 <TaskOverview tasks={hospitalTasks} practitionerId={practitionerId} />
             </div>
             <div className={style.calendar}>
                 <ScheduleList />
             </div>
             <div className={style.notifications}>
-                <Element>Fra NAV</Element>
+                <Element>Fra NAV og annet ikke medisinsk personell</Element>
                 <TaskOverview tasks={navTasks} practitionerId={practitionerId} />
             </div>
         </div>

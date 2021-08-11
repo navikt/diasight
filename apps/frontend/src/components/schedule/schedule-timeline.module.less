@@ -9,7 +9,6 @@
     flex-direction: row;
     gap: 10px;
     align-items: center;
-    padding: 20px;
     background-attachment: fixed;
     background: linear-gradient(to right, white 0%, transparent 30%, transparent 70%, white 100%);
     z-index: 1;
@@ -17,32 +16,49 @@
 }
 
 .currentTimeWrapper {
-    position: relative;
-    top: -30px;
-    left: 700px;
+    position: absolute;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    bottom: 0;
 }
 
 .currentTimeMarker {
-    width: 1px;
-    height: 150px;
-    left: 18px;
-    top: 175px;
+    margin: 0 auto;
+    width: 2px;
+    height: 100px;
     position: relative;
-    background: #0067c5;
+    background: #c30000;
+}
+
+.currentTimeCircle {
+    height: 16px;
+    width: 16px;
+    margin: 0 auto;
+    background-color: #c30000;
+    border-radius: 100%;
 }
 
 .currentTimeClock {
     top: 175px;
     position: relative;
     z-index: 2;
-    color: #0067c5;
+    color: #c30000;
 }
 
 .timelineEntry {
-    background-color: #f1f1f1;
+    background-color: #cce1ff;
     padding: 20px;
     min-width: 300px;
     z-index: -10;
+    border-radius: 2ch;
+}
+
+.timelineEntry:nth-child(3) {
+    background-color: #0067c5;
+    color: #ffffff;
 }
 
 .patientName {
