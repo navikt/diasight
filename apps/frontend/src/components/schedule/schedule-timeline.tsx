@@ -1,12 +1,12 @@
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
-import style from "./schedule-timeline.module.less"
+import style from "./schedule-timeline.module.less";
 
 export const ScheduleTimeline: FC = () => {
     return (
         <div className={style.wrapper}>
             <div className={style.currentTimeWrapper}>
-                <Normaltekst className={style.currentTimeClock}>12:18</Normaltekst>
+                <div className={style.currentTimeCircle}></div>
                 <div className={style.currentTimeMarker} />
             </div>
             <div className={style.timelineWrapper}>
@@ -31,5 +31,6 @@ export const ScheduleTimeline: FC = () => {
                     <Normaltekst className={style.patientAge}>32 år</Normaltekst>
                 </div>
             </div>
-        </div>)
-}
+        </div>
+    );
+};
