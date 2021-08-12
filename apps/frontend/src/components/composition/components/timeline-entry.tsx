@@ -63,9 +63,9 @@ export const TimelineEntry: FC<IProps> = ({ reference, condition, composition, v
                         <td></td>
                         <td>
                             <div className={style.resourceDetailWrapper}>
-                                {resource.details.map((detail) => (
+                                {resource.details ? resource.details.map((detail) => (
                                     <Normaltekst>{detail}</Normaltekst>
-                                ))}
+                                )) : <Normaltekst>Ingen videre informasjon</Normaltekst>}
                             </div>
                         </td>
                     </tr>

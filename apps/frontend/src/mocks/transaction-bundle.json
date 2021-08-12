@@ -185,7 +185,7 @@
                                 "value": 4,
                                 "unit": "piller"
                             },
-                            "denonimator": {
+                            "denominator": {
                                 "value": 1,
                                 "unit": "dag"
                             }
@@ -267,7 +267,8 @@
                 },
                 "performer": [
                     {
-                        "reference": "Practitioner/3"
+                        "reference": "Practitioner/3",
+                        "display": "Knut Tangen"
                     }
                 ],
                 "occurrenceDateTime": "2019-01-07",
