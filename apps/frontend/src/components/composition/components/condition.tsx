@@ -48,7 +48,7 @@ export const Condition: FC<IProps> = ({ title, composition, focus, entries }) =>
                     </Undertekst>
                     <Element className={style.name}>{title}</Element>
                     <div className={style.expand} onClick={() => toggle()}>
-                        {expanded ? <Expand /> : <Collapse />}
+                        {expanded ? <Collapse /> : <Expand />}
                     </div>
                 </div>
                 <Timeline

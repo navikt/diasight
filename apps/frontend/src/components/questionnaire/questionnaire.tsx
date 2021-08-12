@@ -3,7 +3,7 @@ import {
     IQuestionnaireResponse,
     IQuestionnaireResponse_Answer,
 } from "@ahryman40k/ts-fhir-types/lib/R4";
-import { Close } from "@navikt/ds-icons/cjs";
+import { Close, Collapse, Expand } from "@navikt/ds-icons/cjs";
 import {
     Element,
     Normaltekst,
@@ -38,6 +38,7 @@ const initialQuestionnaireResponse: IQuestionnaireResponse = {
 
 export const Questionnaire: FC<IProps> = ({ id, patient }) => {
     const { questionnaire, isLoading, isError } = useQuestionnaire(id);
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     const { addResource, updateResource, findResourceByType } = useContext(SummaryContext);
     const { selections } = useContext(SelectionContext);
@@ -103,11 +104,12 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
     if (questionnaire) {
         return (
             <div className={style.wrapper}>
-                <div className={style.header}>
+                <div className={`${style.header} ${expanded ? "" : style.hidden}`}>
                     <Element>{questionnaire.title}</Element>
-                    <Close />
+                    {expanded ? <Collapse onClick={() => setExpanded(!expanded)} /> :
+                        <Expand onClick={() => setExpanded(!expanded)} />}
                 </div>
-                <form onSubmit={(e) => saveForm(e)}>
+                <form onSubmit={(e) => saveForm(e)} className={`${expanded ? "" : style.hidden}`}>
                     <div className={style.formHeader}>
                         <Systemtittel>{questionnaire.title}</Systemtittel>
                         <Normaltekst>
