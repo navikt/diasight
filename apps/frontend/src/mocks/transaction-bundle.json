@@ -8,56 +8,47 @@
             "resource": {
                 "resourceType": "Patient",
                 "id": "1",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-19T11:07:52.496+00:00",
-                    "source": "#ubBdSuOsOupdK95b"
-                },
-                "text": {
-                    "status": "generated",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Ola <b>NORMANN </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>28024912345</td></tr><tr><td>Address</td><td><span>Eventyrgata </span><br/><span>42 </span><br/><span>Galtvort </span></td></tr><tr><td>Date of birth</td><td><span>28 February 1949</span></td></tr></tbody></table></div>"
-                },
                 "identifier": [
                     {
                         "system": "urn:oid:2.16.578.1.12.4.1.4.1",
-                        "value": "28024912345"
+                        "value": "091098 57469"
                     }
                 ],
                 "name": [
                     {
                         "use": "official",
-                        "family": "Normann",
-                        "given": ["Ola"]
+                        "family": "Fagermo",
+                        "given": ["Sofie"]
                     }
                 ],
                 "telecom": [
                     {
                         "system": "phone",
-                        "value": "42367098"
+                        "value": "433 92 365"
                     },
                     {
                         "system": "email",
-                        "value": "ola@eventyrguru.no"
+                        "value": "sofiefagermo@xxl.no"
                     }
                 ],
-                "gender": "male",
-                "birthDate": "1949-02-28",
+                "gender": "female",
+                "birthDate": "1998-10-09",
                 "deceasedBoolean": false,
                 "address": [
                     {
                         "use": "home",
                         "type": "both",
-                        "line": ["Eventyrgata", "42"],
-                        "city": "Galtvort",
-                        "postalCode": "1337"
+                        "line": ["Langøyfaret", "139"],
+                        "city": "Kråkerøy",
+                        "postalCode": "1679"
                     }
                 ],
                 "maritalStatus": {
                     "coding": [
                         {
                             "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
-                            "code": "M",
-                            "display": "Married"
+                            "code": "U",
+                            "display": "Unmarried"
                         }
                     ]
                 }
@@ -76,8 +67,8 @@
                 "name": [
                     {
                         "use": "usual",
-                        "family": "Tangen",
-                        "given": ["Knut"]
+                        "family": "Nystøl",
+                        "given": ["Geir"]
                     }
                 ],
                 "gender": "male"
@@ -96,8 +87,8 @@
                 "name": [
                     {
                         "use": "usual",
-                        "family": "Antonsen",
-                        "given": ["Atle"]
+                        "family": "Knut",
+                        "given": ["Tangen"]
                     }
                 ],
                 "gender": "male"
@@ -112,11 +103,6 @@
             "resource": {
                 "resourceType": "Condition",
                 "id": "4",
-                "meta": {
-                    "versionId": "2",
-                    "lastUpdated": "2021-07-21T14:16:43.337+00:00",
-                    "source": "#ac17A4opDM3CQMTn"
-                },
                 "code": {
                     "coding": [
                         {
@@ -132,7 +118,7 @@
                     "type": "Patient"
                 },
                 "onsetDateTime": "2018-12-13",
-                "recordedDate": "2021-12-20",
+                "recordedDate": "2018-12-13",
                 "recorder": {
                     "reference": "Practitioner/2",
                     "type": "Practitioner"
@@ -182,7 +168,7 @@
                 "status": "active",
                 "intent": "order",
                 "medicationCodeableConcept": {
-                    "text": "Paracetamol"
+                    "text": "Paralgin Forte"
                 },
                 "subject": {
                     "reference": "Patient/1"
@@ -199,7 +185,7 @@
                                 "value": 4,
                                 "unit": "piller"
                             },
-                            "denonimator": {
+                            "denominator": {
                                 "value": 1,
                                 "unit": "dag"
                             }
@@ -214,15 +200,7 @@
                         },
                         "duration": {
                             "value": 1,
-                            "unit": "month",
-                            "code": {
-                                "coding": [
-                                    {
-                                        "system": "http://unitsofmeasure.org",
-                                        "code": "month"
-                                    }
-                                ]
-                            }
+                            "unit": "måned"
                         }
                     },
                     "validityPeriod": {
@@ -247,15 +225,15 @@
                 "id": "7",
                 "status": "registered",
                 "code": {
-                    "text": "Ortostatisk blodtrykksmåling",
+                    "text": "Bildeveiledet teknikk med bruk av konvensjonell røntgen",
                     "coding": [
                         {
-                            "code": "FYFX10",
-                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/2939228"
+                            "code": "ZXM10",
+                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/2946662"
                         }
                     ]
                 },
-                "issued": "2021-05-18",
+                "issued": "2019-05-19",
                 "performer": [
                     {
                         "reference": "Practitioner/2",
@@ -264,7 +242,7 @@
                 ],
                 "note": [
                     {
-                        "text": "Normalt blodtrykk"
+                        "text": "Beinbruddet er nesten helbredet"
                     }
                 ]
             },
@@ -282,24 +260,19 @@
                 "intent": "order",
                 "priority": "routine",
                 "code": {
-                    "text": "Måling av transdiafragmale trykk ved voluntær ventilasjon",
-                    "coding": [
-                        {
-                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/2907857",
-                            "code": "GDFM05"
-                        }
-                    ]
+                    "text": "Henvisning til fysioterapeut"
                 },
                 "subject": {
                     "reference": "Patient/1"
                 },
                 "performer": [
                     {
-                        "reference": "Practitioner/3"
+                        "reference": "Practitioner/3",
+                        "display": "Knut Tangen"
                     }
                 ],
-                "occurrenceDateTime": "2021-07-21",
-                "authoredOn": "2021-07-14",
+                "occurrenceDateTime": "2019-01-07",
+                "authoredOn": "2019-01-07",
                 "requester": {
                     "reference": "Practitioner/2"
                 }
@@ -364,17 +337,17 @@
                             {
                                 "reference": "Observation/7",
                                 "type": "Observation",
-                                "display": "Ortostatisk blodtrykksmåling"
+                                "display": "Bildeveiledet teknikk med bruk av konvensjonell røntgen"
                             },
                             {
                                 "reference": "ServiceRequest/8",
                                 "type": "ServiceRequest",
-                                "display": "Måling av transdiafragmale trykk ved voluntær ventilasjon"
+                                "display": "Henvisning til fysioterapeut"
                             },
                             {
                                 "reference": "MedicationRequest/6",
                                 "type": "MedicationRequest",
-                                "display": "Paracetamol"
+                                "display": "Paralgin Forte"
                             }
                         ]
                     },
@@ -503,15 +476,6 @@
             "resource": {
                 "resourceType": "DiagnosticReport",
                 "id": "11",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-28T12:22:17.370+00:00",
-                    "source": "#LGMJMiNp16TIYPYY"
-                },
-                "text": {
-                    "status": "generated",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\"> Komplett blodtellingspanel (hemogram) </div><table class=\"hapiPropertyTable\"><tbody><tr><td>Status</td><td>FINAL</td></tr><tr><td>Issued</td><td> 15 May 2013 18:32:52 </td></tr></tbody></table></div>"
-                },
                 "basedOn": [
                     {
                         "reference": "ServiceRequest/8"
@@ -523,12 +487,12 @@
                         "coding": [
                             {
                                 "system": "http://snomed.info/sct",
-                                "code": "252275004",
-                                "display": "Hematologitest"
+                                "code": "168674004",
+                                "display": "Røntgen av tibia/fibula abnormal"
                             },
                             {
                                 "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
-                                "code": "HM"
+                                "code": "RX"
                             }
                         ]
                     }
@@ -537,26 +501,26 @@
                     "coding": [
                         {
                             "system": "http://loinc.org",
-                            "code": "58410-2",
-                            "display": "Komplett blodtellingspanel (hemogram)"
+                            "code": "22030-1",
+                            "display": "Brudd i proximal tibia"
                         }
                     ]
                 },
                 "subject": {
                     "reference": "Patient/1",
-                    "display": "Ola Normann"
+                    "display": "Sofie Fagermo"
                 },
-                "issued": "2013-05-15T19:32:52+01:00",
+                "issued": "2019-01-03",
                 "performer": [
                     {
                         "reference": "Practitioner/3",
-                        "display": "Atle Antonsen"
+                        "display": "Knut Tangen"
                     }
                 ],
                 "resultsInterpreter": [
                     {
                         "reference": "Practitioner/2",
-                        "display": "Knut Tangen"
+                        "display": "Geir Nystøl"
                     }
                 ]
             },
@@ -570,11 +534,6 @@
             "resource": {
                 "resourceType": "Organization",
                 "id": "12",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-28T12:42:41.237+00:00",
-                    "source": "#4OOGKSyM0uLYogf2"
-                },
                 "identifier": [
                     {
                         "system": "http://data.ssb.no/api/klass/v1/versions/919",
@@ -594,11 +553,6 @@
             "resource": {
                 "resourceType": "Task",
                 "id": "13",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-28T12:52:56.589+00:00",
-                    "source": "#HLe1q29TxIWcggvu"
-                },
                 "basedOn": [
                     {
                         "reference": "ServiceRequest/8"
@@ -606,7 +560,7 @@
                 ],
                 "status": "received",
                 "intent": "order",
-                "description": "Svar på blodprøve",
+                "description": "Epikrise",
                 "focus": {
                     "reference": "DiagnosticReport/11",
                     "type": "DiagnosticReport"
@@ -614,7 +568,7 @@
                 "for": {
                     "reference": "Patient/1"
                 },
-                "lastModified": "2016-03-10T22:39:32-04:00",
+                "lastModified": "2021-08-20",
                 "requester": {
                     "reference": "Practitioner/3"
                 },
@@ -632,10 +586,6 @@
             "resource": {
                 "resourceType": "Task",
                 "id": "14",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-28T12:57:12.885+00:00"
-                },
                 "basedOn": [
                     {
                         "reference": "Condition/4"
@@ -643,7 +593,7 @@
                 ],
                 "status": "received",
                 "intent": "order",
-                "description": "Bestilt utfyllende sykemelding",
+                "description": "Bestilt utfyllende sykmelding",
                 "focus": {
                     "reference": "Questionnaire/10",
                     "type": "Questionnaire"
@@ -651,7 +601,7 @@
                 "for": {
                     "reference": "Patient/1"
                 },
-                "lastModified": "2016-03-10T22:39:32-04:00",
+                "lastModified": "2021-08-23",
                 "requester": {
                     "reference": "Organization/12"
                 },
@@ -669,53 +619,36 @@
             "resource": {
                 "resourceType": "Questionnaire",
                 "id": "15",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-29T13:37:25.830+00:00",
-                    "source": "#3yguaUtzLbnLETST"
-                },
                 "language": "no",
                 "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
                 "version": "1.0.0",
-                "name": "arbeidsavklaringsskjema",
-                "title": "Arbeidsavklaringsskjema",
+                "name": "utfyllende-sykmelding-1183745",
+                "title": "Utfyllende sykemelding",
                 "status": "active",
                 "subjectType": ["Patient"],
                 "item": [
                     {
                         "linkId": "1",
-                        "text": "Statsborgerskap",
-                        "type": "choice",
-                        "answerValueSet": "http://hl7.org/fhir/ValueSet/iso3166-1-2"
+                        "text": "Er pasienten ute av stand til å utføre arbeidsoppgaver?",
+                        "type": "boolean"
                     },
                     {
                         "linkId": "2",
-                        "text": "Kan pasienten jobbe?",
-                        "type": "boolean"
+                        "text": "Hvor mange kg kan pasienten løfte?",
+                        "type": "integer"
                     },
                     {
                         "linkId": "3",
-                        "text": "Er pasienten ute av stand til å utføre daglige gjøremål?",
-                        "type": "boolean"
-                    },
-                    {
-                        "linkId": "4",
-                        "text": "Hvor mange måneder gjelder arbeidsavklaringsskjemaet for?",
+                        "text": "Hvor mange uker gjelder sykemeldingen for?",
                         "type": "integer",
                         "enableWhen": [
                             {
-                                "question": "3",
+                                "question": "1",
                                 "operator": "=",
                                 "answerBoolean": true
                             }
                         ],
                         "required": true
-                    },
-                    {
-                        "linkId": "5",
-                        "text": "Sikkerhetsklassifisering",
-                        "type": "choice",
-                        "answerValueSet": "http://mitt-domene.no/fhir/ValueSet/sikkerhetsklassifisering"
                     }
                 ]
             },
@@ -729,27 +662,22 @@
             "resource": {
                 "resourceType": "Task",
                 "id": "16",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-29T13:38:42.825+00:00",
-                    "source": "#X15ZRqHXsnibUG1k"
-                },
                 "basedOn": [
                     {
-                        "reference": "Condition/4"
+                        "reference": "Condition/21"
                     }
                 ],
                 "status": "received",
                 "intent": "order",
-                "description": "Bestilt utfyllende arbeidsavklaringsskjema",
+                "description": "Bestilt utfyllende sykmelding",
                 "focus": {
                     "reference": "Questionnaire/15",
                     "type": "Questionnaire"
                 },
                 "for": {
-                    "reference": "Patient/1"
+                    "reference": "Patient/20"
                 },
-                "lastModified": "2016-03-10T22:39:32-04:00",
+                "lastModified": "2021-08-27",
                 "requester": {
                     "reference": "Organization/12"
                 },
@@ -767,27 +695,23 @@
             "resource": {
                 "resourceType": "ServiceRequest",
                 "id": "17",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-29T13:55:19.801+00:00"
-                },
                 "status": "active",
                 "intent": "order",
                 "priority": "urgent",
                 "code": {
                     "coding": [
                         {
-                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/2911577",
-                            "code": "NGB14"
+                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/3129755",
+                            "code": "NGX33"
                         }
                     ],
-                    "text": "Implantasjon av flere primære delprotesekomponenter i kneledd med sement"
+                    "text": "Sirkulær gips på kne eller legg"
                 },
                 "subject": {
                     "reference": "Patient/1"
                 },
-                "occurrenceDateTime": "2021-07-21",
-                "authoredOn": "2021-07-14",
+                "occurrenceDateTime": "2019-01-30",
+                "authoredOn": "2019-01-30",
                 "requester": {
                     "reference": "Practitioner/2"
                 },
@@ -807,40 +731,31 @@
             "resource": {
                 "resourceType": "DiagnosticReport",
                 "id": "18",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-29T13:58:58.410+00:00",
-                    "source": "#OdFr4LQuDVYdZg16"
-                },
-                "text": {
-                    "status": "generated",
-                    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\"> DXA Beintetthetsmåling </div><table class=\"hapiPropertyTable\"><tbody><tr><td>Status</td><td>FINAL</td></tr><tr><td>Issued</td><td> 17 June 2008 23:23:00 </td></tr></tbody></table></div>"
-                },
                 "status": "final",
                 "code": {
                     "coding": [
                         {
-                            "system": "http://loinc.org",
-                            "code": "38269-7"
+                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/3135825",
+                            "code": "IBEA10"
                         }
                     ],
-                    "text": "DXA Beintetthetsmåling"
+                    "text": "Psykomotorisk fysioterapi"
                 },
                 "subject": {
                     "reference": "Patient/1"
                 },
-                "effectiveDateTime": "2008-06-17",
-                "issued": "2008-06-18T09:23:00+10:00",
+                "effectiveDateTime": "2019-04-07",
+                "issued": "2019-04-07",
                 "performer": [
                     {
                         "reference": "Practitioner/3",
-                        "display": "Atle Antonsen"
+                        "display": "Knut Tangen"
                     }
                 ],
                 "resultsInterpreter": [
                     {
                         "reference": "Practitioner/2",
-                        "display": "Knut Tangen"
+                        "display": "Geir Nystøl"
                     }
                 ],
                 "conclusionCode": [
@@ -848,8 +763,8 @@
                         "coding": [
                             {
                                 "system": "http://snomed.info/sct",
-                                "code": "391040000",
-                                "display": "Fare for osteoporotisk brudd"
+                                "code": "419026008",
+                                "display": "Effekt av eksponering for fysisk kraft"
                             }
                         ]
                     }
@@ -865,11 +780,6 @@
             "resource": {
                 "resourceType": "Task",
                 "id": "19",
-                "meta": {
-                    "versionId": "1",
-                    "lastUpdated": "2021-07-29T14:00:38.359+00:00",
-                    "source": "#ONLu0cxqGEDyzTAU"
-                },
                 "basedOn": [
                     {
                         "reference": "ServiceRequest/17"
@@ -877,15 +787,15 @@
                 ],
                 "status": "received",
                 "intent": "order",
-                "description": "Svar på henvisning",
+                "description": "Labresultater",
                 "focus": {
                     "reference": "DiagnosticReport/18",
                     "type": "DiagnosticReport"
                 },
                 "for": {
-                    "reference": "Patient/1"
+                    "reference": "Patient/20"
                 },
-                "lastModified": "2016-03-10T22:39:32-04:00",
+                "lastModified": "2021-08-23",
                 "requester": {
                     "reference": "Practitioner/3"
                 },
@@ -896,6 +806,92 @@
             "request": {
                 "method": "POST",
                 "url": "Task"
+            }
+        },
+        {
+            "fullUrl": "Patient/20",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "20",
+                "identifier": [
+                    {
+                        "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                        "value": "280273 12345"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Salvesen",
+                        "given": ["Daniel"]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "123 45 678"
+                    },
+                    {
+                        "system": "email",
+                        "value": "danielsalvesen@gmail.no"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1973-02-28",
+                "deceasedBoolean": false,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "both",
+                        "line": ["Fyrstikkalleen", "2"],
+                        "city": "Oslo",
+                        "postalCode": "0661"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "M",
+                            "display": "Married"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "Condition/21",
+            "resource": {
+                "resourceType": "Condition",
+                "id": "21",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "ICPC",
+                            "version": "2B",
+                            "code": "D86"
+                        }
+                    ],
+                    "text": "Magesår IKA"
+                },
+                "subject": {
+                    "reference": "Patient/20",
+                    "type": "Patient"
+                },
+                "onsetDateTime": "2018-12-13",
+                "recordedDate": "2018-12-13",
+                "recorder": {
+                    "reference": "Practitioner/2",
+                    "type": "Practitioner"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
             }
         }
     ]

@@ -71,7 +71,10 @@ const serviceRequestToEntry = (entry: [IServiceRequest, IPractitioner]): IEntryL
         type: "Henvisning",
         author: author ? humanNameToString(author) : "Ukjent",
         department: "Midlertidig",
-        details: ["Henvisning til " + (serviceRequest?.performer ?? [])[0]?.display ?? "Ukjent"],
+        details: [
+            "Henvisnigen ble sendt til " + (serviceRequest?.performer ?? [])[0]?.display ??
+                "Ukjent",
+        ],
     } as IEntryLine;
 };
 
