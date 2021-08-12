@@ -663,7 +663,7 @@
                 "id": "16",
                 "basedOn": [
                     {
-                        "reference": "Condition/4"
+                        "reference": "Condition/21"
                     }
                 ],
                 "status": "received",
@@ -674,7 +674,7 @@
                     "type": "Questionnaire"
                 },
                 "for": {
-                    "reference": "Patient/1"
+                    "reference": "Patient/20"
                 },
                 "lastModified": "2021-08-27",
                 "requester": {
@@ -792,7 +792,7 @@
                     "type": "DiagnosticReport"
                 },
                 "for": {
-                    "reference": "Patient/1"
+                    "reference": "Patient/20"
                 },
                 "lastModified": "2021-08-23",
                 "requester": {
@@ -805,6 +805,92 @@
             "request": {
                 "method": "POST",
                 "url": "Task"
+            }
+        },
+        {
+            "fullUrl": "Patient/20",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "20",
+                "identifier": [
+                    {
+                        "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+                        "value": "280273 12345"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "Salvesen",
+                        "given": ["Daniel"]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "123 45 678"
+                    },
+                    {
+                        "system": "email",
+                        "value": "danielsalvesen@gmail.no"
+                    }
+                ],
+                "gender": "male",
+                "birthDate": "1973-02-28",
+                "deceasedBoolean": false,
+                "address": [
+                    {
+                        "use": "home",
+                        "type": "both",
+                        "line": ["Fyrstikkalleen", "2"],
+                        "city": "Oslo",
+                        "postalCode": "0661"
+                    }
+                ],
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "M",
+                            "display": "Married"
+                        }
+                    ]
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Patient"
+            }
+        },
+        {
+            "fullUrl": "Condition/21",
+            "resource": {
+                "resourceType": "Condition",
+                "id": "21",
+                "code": {
+                    "coding": [
+                        {
+                            "system": "ICPC",
+                            "version": "2B",
+                            "code": "D86"
+                        }
+                    ],
+                    "text": "Magesår IKA"
+                },
+                "subject": {
+                    "reference": "Patient/20",
+                    "type": "Patient"
+                },
+                "onsetDateTime": "2018-12-13",
+                "recordedDate": "2018-12-13",
+                "recorder": {
+                    "reference": "Practitioner/2",
+                    "type": "Practitioner"
+                }
+            },
+            "request": {
+                "method": "POST",
+                "url": "Condition"
             }
         }
     ]
