@@ -19,15 +19,15 @@ export const ScheduleList: FC = () => {
             <div className={style.timeBlock}>
                 <Undertekst className={style.timeHour}>11:30</Undertekst>
                 <div className={style.patient}>
-                    <Element className={style.patientName}>Sofie Fagermo</Element>
-                    {/* <Undertekst className={style.patientAge}>22 år</Undertekst> */}
+                    <Element className={style.patientName}>Ola Normann</Element>
+                    <Undertekst className={style.patientAge}>72 år</Undertekst>
                 </div>
             </div>
             <div className={style.timeBlock}>
                 <Undertekst className={style.timeHour}>11:45</Undertekst>
                 <div className={style.patient}>
                     <Element className={style.patientName}>Daniel Salvesen</Element>
-                    {/*  <Undertekst className={style.patientAge}>48 år</Undertekst> */}
+                    <Undertekst className={style.patientAge}>48 år</Undertekst>
                 </div>
             </div>
             <div className={style.timeBlock}>
@@ -35,10 +35,10 @@ export const ScheduleList: FC = () => {
                 <div className={style.patient}>
                     <Link href={"/pasient/1"}>
                         <Element className={style.patientName}>
-                            <span style={{ cursor: "pointer" }}>Ola Normann</span>
+                            <span style={{ cursor: "pointer" }}>Sofie Fagermo</span>
                         </Element>
                     </Link>
-                    <Undertekst className={style.patientAge}>72 år</Undertekst>
+                    <Undertekst className={style.patientAge}>22 år</Undertekst>
                 </div>
             </div>
             <div className={style.timeBlock}>

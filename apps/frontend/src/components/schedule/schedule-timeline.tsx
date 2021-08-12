@@ -17,9 +17,9 @@ export const ScheduleTimeline: FC = () => {
             </div>
             <div className={style.timelineWrapper}>
                 <div className={style.timelineEntry}>
-                    <Undertittel className={style.patientName}>Sofie Fagermo</Undertittel>
+                    <Undertittel className={style.patientName}>Ola Normann</Undertittel>
                     <Undertittel className={style.patientAppointment}>11:30</Undertittel>
-                    <Normaltekst className={style.patientAge}>22 år</Normaltekst>
+                    <Normaltekst className={style.patientAge}>72 år</Normaltekst>
                 </div>
                 <div className={style.timelineEntry}>
                     <Undertittel className={style.patientName}>Daniel Salvesen</Undertittel>
@@ -29,11 +29,11 @@ export const ScheduleTimeline: FC = () => {
                 <div className={style.timelineEntry}>
                     <Link href={"/pasient/1"}>
                         <Undertittel className={style.patientName}>
-                            <span style={{ cursor: "pointer" }}>Ola Normann</span>
+                            <span style={{ cursor: "pointer" }}>Sofie Fagermo</span>
                         </Undertittel>
                     </Link>
                     <Undertittel className={style.patientAppointment}>12:15</Undertittel>
-                    <Normaltekst className={style.patientAge}>72 år</Normaltekst>
+                    <Normaltekst className={style.patientAge}>22 år</Normaltekst>
                 </div>
                 <div className={style.timelineEntry}>
                     <Undertittel className={style.patientName}>Maja Ingebretsen</Undertittel>

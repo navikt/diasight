@@ -115,7 +115,7 @@ export const Questionnaire: FC<IProps> = ({ id, patient }) => {
                         </Normaltekst>
                     </div>
                     <Normaltekst>
-                        {questionnaire.title} gjelder for <span>Ola Normann</span> født{" "}
+                        {questionnaire.title} gjelder for <span>Sofie Fagermo</span> født{" "}
                         <span>{patient.birthDate}</span>.
                     </Normaltekst>
                     {questionnaire.item?.map((question) => {
