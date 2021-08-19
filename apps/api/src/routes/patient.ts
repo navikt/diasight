@@ -8,7 +8,7 @@ patientRouter.get("", async (req, res) => {
     await fhirClient
         .get(requestUrl, { params: req.query })
         .then((response) => {
-            res.send(JSON.stringify(response.data.entry));
+            res.send(response.data.entry);
         })
         .catch((error) => {
             res.send(error);
@@ -20,7 +20,7 @@ patientRouter.get("/:id", async (req, res) => {
     await fhirClient
         .get(requestUrl + "/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
@@ -31,7 +31,7 @@ patientRouter.post("/", async (req, res) => {
     await fhirClient
         .post(requestUrl, req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
@@ -43,7 +43,7 @@ patientRouter.put("/:id", async (req, res) => {
     await fhirClient
         .put(requestUrl + "/" + id, req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
@@ -55,7 +55,7 @@ patientRouter.delete("/:id", async (req, res) => {
     await fhirClient
         .delete(requestUrl + "/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);

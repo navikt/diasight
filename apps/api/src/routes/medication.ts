@@ -7,7 +7,7 @@ medicationRouter.get("/", async (req, res) => {
     await fhirClient
         .get("/Medication")
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -19,7 +19,7 @@ medicationRouter.get("/:id", async (req, res) => {
     await fhirClient
         .get("/Medication/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -30,7 +30,7 @@ medicationRouter.post("/", async (req, res) => {
     await fhirClient
         .post("/Medication", req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -42,7 +42,7 @@ medicationRouter.put("/:id", async (req, res) => {
     await fhirClient
         .put("/Medication/" + id, req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -54,7 +54,7 @@ medicationRouter.delete("/:id", async (req, res) => {
     await fhirClient
         .delete("/Medication/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);

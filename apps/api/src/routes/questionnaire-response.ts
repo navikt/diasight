@@ -7,7 +7,7 @@ questionnaireResponseRouter.get("/", async (req, res) => {
     await fhirClient
         .get("/QuestionnaireResponse")
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
@@ -19,7 +19,7 @@ questionnaireResponseRouter.get("/:id", async (req, res) => {
     await fhirClient
         .get("/QuestionnaireResponse?_include=QuestionnaireResponse:author&_id=" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
@@ -42,7 +42,7 @@ questionnaireResponseRouter.put("/:id", async (req, res) => {
     await fhirClient
         .put("/QuestionnaireResponse/" + id, req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
@@ -54,7 +54,7 @@ questionnaireResponseRouter.delete("/:id", async (req, res) => {
     await fhirClient
         .delete("/QuestionnaireResponse/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);

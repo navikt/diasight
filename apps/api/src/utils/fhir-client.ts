@@ -7,4 +7,8 @@ const fhirClient = axios.create({ baseURL });
 
 fhirClient.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
 
+fhirClient.interceptors.request.use(req => {
+    console.log(`Backend requested: ${req.baseURL}${req.url}`);
+    return req;
+});
 export default fhirClient;

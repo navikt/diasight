@@ -21,7 +21,7 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;
 
-    if (patient && patient.telecom && patient.address) {
+    if (patient) {
         return (
             <SelectionProvider>
                 <SummaryProvider>
@@ -44,10 +44,12 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                                 <Patient patient={patient} />
                                 <div className={style.row}>
                                     <ActiveMedication />
+                                    {patient.telecom && patient.address &&
                                     <PatientContact
                                         address={patient.address}
                                         telecom={patient.telecom}
                                     />
+                                    }
                                 </div>
                                 <Questionnaire id={10} patient={patient} />
                                 <Observation />

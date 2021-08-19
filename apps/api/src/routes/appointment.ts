@@ -7,7 +7,7 @@ appointmentRouter.get("/", async (req, res) => {
     await fhirClient
         .get("/Appointment")
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -19,7 +19,7 @@ appointmentRouter.get("/:id", async (req, res) => {
     await fhirClient
         .get("/Appointment/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -30,7 +30,7 @@ appointmentRouter.post("/", async (req, res) => {
     await fhirClient
         .post("/Appointment", req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -42,7 +42,7 @@ appointmentRouter.put("/:id", async (req, res) => {
     await fhirClient
         .put("/Appointment/" + id, req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -54,7 +54,7 @@ appointmentRouter.delete("/:id", async (req, res) => {
     await fhirClient
         .delete("/Appointment/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data);
         })
         .catch((error) => {
             res.send(error);
