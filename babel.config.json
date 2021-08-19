@@ -1,5 +1,5 @@
 {
-    "babelrcRoots": [
-        "./apps/*"
-    ]
+  "babelrcRoots": [
+    "./apps/*"
+  ]
 }

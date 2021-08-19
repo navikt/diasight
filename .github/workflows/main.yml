@@ -45,9 +45,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules/.cache
-          key: cache-nx-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          key: cache-nx-${{ hashFiles('package.json') }}-${{ github.sha }}
           restore-keys: |
-            cache-nx-${{ hashFiles('package-lock.json') }}-
+            cache-nx-${{ hashFiles('package.json') }}-
             cache-nx-
       - id: set-matrix
         run: |
