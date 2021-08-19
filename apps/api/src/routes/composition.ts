@@ -8,6 +8,6 @@ compositionRouter.get("/:id", async (req, res) => {
 
     await fhirClient
         .get("/Composition?subject=Patient/" + id)
-        .then((result) => res.send(JSON.stringify(result.data.entry)))
+        .then((response) =>             res.send(response.data))
         .catch((error) => console.log(error));
 });

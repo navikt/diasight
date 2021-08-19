@@ -7,7 +7,7 @@ conditionRouter.get("/", async (req, res) => {
     await fhirClient
         .get("/Condition")
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -19,7 +19,7 @@ conditionRouter.get("/:id", async (req, res) => {
     await fhirClient
         .get("/Condition/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -30,7 +30,7 @@ conditionRouter.post("/", async (req, res) => {
     await fhirClient
         .post("/Condition", req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -42,7 +42,7 @@ conditionRouter.put("/:id", async (req, res) => {
     await fhirClient
         .put("/Condition/" + id, req.body)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);
@@ -54,7 +54,7 @@ conditionRouter.delete("/:id", async (req, res) => {
     await fhirClient
         .delete("/Condition/" + id)
         .then((response) => {
-            res.send(JSON.stringify(response.data));
+            res.send(response.data)
         })
         .catch((error) => {
             res.send(error);

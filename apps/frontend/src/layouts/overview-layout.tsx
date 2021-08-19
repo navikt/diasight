@@ -1,33 +1,33 @@
-import { Sidetittel, Element } from "nav-frontend-typografi";
+import { Element, Sidetittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
 import { TaskOverview } from "../components/overview/task-overview";
 import { ScheduleList } from "../components/schedule/schedule-list";
 import { useTask } from "./hooks/use-task";
 import style from "./overview-layout.module.less";
+import { AlertStripeInfo, AlertStripeFeil } from "nav-frontend-alertstriper";
 
 export const OverviewLayout: FC = () => {
     // Temporary constant for the id of the practitioner that is currently logged in
-    const practitionerId = "2";
+    const practitionerId = "489036";
 
     // This hook fetches all of the tasks that belong to this practitioner
     const { tasks, isLoading, isError } = useTask(practitionerId);
 
     if (isLoading) return <div>Loading</div>;
-    if (isError) return <div>Error</div>;
-    if (!tasks) return <div>No data</div>;
+    if (isError) return <AlertStripeFeil>Error</AlertStripeFeil>;
 
     const hospitalTasks = tasks
         ? tasks.filter((task) => task?.focus?.type === "DiagnosticReport")
-        : tasks;
+        : [];
 
     const navTasks = tasks
         ? tasks.filter((task) => task?.requester?.reference === "Organization/12")
-        : tasks;
+        : [];
 
     const hospitalCount = hospitalTasks.reduce((count, task) => {
         const currentDescription = task.description;
         if (!currentDescription) {
-            return count
+            return count;
         }
         const currentCount = (count as any)[currentDescription] || 0;
         const newCount = currentCount + 1;
@@ -38,7 +38,7 @@ export const OverviewLayout: FC = () => {
     const navCount = hospitalTasks.reduce((count, task) => {
         const currentDescription = task.description;
         if (!currentDescription) {
-            return count
+            return count;
         }
         const currentCount = (count as any)[currentDescription] || 0;
         const newCount = currentCount + 1;
