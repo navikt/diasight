@@ -24,8 +24,15 @@ kubectl -nhelseopplysninger create secret generic diasight --from-env-file=.nais
 
 # View secret
 kubectl -nhelseopplysninger describe secrets/diasight
-```
 
+
+kubectl -nhelseopplysninger delete secret diasight-service-account
+kubectl -nhelseopplysninger create secret generic diasight-service-account --from-file=.nais/service-account.json
+# View secret
+kubectl -nhelseopplysninger describe secrets/diasight-service-account
+
+
+```
 
 
 ### Exec into the pod

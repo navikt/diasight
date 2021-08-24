@@ -1,14 +1,18 @@
 import axios from "axios";
 import * as env from "env-var";
+import { GoogleAuth } from "google-auth-library";
 
 const baseURL = env.get("FHIR_URL").required().asUrlString();
 
 const fhirClient = axios.create({ baseURL });
-
-fhirClient.defaults.headers.common["Authorization"] = "AUTH TOKEN FROM INSTANCE";
+const auth = new GoogleAuth({
+    scopes: "https://www.googleapis.com/auth/cloud-platform",
+});
+auth.getRequestHeaders().then(headers => {
+    fhirClient.defaults.headers.common = Object.assign(fhirClient.defaults.headers.common, headers);
+});
 
 fhirClient.interceptors.request.use(req => {
-    console.log(`Backend requested: ${req.baseURL}${req.url}`);
     return req;
 });
 export default fhirClient;

@@ -37,5 +37,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+## secrets
 .nais/secrets.env
 .local.env
+service-account.json

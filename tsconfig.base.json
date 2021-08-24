@@ -15,7 +15,8 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@pasientjournal.no/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+            "@diasight/linkedin": ["libs/linkedin/src/index.ts"],
+            "@diasight/api-interfaces": ["libs/api-interfaces/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
