@@ -36,10 +36,12 @@ spec:
       value: "redis.helseopplysninger.svc.cluster.local"
     - name: REQUIRE_AUTH
       value: "true"
-    - name: FHIR_URL
-      value: "http://hapi.fhir.org/baseR4"
+    - name: GOOGLE_APPLICATION_CREDENTIALS
+      value: "/var/run/secrets/service-account.json"
   envFrom:
     - secret: diasight
+  filesFrom:
+    - secret: diasight-service-account
   accessPolicy:
     outbound:
       rules:

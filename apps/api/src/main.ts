@@ -1,5 +1,4 @@
 import * as express from "express";
-import * as session from "express-session";
 import {
     appointmentRouter,
     baseRouter,
@@ -8,6 +7,7 @@ import {
     diagnosticReportRouter,
     medicationRequestRouter,
     medicationRouter,
+    userRouter,
     observationRouter,
     patientRouter,
     practitionerRouter,
@@ -18,21 +18,22 @@ import {
 import { configureAuth } from "./auth";
 import { internalRouter } from "./internal/internal-router";
 import { taskRouter } from "./routes/task";
+import { initSession } from "./auth/init-session";
+import { logger } from "./utils/logger";
+import { configureAuthentication } from "@diasight/linkedin";
+import { urls } from "./auth/urls";
+
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-    session({
-        secret: "my secret",
-        resave: false,
-        saveUninitialized: false,
-    })
-);
+initSession(app, true);
 configureAuth(app);
+configureAuthentication(app, urls).then(() => logger.info("Auth ready"));
 app.use("/api", baseRouter);
 app.use("/api/Patient", patientRouter);
+app.use("/api/user", userRouter);
 app.use("/api/Composition", compositionRouter);
 app.use("/api/Questionnaire", questionnaireRouter);
 app.use("/api/QuestionnaireResponse", questionnaireResponseRouter);
@@ -48,6 +49,6 @@ app.use("/api/Task", taskRouter);
 app.use("/internal", internalRouter);
 const port = process.env.SERVER_PORT || 3333;
 const server = app.listen(port, () => {
-    console.log("Listening at http://localhost:" + port + "/api");
+    logger.info("Listening at http://localhost:" + port + "/api");
 });
-server.on("error", console.error);
+server.on("error", logger.error);

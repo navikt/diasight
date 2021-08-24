@@ -5,7 +5,7 @@ import {
 } from "@ahryman40k/ts-fhir-types/lib/R4";
 import React from "react";
 import { Checkbox, Input, Select, Textarea } from "nav-frontend-skjema";
-import { Datepicker, isISODateString } from "nav-datovelger/";
+import { Datepicker, isISODateString } from "nav-datovelger";
 import { Entry } from "../components/entry";
 import { Element } from "nav-frontend-typografi";
 
