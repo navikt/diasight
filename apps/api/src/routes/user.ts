@@ -15,6 +15,11 @@ userRouter.get("", async (req, res) => {
             const storedUserResult = await fhirClient.get("/Practitioner/" + resourceId);
             if (storedUserResult.data.resourceType === "Practitioner") {
                 res.send(storedUserResult.data);
+            } else {
+                res.send({
+                    status: storedUserResult.status,
+                    statusText: storedUserResult.statusText,
+                });
             }
         } catch (e) {
             if (e.response.data.resourceType === "OperationOutcome") {
@@ -22,6 +27,8 @@ userRouter.get("", async (req, res) => {
                 newUser.id = resourceId;
                 const newUserResult = await fhirClient.put("/Practitioner/" + resourceId, newUser);
                 res.send(newUserResult.data);
+            } else {
+                res.send(e.message);
             }
         }
     } else {
