@@ -1,7 +1,14 @@
-import { PassportStatic, Strategy } from "passport";
-import { Express } from "express";
-import { AuthPaths } from "./configure-auth";
+import { PassportStatic } from "passport";
+import { Express, Request } from "express";
+import { AuthPaths, AuthStateResponse } from "./configure-auth";
 import { LinkedinUser } from "@diasight/linkedin";
+import { Strategy } from "passport-linkedin-oauth2";
+
+
+export function fullUrl(req: Request, path: string) {
+    return req.protocol + "://" + req.get("host") + path;
+}
+
 
 export const createAuthEndpoints = (
     app: Express,
@@ -26,12 +33,17 @@ export const createAuthEndpoints = (
             }
         },
     );
-    app.get("/auth/user", (req, res) => {
-        const linkedinUser = req.user as LinkedinUser;
-        res.send({
+    app.get("/auth/state", (req, res) => {
+        const data: AuthStateResponse = {
             isAuthenticated: req.isAuthenticated(),
-            user: linkedinUser,
-        });
+            loginUrl: fullUrl(req, urls.loginUrl),
+            logoutUrl: fullUrl(req, urls.logoutUrl),
+        };
+        res.send(data);
+    });
+    app.get("/auth/provider-user", (req, res) => {
+        const linkedinUser = req.user as LinkedinUser;
+        res.send(linkedinUser);
     });
     app.get(urls.logoutUrl, (req, res) => {
         req.logOut();

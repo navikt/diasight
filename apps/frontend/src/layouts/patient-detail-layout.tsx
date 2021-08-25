@@ -9,12 +9,14 @@ import SelectionProvider from "./contexts/selection-context";
 import SummaryProvider from "./contexts/summary-context";
 import { usePatient } from "./hooks";
 import style from "./patient-detail-layout.module.less";
+import { useParams } from "react-router";
 
-interface IProps {
-    id: number;
+interface IPatientRouteParams {
+    id: string;
 }
 
-export const PatientDetailLayout: FC<IProps> = ({ id }) => {
+export const PatientDetailLayout: FC<any> = () => {
+    const { id } = useParams<IPatientRouteParams>();
     const [showSummary, setShowSummary] = useState(false);
     const { patient, isLoading, isError } = usePatient(id);
 
@@ -60,14 +62,14 @@ export const PatientDetailLayout: FC<IProps> = ({ id }) => {
                                 </div>
 
                                 <div className={style.composition}>
-                                    <CompositionList patientRef={id} />
+                                    <CompositionList patientId={id} />
                                 </div>
                             </div>
-                        </div >
+                        </div>
                     )
                     }
-                </SummaryProvider >
-            </SelectionProvider >
+                </SummaryProvider>
+            </SelectionProvider>
         );
     }
 

@@ -1,13 +1,13 @@
 import { Normaltekst, Undertittel } from "nav-frontend-typografi";
 import React, { FC } from "react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import style from "./schedule-timeline.module.less"
 
 export const ScheduleTimeline: FC = () => {
     // For now, all of the appointments are hardcoded
     // The developers and designers should communicate here
     // Find out how many pixels each appointment should be
-    // And calculate where the current time marker should be 
+    // And calculate where the current time marker should be
 
     return (
         <div className={style.wrapper}>
@@ -27,7 +27,7 @@ export const ScheduleTimeline: FC = () => {
                     <Normaltekst className={style.patientAge}>48 år</Normaltekst>
                 </div>
                 <div className={style.timelineEntry}>
-                    <Link href={"/pasient/1"}>
+                    <Link to={"/pasient/1"}>
                         <Undertittel className={style.patientName}>
                             <span style={{ cursor: "pointer" }}>Sofie Fagermo</span>
                         </Undertittel>

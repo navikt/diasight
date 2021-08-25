@@ -5,11 +5,11 @@ import style from "./composition.module.less";
 import { Undertittel } from "nav-frontend-typografi";
 
 interface IProps {
-    patientRef: number;
+    patientId: string;
 }
 
-export const CompositionList: FC<IProps> = ({ patientRef }) => {
-    const { compositions, isLoading, isError } = usePatientComposition(patientRef);
+export const CompositionList: FC<IProps> = ({ patientId }) => {
+    const { compositions, isLoading, isError } = usePatientComposition(patientId);
 
     if (isLoading) return <div>Loading</div>;
     if (isError) return <div>Error</div>;

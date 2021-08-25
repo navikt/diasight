@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { usePatientResults } from "./hooks/use-patient-results";
 import style from "./patient-search.module.less";
 import { IPatient } from "@ahryman40k/ts-fhir-types/lib/R4";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { AlertStripeFeil } from "nav-frontend-alertstriper";
 import NavFrontendSpinner from "nav-frontend-spinner";
 
@@ -21,7 +21,7 @@ export const PatientResults: FC<IProps> = ({ searchValue }) => {
         return <>
             {patientResults.map((patient: IPatient, index: number) => {
                 return (
-                    <Link href={"/pasient/" + patient?.id} key={"patient-results-table-row-" + index}>
+                    <Link to={"/pasient/" + patient?.id} key={"patient-results-table-row-" + index}>
                         {/* The format of names etc in FHIR is somewhat cumbersome to use */}
                         {/* The conversion from IBundle and IBundleEntry to IPatient */}
                         {/* and the presence of undefined further complicates things */}

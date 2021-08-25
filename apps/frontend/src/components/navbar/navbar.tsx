@@ -1,60 +1,49 @@
 import { Clock, CoApplicant, Email, Logout, Settings, System } from "@navikt/ds-icons/cjs";
-import { Normaltekst, Undertekst, Element, Undertittel } from "nav-frontend-typografi";
-import React from "react";
-import { FC } from "react";
-import { Link, useLocation } from "wouter";
+import { Element, Undertekst, Undertittel } from "nav-frontend-typografi";
+import React, { FC } from "react";
+import DocProfilePicture from "../../assets/doc.png";
 import style from "./navbar.module.less";
 import DiaSightLogo from "../../assets/logo.svg";
-import DocProfilePicture from "../../assets/doc.png";
+import { NavbarItem } from "./navbar-item";
+import { IPractitioner } from "@ahryman40k/ts-fhir-types/lib/R4";
 
-export const Navbar: FC = () => {
-    const [location, setLocation] = useLocation();
+interface Props {
+    user: IPractitioner,
+    logoutUrl: string,
+}
+
+export const Navbar: FC<Props> = ({ user, logoutUrl }) => {
+    let profilePic: string = DocProfilePicture;
+    user.photo?.forEach(photo => {
+        if (photo.url) profilePic = photo.url;
+    });
+    let userName = undefined;
+    user.name?.forEach(name => {
+        userName = name.prefix + " " + name.family;
+    });
 
     return (
         <div className={style.wrapper}>
             <img src={DiaSightLogo} alt="" />
             <div className={style.identifier}>
-                <img src={DocProfilePicture} alt="" />
-                <Undertittel>Dr. Nystøl</Undertittel>
+                <img src={profilePic} alt="" className={style.avatar} />
+                <Undertittel>{userName}</Undertittel>
                 <Undertekst>Overlege</Undertekst>
                 <Undertekst>Oslo legekontor</Undertekst>
             </div>
             <div className={style.options}>
-                <Link href="/oversikt">
-                    <div className={`${location.includes("/oversikt") ? style.active : null}`}>
-                        <System />
-                        <Element>Oversikt</Element>
-                    </div>
-                </Link>
-                <Link href="/pasient">
-                    <div className={`${location.includes("/pasient") ? style.active : null}`}>
-                        <CoApplicant />
-                        <Element>Pasient</Element>
-                    </div>
-                </Link>
-                <Link href="/timeplan">
-                    <div className={`${location.includes("/timeplan") ? style.active : null}`}>
-                        <Clock />
-                        <Element>Timeplan</Element>
-                    </div>
-                </Link>
-                <Link href="/inbox">
-                    <div className={`${location.includes("/inbox") ? style.active : null}`}>
-                        <Email />
-                        <Element>Inbox</Element>
-                    </div>
-                </Link>
-                <Link href="/instillinger">
-                    <div className={`${location.includes("/instillinger") ? style.active : null}`}>
-                        <Settings />
-                        <Element>Instillinger</Element>
-                    </div>
-                </Link>
+                <NavbarItem path={"/oversikt"} name={"Oversikt"} icon={<System />} />
+                <NavbarItem path={"/pasient"} name={"Pasient"} icon={<CoApplicant />} />
+                <NavbarItem path={"/timeplan"} name={"Timeplan"} icon={<Clock />} />
+                <NavbarItem path={"/inbox"} name={"Inbox"} icon={<Email />} />
+                <NavbarItem path={"/instillinger"} name={"Instillinger"} icon={<Settings />} />
             </div>
-            <div className={style.session}>
+
+            <a href={logoutUrl} className={style.session}>
                 <Element>Logg ut</Element>
                 <Logout />
-            </div>
+            </a>
+
         </div>
     );
 };
