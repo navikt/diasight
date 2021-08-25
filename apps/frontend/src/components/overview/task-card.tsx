@@ -4,7 +4,7 @@ import { FC } from "react";
 import { useTaskCard } from "./hooks/use-task-card";
 import { bundleToCard } from "./utils/resource-to-card";
 import style from "./task-overview.module.less"
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { referenceToUrl } from "./hooks/reference-to-url";
 
 interface IProps {
@@ -33,7 +33,7 @@ export const TaskCard: FC<IProps> = ({ taskId, ownerId }) => {
                 <Undertekst>{resource.title}</Undertekst>
 
                 {/* The patient in which the task involves */}
-                <Link href={referenceToUrl(resource.link)}>
+                <Link to={referenceToUrl(resource.link)}>
                     <Undertittel className={style.patientLink}>{resource.subject}</Undertittel>
                 </Link>
 

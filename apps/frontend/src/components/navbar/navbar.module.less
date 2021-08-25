@@ -1,75 +1,86 @@
 .wrapper {
-    background-color: #00459c;
-    display: grid;
-    grid-template-rows: 10% auto auto auto;
-    grid-template-columns: 100%;
-    width: 180px;
-    height: 100vh;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
+  background-color: #00459c;
+  display: grid;
+  grid-template-rows: 10% auto auto auto;
+  grid-template-columns: 100%;
+  width: 180px;
+  height: 100vh;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
 }
-
+.wrapper a {
+  text-decoration: none;
+}
 .wrapper > div {
-    margin-left: 2ch;
+  margin-left: 2ch;
 }
 
 .wrapper > img {
-    margin: auto;
+  margin: auto;
 }
 
 .identifier {
-    color: #ffffff;
-    margin-left: 3ch !important;
+  color: #ffffff;
+  margin-left: 3ch !important;
 }
 
 .identifier > img {
-    margin-bottom: 2ch;
+  margin-bottom: 2ch;
 }
 
 .identifier > p {
-    color: #99c3ff;
+  color: #99c3ff;
 }
 
 .options {
-    margin: auto 0;
+  margin: auto 0;
+}
+.options a {
+  display: block;
+
+}
+.options div {
+  display: flex;
+  flex-direction: row;
+  padding: 2ch;
+  color: #99c3ff;
 }
 
-.options > div {
-    display: flex;
-    flex-direction: row;
-    padding: 2ch;
-    color: #99c3ff;
+.options svg {
+  vertical-align: middle;
+  margin: auto 1ch auto 0;
+  font-size: 24px;
 }
 
-.options > div > svg {
-    vertical-align: middle;
-    margin: auto 1ch auto 0;
-    font-size: 24px;
+.options a:not(:last-child) {
+  margin-bottom: 4ch;
 }
 
-.options > div:not(:last-child) {
-    margin-bottom: 4ch;
-}
-
-.options > .active {
-    background-color: #ffffff;
-    color: #00459c;
-    border-radius: 4ch 0 0 4ch;
+.options .active {
+  background-color: #ffffff;
+  color: #00459c;
+  border-radius: 4ch 0 0 4ch;
 }
 
 .options p:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .session {
-    margin: auto 3ch 3ch 3ch !important;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: #99c3ff;
+  margin: auto 3ch 3ch 3ch !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #99c3ff;
 }
 
-.session > svg {
-    color: #ffffff;
+.session  svg {
+  color: #ffffff;
+
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 72px;
 }

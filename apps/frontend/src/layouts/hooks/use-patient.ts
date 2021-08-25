@@ -2,7 +2,7 @@ import { fetcher } from "../../utils";
 import useSWR from "swr";
 import { IPatient } from "@ahryman40k/ts-fhir-types/lib/R4";
 
-export const usePatient = (id: number) => {
+export const usePatient = (id: string) => {
     const { data, error } = useSWR<IPatient>(`api/Patient/${id}`, fetcher);
     return {
         patient: data,

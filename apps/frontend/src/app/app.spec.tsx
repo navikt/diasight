@@ -15,6 +15,6 @@ describe("App", () => {
 
         const { container } = render(<App />);
 
-        await waitFor(() => getByText(container, "Inbox"));
+        await waitFor(() => getByText(container, "Unauthenticated"));
     });
 });

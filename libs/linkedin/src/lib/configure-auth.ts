@@ -9,6 +9,12 @@ export type LinkedInConfig = {
     clientSecret: string;
 };
 
+export interface AuthStateResponse {
+    isAuthenticated: boolean,
+    loginUrl?: string,
+    logoutUrl?: string,
+}
+
 export type AuthPaths = {
     loginUrl: string;
     callbackUrl: string;
@@ -30,11 +36,11 @@ export const configureAuthentication = async (
     app.use(passport.session());
     const strategy = await linkedInStrategy(config, paths);
     passport.use(strategy.name, strategy);
-    passport.serializeUser((user, done) => {
+    passport.serializeUser((user: Express.User, done) => {
         done(null, user);
     });
     passport.deserializeUser((user, done) => {
-        done(null, user);
+        done(null, user as Express.User);
     });
     createAuthEndpoints(app, passport, strategy, paths);
 

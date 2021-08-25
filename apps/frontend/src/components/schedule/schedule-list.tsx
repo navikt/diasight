@@ -1,13 +1,13 @@
 import React, { FC } from "react"
 import { Element, Systemtittel, Undertekst } from "nav-frontend-typografi"
 import style from "./schedule-list.module.less"
-import { Link } from "wouter"
+import { Link } from "react-router-dom";
 
 export const ScheduleList: FC = () => {
     // For now, all of the appointments are hardcoded
     // The developers and designers should communicate here
     // Find out how many pixels each appointment should be
-    // And calculate where the current time marker should be 
+    // And calculate where the current time marker should be
 
     return (
         <div className={style.wrapper}>
@@ -33,7 +33,7 @@ export const ScheduleList: FC = () => {
             <div className={style.timeBlock}>
                 <Undertekst className={style.timeHour}>12:15</Undertekst>
                 <div className={style.patient}>
-                    <Link href={"/pasient/1"}>
+                    <Link to={"/pasient/1"}>
                         <Element className={style.patientName}>
                             <span style={{ cursor: "pointer" }}>Sofie Fagermo</span>
                         </Element>
