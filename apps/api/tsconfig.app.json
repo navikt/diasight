@@ -1,11 +1,18 @@
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "module": "commonjs",
-        "types": ["node", "express"],
-      "allowSyntheticDefaultImports": true
-    },
-    "exclude": ["**/*.spec.ts"],
-    "include": ["**/*.ts"]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": [
+      "node",
+      "express"
+    ],
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts"
+  ]
 }
