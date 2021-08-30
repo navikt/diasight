@@ -4,6 +4,7 @@ import { mockQuestionnaireResponses } from "./mock-data";
 
 describe("App", () => {
     afterEach(() => {
+        // @ts-ignore
         delete global["fetch"];
         cleanup();
     });

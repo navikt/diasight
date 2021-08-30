@@ -3,6 +3,7 @@ import { linkedinToPractitioneerMapper } from "../auth/linkedin-to-practitioneer
 import { LinkedinUser } from "@diasight/linkedin";
 import fhirClient from "../utils/fhir-client";
 import * as getUuidByString from "uuid-by-string";
+import { fkrGetPatient } from "@diasight/fkr-client";
 
 
 export const userRouter = Router();
@@ -33,5 +34,14 @@ userRouter.get("", async (req, res) => {
         }
     } else {
         res.send({});
+    }
+});
+
+userRouter.get("/patients", async (req, res) => {
+    try {
+        const patients = await fkrGetPatient();
+        res.send(patients);
+    } catch (e) {
+        res.send(e.message);
     }
 });

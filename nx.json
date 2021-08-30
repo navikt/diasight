@@ -1,42 +1,50 @@
 {
-    "npmScope": "diasight",
-    "affected": {
-        "defaultBase": "main"
+  "npmScope": "diasight",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*"
     },
-    "implicitDependencies": {
-        "package.json": {
-            "dependencies": "*"
-        },
-        ".eslintrc.json": "*"
-    },
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/workspace/tasks-runners/default",
-            "options": {
-                "cacheableOperations": ["build", "lint", "test", "e2e"]
-            }
-        }
-    },
-    "targetDependencies": {
-        "build": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
         ]
-    },
-    "projects": {
-        "api": {
-            "tags": []
-        },
-        "api-interfaces": {
-            "tags": []
-        },
-        "frontend": {
-            "tags": []
-        },
-        "linkedin": {
-            "tags": []
-        }
+      }
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    },
+    "fkr-client": {
+      "tags": []
+    },
+    "frontend": {
+      "tags": []
+    },
+    "linkedin": {
+      "tags": []
+    }
+  }
 }

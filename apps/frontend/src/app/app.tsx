@@ -14,22 +14,22 @@ export const App = () => {
         <>
             {user && <Navbar user={user} logoutUrl={authState?.logoutUrl || "/"} />}
             <div className={style.content}>
-                <Route path="/oversikt">
+                <Route exact path="/oversikt">
                     <OverviewLayout />
                 </Route>
-                <Route path="/pasient">
+                <Route exact path="/pasient">
                     <PatientListLayout />
                 </Route>
-                <Route path="/pasient/:id">
+                <Route exact path="/pasient/:id">
                     <PatientDetailLayout />
                 </Route>
-                <Route path="/timeplan">
+                <Route exact path="/timeplan">
                     <h1>timeplan</h1>
                 </Route>
-                <Route path="/inbox">
+                <Route exact path="/inbox">
                     <h1>inbox</h1>
                 </Route>
-                <Route path="/instillinger">
+                <Route exact path="/instillinger">
                     <h1>instillinger</h1>
                 </Route>
             </div>

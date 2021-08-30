@@ -1,898 +1,918 @@
 {
-    "resourceType": "Bundle",
-    "id": "bundle-transaction",
-    "type": "transaction",
-    "entry": [
-        {
-            "fullUrl": "Patient/1",
-            "resource": {
-                "resourceType": "Patient",
-                "id": "1",
-                "identifier": [
-                    {
-                        "system": "urn:oid:2.16.578.1.12.4.1.4.1",
-                        "value": "091098 57469"
-                    }
-                ],
-                "name": [
-                    {
-                        "use": "official",
-                        "family": "Fagermo",
-                        "given": ["Sofie"]
-                    }
-                ],
-                "telecom": [
-                    {
-                        "system": "phone",
-                        "value": "433 92 365"
-                    },
-                    {
-                        "system": "email",
-                        "value": "sofiefagermo@xxl.no"
-                    }
-                ],
-                "gender": "female",
-                "birthDate": "1998-10-09",
-                "deceasedBoolean": false,
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": ["Langøyfaret", "139"],
-                        "city": "Kråkerøy",
-                        "postalCode": "1679"
-                    }
-                ],
-                "maritalStatus": {
-                    "coding": [
-                        {
-                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
-                            "code": "U",
-                            "display": "Unmarried"
-                        }
-                    ]
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Patient"
+  "resourceType": "Bundle",
+  "id": "bundle-transaction",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "Patient/1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "1",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+            "value": "091098 57469"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Fagermo",
+            "given": [
+              "Sofie"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "433 92 365"
+          },
+          {
+            "system": "email",
+            "value": "sofiefagermo@xxl.no"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1998-10-09",
+        "deceasedBoolean": false,
+        "address": [
+          {
+            "use": "home",
+            "type": "both",
+            "line": [
+              "Langøyfaret",
+              "139"
+            ],
+            "city": "Kråkerøy",
+            "postalCode": "1679"
+          }
+        ],
+        "maritalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+              "code": "U",
+              "display": "Unmarried"
             }
-        },
-        {
-            "fullUrl": "Practitioner/2",
-            "resource": {
-                "resourceType": "Practitioner",
-                "id": "2",
-                "active": true,
-                "name": [
-                    {
-                        "use": "usual",
-                        "family": "Nystøl",
-                        "given": ["Geir"]
-                    }
-                ],
-                "gender": "male"
-            },
-            "request": {
-                "method": "POST",
-                "url": "Practitioner"
-            }
-        },
-        {
-            "fullUrl": "Practitioner/3",
-            "resource": {
-                "resourceType": "Practitioner",
-                "id": "3",
-                "active": true,
-                "name": [
-                    {
-                        "use": "usual",
-                        "family": "Knut",
-                        "given": ["Tangen"]
-                    }
-                ],
-                "gender": "male"
-            },
-            "request": {
-                "method": "POST",
-                "url": "Practitioner"
-            }
-        },
-        {
-            "fullUrl": "Condition/4",
-            "resource": {
-                "resourceType": "Condition",
-                "id": "4",
-                "code": {
-                    "coding": [
-                        {
-                            "system": "ICPC",
-                            "version": "2B",
-                            "code": "A81"
-                        }
-                    ],
-                    "text": "Multiple skader/traumer"
-                },
-                "subject": {
-                    "reference": "Patient/1",
-                    "type": "Patient"
-                },
-                "onsetDateTime": "2018-12-13",
-                "recordedDate": "2018-12-13",
-                "recorder": {
-                    "reference": "Practitioner/2",
-                    "type": "Practitioner"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Condition"
-            }
-        },
-        {
-            "fullUrl": "Condition/5",
-            "resource": {
-                "resourceType": "Condition",
-                "id": "5",
-                "code": {
-                    "coding": [
-                        {
-                            "system": "ICPC",
-                            "version": "2B",
-                            "code": "R72"
-                        }
-                    ],
-                    "text": "Streptokokkhals"
-                },
-                "subject": {
-                    "reference": "Patient/1",
-                    "type": "Patient"
-                },
-                "onsetDateTime": "2001-08-17",
-                "recordedDate": "2001-08-24",
-                "recorder": {
-                    "reference": "Practitioner/2",
-                    "type": "Practitioner"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Condition"
-            }
-        },
-        {
-            "fullUrl": "MedicationRequest/6",
-            "resource": {
-                "resourceType": "MedicationRequest",
-                "id": "6",
-                "status": "active",
-                "intent": "order",
-                "medicationCodeableConcept": {
-                    "text": "Paralgin Forte"
-                },
-                "subject": {
-                    "reference": "Patient/1"
-                },
-                "authoredOn": "2021-07-15",
-                "requester": {
-                    "reference": "Practitioner/2"
-                },
-                "dosageInstruction": [
-                    {
-                        "asNeededBoolean": true,
-                        "maxDosePerPeriod": {
-                            "numerator": {
-                                "value": 4,
-                                "unit": "piller"
-                            },
-                            "denominator": {
-                                "value": 1,
-                                "unit": "dag"
-                            }
-                        }
-                    }
-                ],
-                "dispenseRequest": {
-                    "initialFill": {
-                        "quantity": {
-                            "value": 20,
-                            "unit": "piller"
-                        },
-                        "duration": {
-                            "value": 1,
-                            "unit": "måned"
-                        }
-                    },
-                    "validityPeriod": {
-                        "start": "2021-07-15",
-                        "end": "2021-08-15"
-                    },
-                    "numberOfRepeatsAllowed": 0
-                },
-                "substitution": {
-                    "allowedBoolean": false
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "MedicationRequest"
-            }
-        },
-        {
-            "fullUrl": "Observation/7",
-            "resource": {
-                "resourceType": "Observation",
-                "id": "7",
-                "status": "registered",
-                "code": {
-                    "text": "Bildeveiledet teknikk med bruk av konvensjonell røntgen",
-                    "coding": [
-                        {
-                            "code": "ZXM10",
-                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/2946662"
-                        }
-                    ]
-                },
-                "issued": "2019-05-19",
-                "performer": [
-                    {
-                        "reference": "Practitioner/2",
-                        "type": "Practitioner"
-                    }
-                ],
-                "note": [
-                    {
-                        "text": "Beinbruddet er nesten helbredet"
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "Observation"
-            }
-        },
-        {
-            "fullUrl": "ServiceRequest/8",
-            "resource": {
-                "resourceType": "ServiceRequest",
-                "id": "8",
-                "status": "active",
-                "intent": "order",
-                "priority": "routine",
-                "code": {
-                    "text": "Henvisning til fysioterapeut"
-                },
-                "subject": {
-                    "reference": "Patient/1"
-                },
-                "performer": [
-                    {
-                        "reference": "Practitioner/3",
-                        "display": "Knut Tangen"
-                    }
-                ],
-                "occurrenceDateTime": "2019-01-07",
-                "authoredOn": "2019-01-07",
-                "requester": {
-                    "reference": "Practitioner/2"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "ServiceRequest"
-            }
-        },
-        {
-            "fullUrl": "Composition/9",
-            "resource": {
-                "resourceType": "Composition",
-                "id": "9",
-                "status": "preliminary",
-                "type": {
-                    "coding": [
-                        {
-                            "system": "http://loinc.org",
-                            "code": "11503-0"
-                        }
-                    ],
-                    "text": "Medical record"
-                },
-                "subject": {
-                    "reference": "Patient/1",
-                    "type": "Patient"
-                },
-                "date": "2021-07-09",
-                "author": [
-                    {
-                        "reference": "Practitioner/2",
-                        "type": "Practitioner"
-                    }
-                ],
-                "title": "Bilulykke",
-                "section": [
-                    {
-                        "title": "Multiple skader/traumer",
-                        "code": {
-                            "coding": [
-                                {
-                                    "system": "http://loinc.org",
-                                    "code": "11329-0"
-                                }
-                            ],
-                            "text": "History of general Narrative - Reported"
-                        },
-                        "focus": {
-                            "reference": "Condition/4",
-                            "type": "Condition",
-                            "display": "Multiple skader/traume"
-                        },
-                        "orderedBy": {
-                            "coding": [
-                                {
-                                    "code": "event-date"
-                                }
-                            ]
-                        },
-                        "entry": [
-                            {
-                                "reference": "Observation/7",
-                                "type": "Observation",
-                                "display": "Bildeveiledet teknikk med bruk av konvensjonell røntgen"
-                            },
-                            {
-                                "reference": "ServiceRequest/8",
-                                "type": "ServiceRequest",
-                                "display": "Henvisning til fysioterapeut"
-                            },
-                            {
-                                "reference": "MedicationRequest/6",
-                                "type": "MedicationRequest",
-                                "display": "Paralgin Forte"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Streptokokkhals",
-                        "code": {
-                            "coding": [
-                                {
-                                    "system": "http://loinc.org",
-                                    "code": "11329-0"
-                                }
-                            ],
-                            "text": "History of general Narrative - Reported"
-                        },
-                        "focus": {
-                            "reference": "Condition/5",
-                            "type": "Condition",
-                            "display": "Streptokokkhals"
-                        },
-                        "orderedBy": {
-                            "coding": [
-                                {
-                                    "code": "event-date"
-                                }
-                            ]
-                        }
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "Composition"
-            }
-        },
-        {
-            "fullUrl": "Questionnaire/10",
-            "resource": {
-                "resourceType": "Questionnaire",
-                "id": 10,
-                "language": "no",
-                "version": "1.0.0",
-                "name": "sykemelding",
-                "title": "Sykemelding",
-                "status": "active",
-                "subjectType": ["Patient"],
-                "publisher": "NAV",
-                "description": "Dette er et skjema for sykemelding",
-                "item": [
-                    {
-                        "linkId": "1",
-                        "text": "Gjeldende hendelser",
-                        "type": "reference",
-                        "required": true,
-                        "repeats": true
-                    },
-                    {
-                        "linkId": "2",
-                        "text": "Behov for dialogmøte?",
-                        "type": "boolean"
-                    },
-                    {
-                        "linkId": "3",
-                        "text": "Pasienten sykemeldes",
-                        "type": "choice",
-                        "required": true,
-                        "answerOption": [
-                            {
-                                "valueString": "10%"
-                            },
-                            {
-                                "valueString": "20%"
-                            },
-                            {
-                                "valueString": "30%"
-                            },
-                            {
-                                "valueString": "40%"
-                            },
-                            {
-                                "valueString": "50%"
-                            },
-                            {
-                                "valueString": "60%"
-                            },
-                            {
-                                "valueString": "70%"
-                            },
-                            {
-                                "valueString": "80%"
-                            },
-                            {
-                                "valueString": "90%"
-                            },
-                            {
-                                "valueString": "100%"
-                            }
-                        ]
-                    },
-                    {
-                        "linkId": "4",
-                        "text": "Fra",
-                        "type": "date",
-                        "required": true
-                    },
-                    {
-                        "linkId": "5",
-                        "text": "Til",
-                        "type": "date",
-                        "required": true
-                    },
-                    {
-                        "linkId": "6",
-                        "text": "Kommentar",
-                        "type": "text",
-                        "required": false
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "Questionnaire"
-            }
-        },
-        {
-            "fullUrl": "DiagnosticReport/11",
-            "resource": {
-                "resourceType": "DiagnosticReport",
-                "id": "11",
-                "basedOn": [
-                    {
-                        "reference": "ServiceRequest/8"
-                    }
-                ],
-                "status": "final",
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://snomed.info/sct",
-                                "code": "168674004",
-                                "display": "Røntgen av tibia/fibula abnormal"
-                            },
-                            {
-                                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
-                                "code": "RX"
-                            }
-                        ]
-                    }
-                ],
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://loinc.org",
-                            "code": "22030-1",
-                            "display": "Brudd i proximal tibia"
-                        }
-                    ]
-                },
-                "subject": {
-                    "reference": "Patient/1",
-                    "display": "Sofie Fagermo"
-                },
-                "issued": "2019-01-03",
-                "performer": [
-                    {
-                        "reference": "Practitioner/3",
-                        "display": "Knut Tangen"
-                    }
-                ],
-                "resultsInterpreter": [
-                    {
-                        "reference": "Practitioner/2",
-                        "display": "Geir Nystøl"
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "DiagnosticReport"
-            }
-        },
-        {
-            "fullUrl": "Organization/12",
-            "resource": {
-                "resourceType": "Organization",
-                "id": "12",
-                "identifier": [
-                    {
-                        "system": "http://data.ssb.no/api/klass/v1/versions/919",
-                        "value": "25"
-                    }
-                ],
-                "name": "NAV",
-                "alias": ["Ny arbeids- og velferdsetat"]
-            },
-            "request": {
-                "method": "POST",
-                "url": "Organization"
-            }
-        },
-        {
-            "fullUrl": "Task/13",
-            "resource": {
-                "resourceType": "Task",
-                "id": "13",
-                "basedOn": [
-                    {
-                        "reference": "ServiceRequest/8"
-                    }
-                ],
-                "status": "received",
-                "intent": "order",
-                "description": "Epikrise",
-                "focus": {
-                    "reference": "DiagnosticReport/11",
-                    "type": "DiagnosticReport"
-                },
-                "for": {
-                    "reference": "Patient/1"
-                },
-                "lastModified": "2021-08-20",
-                "requester": {
-                    "reference": "Practitioner/3"
-                },
-                "owner": {
-                    "reference": "Practitioner/2"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Task"
-            }
-        },
-        {
-            "fullUrl": "Task/14",
-            "resource": {
-                "resourceType": "Task",
-                "id": "14",
-                "basedOn": [
-                    {
-                        "reference": "Condition/4"
-                    }
-                ],
-                "status": "received",
-                "intent": "order",
-                "description": "Bestilt utfyllende sykmelding",
-                "focus": {
-                    "reference": "Questionnaire/10",
-                    "type": "Questionnaire"
-                },
-                "for": {
-                    "reference": "Patient/1"
-                },
-                "lastModified": "2021-08-23",
-                "requester": {
-                    "reference": "Organization/12"
-                },
-                "owner": {
-                    "reference": "Practitioner/2"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Task"
-            }
-        },
-        {
-            "fullUrl": "Questionnaire/15",
-            "resource": {
-                "resourceType": "Questionnaire",
-                "id": "15",
-                "language": "no",
-                "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
-                "version": "1.0.0",
-                "name": "utfyllende-sykmelding-1183745",
-                "title": "Utfyllende sykemelding",
-                "status": "active",
-                "subjectType": ["Patient"],
-                "item": [
-                    {
-                        "linkId": "1",
-                        "text": "Er pasienten ute av stand til å utføre arbeidsoppgaver?",
-                        "type": "boolean"
-                    },
-                    {
-                        "linkId": "2",
-                        "text": "Hvor mange kg kan pasienten løfte?",
-                        "type": "integer"
-                    },
-                    {
-                        "linkId": "3",
-                        "text": "Hvor mange uker gjelder sykemeldingen for?",
-                        "type": "integer",
-                        "enableWhen": [
-                            {
-                                "question": "1",
-                                "operator": "=",
-                                "answerBoolean": true
-                            }
-                        ],
-                        "required": true
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "Questionnaire"
-            }
-        },
-        {
-            "fullUrl": "Task/16",
-            "resource": {
-                "resourceType": "Task",
-                "id": "16",
-                "basedOn": [
-                    {
-                        "reference": "Condition/21"
-                    }
-                ],
-                "status": "received",
-                "intent": "order",
-                "description": "Bestilt utfyllende sykmelding",
-                "focus": {
-                    "reference": "Questionnaire/15",
-                    "type": "Questionnaire"
-                },
-                "for": {
-                    "reference": "Patient/20"
-                },
-                "lastModified": "2021-08-27",
-                "requester": {
-                    "reference": "Organization/12"
-                },
-                "owner": {
-                    "reference": "Practitioner/2"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Task"
-            }
-        },
-        {
-            "fullUrl": "ServiceRequest/17",
-            "resource": {
-                "resourceType": "ServiceRequest",
-                "id": "17",
-                "status": "active",
-                "intent": "order",
-                "priority": "urgent",
-                "code": {
-                    "coding": [
-                        {
-                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/3129755",
-                            "code": "NGX33"
-                        }
-                    ],
-                    "text": "Sirkulær gips på kne eller legg"
-                },
-                "subject": {
-                    "reference": "Patient/1"
-                },
-                "occurrenceDateTime": "2019-01-30",
-                "authoredOn": "2019-01-30",
-                "requester": {
-                    "reference": "Practitioner/2"
-                },
-                "performer": [
-                    {
-                        "reference": "Practitioner/3"
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "ServiceRequest"
-            }
-        },
-        {
-            "fullUrl": "DiagnosticReport/18",
-            "resource": {
-                "resourceType": "DiagnosticReport",
-                "id": "18",
-                "status": "final",
-                "code": {
-                    "coding": [
-                        {
-                            "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/3135825",
-                            "code": "IBEA10"
-                        }
-                    ],
-                    "text": "Psykomotorisk fysioterapi"
-                },
-                "subject": {
-                    "reference": "Patient/1"
-                },
-                "effectiveDateTime": "2019-04-07",
-                "issued": "2019-04-07",
-                "performer": [
-                    {
-                        "reference": "Practitioner/3",
-                        "display": "Knut Tangen"
-                    }
-                ],
-                "resultsInterpreter": [
-                    {
-                        "reference": "Practitioner/2",
-                        "display": "Geir Nystøl"
-                    }
-                ],
-                "conclusionCode": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://snomed.info/sct",
-                                "code": "419026008",
-                                "display": "Effekt av eksponering for fysisk kraft"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "request": {
-                "method": "POST",
-                "url": "DiagnosticReport"
-            }
-        },
-        {
-            "fullUrl": "Task/19",
-            "resource": {
-                "resourceType": "Task",
-                "id": "19",
-                "basedOn": [
-                    {
-                        "reference": "ServiceRequest/17"
-                    }
-                ],
-                "status": "received",
-                "intent": "order",
-                "description": "Labresultater",
-                "focus": {
-                    "reference": "DiagnosticReport/18",
-                    "type": "DiagnosticReport"
-                },
-                "for": {
-                    "reference": "Patient/20"
-                },
-                "lastModified": "2021-08-23",
-                "requester": {
-                    "reference": "Practitioner/3"
-                },
-                "owner": {
-                    "reference": "Practitioner/2"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Task"
-            }
-        },
-        {
-            "fullUrl": "Patient/20",
-            "resource": {
-                "resourceType": "Patient",
-                "id": "20",
-                "identifier": [
-                    {
-                        "system": "urn:oid:2.16.578.1.12.4.1.4.1",
-                        "value": "280273 12345"
-                    }
-                ],
-                "name": [
-                    {
-                        "use": "official",
-                        "family": "Salvesen",
-                        "given": ["Daniel"]
-                    }
-                ],
-                "telecom": [
-                    {
-                        "system": "phone",
-                        "value": "123 45 678"
-                    },
-                    {
-                        "system": "email",
-                        "value": "danielsalvesen@gmail.no"
-                    }
-                ],
-                "gender": "male",
-                "birthDate": "1973-02-28",
-                "deceasedBoolean": false,
-                "address": [
-                    {
-                        "use": "home",
-                        "type": "both",
-                        "line": ["Fyrstikkalleen", "2"],
-                        "city": "Oslo",
-                        "postalCode": "0661"
-                    }
-                ],
-                "maritalStatus": {
-                    "coding": [
-                        {
-                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
-                            "code": "M",
-                            "display": "Married"
-                        }
-                    ]
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Patient"
-            }
-        },
-        {
-            "fullUrl": "Condition/21",
-            "resource": {
-                "resourceType": "Condition",
-                "id": "21",
-                "code": {
-                    "coding": [
-                        {
-                            "system": "ICPC",
-                            "version": "2B",
-                            "code": "D86"
-                        }
-                    ],
-                    "text": "Magesår IKA"
-                },
-                "subject": {
-                    "reference": "Patient/20",
-                    "type": "Patient"
-                },
-                "onsetDateTime": "2018-12-13",
-                "recordedDate": "2018-12-13",
-                "recorder": {
-                    "reference": "Practitioner/2",
-                    "type": "Practitioner"
-                }
-            },
-            "request": {
-                "method": "POST",
-                "url": "Condition"
-            }
+          ]
         }
-    ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "Practitioner/2",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "2",
+        "active": true,
+        "name": [
+          {
+            "use": "usual",
+            "family": "Nystøl",
+            "given": [
+              "Geir"
+            ]
+          }
+        ],
+        "gender": "male"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Practitioner"
+      }
+    },
+    {
+      "fullUrl": "Practitioner/3",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "3",
+        "active": true,
+        "name": [
+          {
+            "use": "usual",
+            "family": "Knut",
+            "given": [
+              "Tangen"
+            ]
+          }
+        ],
+        "gender": "male"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Practitioner"
+      }
+    },
+    {
+      "fullUrl": "Condition/4",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "4",
+        "code": {
+          "coding": [
+            {
+              "system": "ICPC",
+              "version": "2B",
+              "code": "A81"
+            }
+          ],
+          "text": "Multiple skader/traumer"
+        },
+        "subject": {
+          "reference": "Patient/1",
+          "type": "Patient"
+        },
+        "onsetDateTime": "2018-12-13",
+        "recordedDate": "2018-12-13",
+        "recorder": {
+          "reference": "Practitioner/2",
+          "type": "Practitioner"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "Condition/5",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "5",
+        "code": {
+          "coding": [
+            {
+              "system": "ICPC",
+              "version": "2B",
+              "code": "R72"
+            }
+          ],
+          "text": "Streptokokkhals"
+        },
+        "subject": {
+          "reference": "Patient/1",
+          "type": "Patient"
+        },
+        "onsetDateTime": "2001-08-17",
+        "recordedDate": "2001-08-24",
+        "recorder": {
+          "reference": "Practitioner/2",
+          "type": "Practitioner"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    },
+    {
+      "fullUrl": "MedicationRequest/6",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "6",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Paralgin Forte"
+        },
+        "subject": {
+          "reference": "Patient/1"
+        },
+        "authoredOn": "2021-07-15",
+        "requester": {
+          "reference": "Practitioner/2"
+        },
+        "dosageInstruction": [
+          {
+            "asNeededBoolean": true,
+            "maxDosePerPeriod": {
+              "numerator": {
+                "value": 4,
+                "unit": "piller"
+              },
+              "denominator": {
+                "value": 1,
+                "unit": "dag"
+              }
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "initialFill": {
+            "quantity": {
+              "value": 20,
+              "unit": "piller"
+            },
+            "duration": {
+              "value": 1,
+              "unit": "måned"
+            }
+          },
+          "validityPeriod": {
+            "start": "2021-07-15",
+            "end": "2021-08-15"
+          },
+          "numberOfRepeatsAllowed": 0
+        },
+        "substitution": {
+          "allowedBoolean": false
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    },
+    {
+      "fullUrl": "Observation/7",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "7",
+        "status": "registered",
+        "code": {
+          "text": "Bildeveiledet teknikk med bruk av konvensjonell røntgen",
+          "coding": [
+            {
+              "code": "ZXM10",
+              "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/2946662"
+            }
+          ]
+        },
+        "issued": "2019-05-19",
+        "performer": [
+          {
+            "reference": "Practitioner/2",
+            "type": "Practitioner"
+          }
+        ],
+        "note": [
+          {
+            "text": "Beinbruddet er nesten helbredet"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      }
+    },
+    {
+      "fullUrl": "ServiceRequest/8",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "8",
+        "status": "active",
+        "intent": "order",
+        "priority": "routine",
+        "code": {
+          "text": "Henvisning til fysioterapeut"
+        },
+        "subject": {
+          "reference": "Patient/1"
+        },
+        "performer": [
+          {
+            "reference": "Practitioner/3",
+            "display": "Knut Tangen"
+          }
+        ],
+        "occurrenceDateTime": "2019-01-07",
+        "authoredOn": "2019-01-07",
+        "requester": {
+          "reference": "Practitioner/2"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "ServiceRequest"
+      }
+    },
+    {
+      "fullUrl": "Composition/9",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "9",
+        "status": "preliminary",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11503-0"
+            }
+          ],
+          "text": "Medical record"
+        },
+        "subject": {
+          "reference": "Patient/1",
+          "type": "Patient"
+        },
+        "date": "2021-07-09",
+        "author": [
+          {
+            "reference": "Practitioner/2",
+            "type": "Practitioner"
+          }
+        ],
+        "title": "Bilulykke",
+        "section": [
+          {
+            "title": "Multiple skader/traumer",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11329-0"
+                }
+              ],
+              "text": "History of general Narrative - Reported"
+            },
+            "focus": {
+              "reference": "Condition/4",
+              "type": "Condition",
+              "display": "Multiple skader/traume"
+            },
+            "orderedBy": {
+              "coding": [
+                {
+                  "code": "event-date"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "Observation/7",
+                "type": "Observation",
+                "display": "Bildeveiledet teknikk med bruk av konvensjonell røntgen"
+              },
+              {
+                "reference": "ServiceRequest/8",
+                "type": "ServiceRequest",
+                "display": "Henvisning til fysioterapeut"
+              },
+              {
+                "reference": "MedicationRequest/6",
+                "type": "MedicationRequest",
+                "display": "Paralgin Forte"
+              }
+            ]
+          },
+          {
+            "title": "Streptokokkhals",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11329-0"
+                }
+              ],
+              "text": "History of general Narrative - Reported"
+            },
+            "focus": {
+              "reference": "Condition/5",
+              "type": "Condition",
+              "display": "Streptokokkhals"
+            },
+            "orderedBy": {
+              "coding": [
+                {
+                  "code": "event-date"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Composition"
+      }
+    },
+    {
+      "fullUrl": "Questionnaire/10",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": 10,
+        "language": "no",
+        "version": "1.0.0",
+        "name": "sykemelding",
+        "title": "Sykemelding",
+        "status": "active",
+        "subjectType": [
+          "Patient"
+        ],
+        "publisher": "NAV",
+        "description": "Dette er et skjema for sykemelding",
+        "item": [
+          {
+            "linkId": "1",
+            "text": "Gjeldende hendelser",
+            "type": "reference",
+            "required": true,
+            "repeats": true
+          },
+          {
+            "linkId": "2",
+            "text": "Behov for dialogmøte?",
+            "type": "boolean"
+          },
+          {
+            "linkId": "3",
+            "text": "Pasienten sykemeldes",
+            "type": "choice",
+            "required": true,
+            "answerOption": [
+              {
+                "valueString": "10%"
+              },
+              {
+                "valueString": "20%"
+              },
+              {
+                "valueString": "30%"
+              },
+              {
+                "valueString": "40%"
+              },
+              {
+                "valueString": "50%"
+              },
+              {
+                "valueString": "60%"
+              },
+              {
+                "valueString": "70%"
+              },
+              {
+                "valueString": "80%"
+              },
+              {
+                "valueString": "90%"
+              },
+              {
+                "valueString": "100%"
+              }
+            ]
+          },
+          {
+            "linkId": "4",
+            "text": "Fra",
+            "type": "date",
+            "required": true
+          },
+          {
+            "linkId": "5",
+            "text": "Til",
+            "type": "date",
+            "required": true
+          },
+          {
+            "linkId": "6",
+            "text": "Kommentar",
+            "type": "text",
+            "required": false
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Questionnaire"
+      }
+    },
+    {
+      "fullUrl": "DiagnosticReport/11",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "11",
+        "basedOn": [
+          {
+            "reference": "ServiceRequest/8"
+          }
+        ],
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "168674004",
+                "display": "Røntgen av tibia/fibula abnormal"
+              },
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "RX"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "22030-1",
+              "display": "Brudd i proximal tibia"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/1",
+          "display": "Sofie Fagermo"
+        },
+        "issued": "2019-01-03",
+        "performer": [
+          {
+            "reference": "Practitioner/3",
+            "display": "Knut Tangen"
+          }
+        ],
+        "resultsInterpreter": [
+          {
+            "reference": "Practitioner/2",
+            "display": "Geir Nystøl"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DiagnosticReport"
+      }
+    },
+    {
+      "fullUrl": "Organization/12",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "12",
+        "identifier": [
+          {
+            "system": "http://data.ssb.no/api/klass/v1/versions/919",
+            "value": "25"
+          }
+        ],
+        "name": "NAV",
+        "alias": [
+          "Ny arbeids- og velferdsetat"
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Organization"
+      }
+    },
+    {
+      "fullUrl": "Task/13",
+      "resource": {
+        "resourceType": "Task",
+        "id": "13",
+        "basedOn": [
+          {
+            "reference": "ServiceRequest/8"
+          }
+        ],
+        "status": "received",
+        "intent": "order",
+        "description": "Epikrise",
+        "focus": {
+          "reference": "DiagnosticReport/11",
+          "type": "DiagnosticReport"
+        },
+        "for": {
+          "reference": "Patient/1"
+        },
+        "lastModified": "2021-08-20",
+        "requester": {
+          "reference": "Practitioner/3"
+        },
+        "owner": {
+          "reference": "Practitioner/2"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Task"
+      }
+    },
+    {
+      "fullUrl": "Task/14",
+      "resource": {
+        "resourceType": "Task",
+        "id": "14",
+        "basedOn": [
+          {
+            "reference": "Condition/4"
+          }
+        ],
+        "status": "received",
+        "intent": "order",
+        "description": "Bestilt utfyllende sykmelding",
+        "focus": {
+          "reference": "Questionnaire/10",
+          "type": "Questionnaire"
+        },
+        "for": {
+          "reference": "Patient/1"
+        },
+        "lastModified": "2021-08-23",
+        "requester": {
+          "reference": "Organization/12"
+        },
+        "owner": {
+          "reference": "Practitioner/2"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Task"
+      }
+    },
+    {
+      "fullUrl": "Questionnaire/15",
+      "resource": {
+        "resourceType": "Questionnaire",
+        "id": "15",
+        "language": "no",
+        "url": "http://mitt-domene.no/fhir/Questionnaire/workshop-skjema",
+        "version": "1.0.0",
+        "name": "utfyllende-sykmelding-1183745",
+        "title": "Utfyllende sykemelding",
+        "status": "active",
+        "subjectType": [
+          "Patient"
+        ],
+        "item": [
+          {
+            "linkId": "1",
+            "text": "Er pasienten ute av stand til å utføre arbeidsoppgaver?",
+            "type": "boolean"
+          },
+          {
+            "linkId": "2",
+            "text": "Hvor mange kg kan pasienten løfte?",
+            "type": "integer"
+          },
+          {
+            "linkId": "3",
+            "text": "Hvor mange uker gjelder sykemeldingen for?",
+            "type": "integer",
+            "enableWhen": [
+              {
+                "question": "1",
+                "operator": "=",
+                "answerBoolean": true
+              }
+            ],
+            "required": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Questionnaire"
+      }
+    },
+    {
+      "fullUrl": "Task/16",
+      "resource": {
+        "resourceType": "Task",
+        "id": "16",
+        "basedOn": [
+          {
+            "reference": "Condition/21"
+          }
+        ],
+        "status": "received",
+        "intent": "order",
+        "description": "Bestilt utfyllende sykmelding",
+        "focus": {
+          "reference": "Questionnaire/15",
+          "type": "Questionnaire"
+        },
+        "for": {
+          "reference": "Patient/20"
+        },
+        "lastModified": "2021-08-27",
+        "requester": {
+          "reference": "Organization/12"
+        },
+        "owner": {
+          "reference": "Practitioner/2"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Task"
+      }
+    },
+    {
+      "fullUrl": "ServiceRequest/17",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "17",
+        "status": "active",
+        "intent": "order",
+        "priority": "urgent",
+        "code": {
+          "coding": [
+            {
+              "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/3129755",
+              "code": "NGX33"
+            }
+          ],
+          "text": "Sirkulær gips på kne eller legg"
+        },
+        "subject": {
+          "reference": "Patient/1"
+        },
+        "occurrenceDateTime": "2019-01-30",
+        "authoredOn": "2019-01-30",
+        "requester": {
+          "reference": "Practitioner/2"
+        },
+        "performer": [
+          {
+            "reference": "Practitioner/3"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "ServiceRequest"
+      }
+    },
+    {
+      "fullUrl": "DiagnosticReport/18",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "18",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "https://finnkode.ehelse.no/#ncmpncsp/0/0/0/3135825",
+              "code": "IBEA10"
+            }
+          ],
+          "text": "Psykomotorisk fysioterapi"
+        },
+        "subject": {
+          "reference": "Patient/1"
+        },
+        "effectiveDateTime": "2019-04-07",
+        "issued": "2019-04-07",
+        "performer": [
+          {
+            "reference": "Practitioner/3",
+            "display": "Knut Tangen"
+          }
+        ],
+        "resultsInterpreter": [
+          {
+            "reference": "Practitioner/2",
+            "display": "Geir Nystøl"
+          }
+        ],
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "419026008",
+                "display": "Effekt av eksponering for fysisk kraft"
+              }
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "DiagnosticReport"
+      }
+    },
+    {
+      "fullUrl": "Task/19",
+      "resource": {
+        "resourceType": "Task",
+        "id": "19",
+        "basedOn": [
+          {
+            "reference": "ServiceRequest/17"
+          }
+        ],
+        "status": "received",
+        "intent": "order",
+        "description": "Labresultater",
+        "focus": {
+          "reference": "DiagnosticReport/18",
+          "type": "DiagnosticReport"
+        },
+        "for": {
+          "reference": "Patient/20"
+        },
+        "lastModified": "2021-08-23",
+        "requester": {
+          "reference": "Practitioner/3"
+        },
+        "owner": {
+          "reference": "Practitioner/2"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Task"
+      }
+    },
+    {
+      "fullUrl": "Patient/20",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "20",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.578.1.12.4.1.4.1",
+            "value": "280273 12345"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Salvesen",
+            "given": [
+              "Daniel"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "123 45 678"
+          },
+          {
+            "system": "email",
+            "value": "danielsalvesen@gmail.no"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1973-02-28",
+        "deceasedBoolean": false,
+        "address": [
+          {
+            "use": "home",
+            "type": "both",
+            "line": [
+              "Fyrstikkalleen",
+              "2"
+            ],
+            "city": "Oslo",
+            "postalCode": "0661"
+          }
+        ],
+        "maritalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+              "code": "M",
+              "display": "Married"
+            }
+          ]
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "Condition/21",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "21",
+        "code": {
+          "coding": [
+            {
+              "system": "ICPC",
+              "version": "2B",
+              "code": "D86"
+            }
+          ],
+          "text": "Magesår IKA"
+        },
+        "subject": {
+          "reference": "Patient/20",
+          "type": "Patient"
+        },
+        "onsetDateTime": "2018-12-13",
+        "recordedDate": "2018-12-13",
+        "recorder": {
+          "reference": "Practitioner/2",
+          "type": "Practitioner"
+        }
+      },
+      "request": {
+        "method": "POST",
+        "url": "Condition"
+      }
+    }
+  ]
 }
