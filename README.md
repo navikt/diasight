@@ -10,10 +10,12 @@ informasjon, i tillegg til å utføre de andre nødvendige funksjonene til et EP
 ## Bruke @navikt/ds-icons med Jest og NX
 Husk å importere CommonJS filene og ikke `default` fra biblioteket for å ikke brekke transform patterns. 
 
-
 ## Google Healthcare API
 Vi bruker data fra FKR for å bygge testdata. 
 
+## Arkivert og avsluttet
+Teamet som forvaltet denne kildekoden har blitt nedlagt, denne kildekoden er derfor arkivert. Spørsmål
+kan rettes til Øyvind Karlstad i NAV. Teamet som bygde tjenesten har også dokumentert dette arbeidet i
+rapportsform denne finner du [her](1) (krever innlogging).
 
-## Kontakt
-
+[1]:https://navno.sharepoint.com/:b:/s/DigitalsamhandlingiNorgeAS/EWPECjJvbdBAgRuH1nfu7VABiAHU9zdjIanQQeT_8VHc9w?e=nPeYmZ
